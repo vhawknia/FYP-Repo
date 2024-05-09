@@ -5,9 +5,9 @@ function Header() {
     return (
         <header className="header">
             <nav>
-                <Link to="/">Home</Link>
-                <Link to="/Vote">Vote</Link>
-                <Link to="/endElection">End Election</Link>
+                <Link to='/'>Home</Link>
+                <Link to='/vote'>Vote</Link>
+                <a href="#home">Home</a>
                 <a href="#results">Election Results</a>
                 <a href="#settings">Account Settings</a>
                 <a href="#privacy">Privacy Policy</a>

@@ -1,20 +1,21 @@
 import React from 'react';
+import Header from './Components/Header'; 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './Components/Header';
 import VotingBox from './Components/VotingBox';
+import Home from './Components/Home';
 import EndElection from './Components/EndElectionBox';
-
 import './MainApp.css';
 
-function MainApp() {
+
+function App() {
     return (
         <Router>
             <div className="app">
                 <Header />
                 <main className="content">
                     <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/vote" element={
+                        <Route path='/' element={<Home />}></Route>
+                        <Route path='/vote' element={
                             <>
                                 <h1>Gabriel Chung - IT Dept</h1>
                                 <h2>Voting</h2>
@@ -23,8 +24,8 @@ function MainApp() {
                                 <VotingBox name="Naomi Chow" department="Sales Dept" />
                                 <EndElection />
                             </>
-                        } />
-                        <Route path="/end-election" element={<EndElection />} />
+                        }>
+                        </Route>  
                     </Routes>
                 </main>
             </div>
@@ -32,14 +33,4 @@ function MainApp() {
     );
 }
 
-export default MainApp;
-
-// Home component as a placeholder for your default route
-function Home() {
-    return (
-        <div>
-            <h1>Welcome to the Election Portal</h1>
-            <p>Select an option from the menu.</p>
-        </div>
-    );
-}
+export default App;
