@@ -21,11 +21,11 @@ function MainApp() {
                                 <p>Election 1 - Election Manager: xxx</p>
                                 <VotingBox name="Jason Tan" department="Marketing Dept" />
                                 <VotingBox name="Naomi Chow" department="Sales Dept" />
+                                <EndElection />
                             </>
                         } />
                         <Route path="/end-election" element={<EndElection />} />
                     </Routes>
-                    <EndElection />
                 </main>
             </div>
         </Router>
