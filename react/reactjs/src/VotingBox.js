@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
 
 function VotingBox({ name, department }) {
     const [showPopup, setShowPopup] = useState(false);  // State to control popup visibility
-    const navigate = useNavigate();
 
     const handleVote = async () => {
         const response = await fetch('http://localhost:8000/vote/', {  // Adjust URL as needed
@@ -24,8 +21,7 @@ function VotingBox({ name, department }) {
         if (response.ok) {
             setShowPopup(true);
             setTimeout(() => {
-                setShowPopup(false);
-                navigate('/');  // Optionally hide popup after a few seconds
+                setShowPopup(false);  // Optionally hide popup after a few seconds
             }, 3000);
         }
     };
