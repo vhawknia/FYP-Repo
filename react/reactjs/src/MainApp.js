@@ -1,22 +1,45 @@
 import React from 'react';
-import Header from './Header'; // Ensure the path is correct based on your file structure
-import VotingBox from './VotingBox';
-import EndElection from './EndElectionBox';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './Components/Header';
+import VotingBox from './Components/VotingBox';
+import EndElection from './Components/EndElectionBox';
+
 import './MainApp.css';
-function App() {
+
+function MainApp() {
     return (
-        <div className="app">
-            <Header />
-            <main className="content">
-                <h1>Gabriel Chung - IT Dept</h1>
-                <h2>Voting</h2>
-                <p>Election 1 - Election Manager: xxx</p>
-                <VotingBox name="Jason Tan" department="Marketing Dept" />
-                <VotingBox name="Naomi Chow" department="Sales Dept" />
-                <EndElection />
-            </main>
-        </div>
+        <Router>
+            <div className="app">
+                <Header />
+                <main className="content">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/vote" element={
+                            <>
+                                <h1>Gabriel Chung - IT Dept</h1>
+                                <h2>Voting</h2>
+                                <p>Election 1 - Election Manager: xxx</p>
+                                <VotingBox name="Jason Tan" department="Marketing Dept" />
+                                <VotingBox name="Naomi Chow" department="Sales Dept" />
+                            </>
+                        } />
+                        <Route path="/end-election" element={<EndElection />} />
+                    </Routes>
+                    <EndElection />
+                </main>
+            </div>
+        </Router>
     );
 }
 
-export default App;
+export default MainApp;
+
+// Home component as a placeholder for your default route
+function Home() {
+    return (
+        <div>
+            <h1>Welcome to the Election Portal</h1>
+            <p>Select an option from the menu.</p>
+        </div>
+    );
+}
