@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 function VotingBox({ name, department }) {
     const [showPopup, setShowPopup] = useState(false);  // State to control popup visibility
     const navigate = useNavigate();
@@ -24,8 +23,8 @@ function VotingBox({ name, department }) {
         if (response.ok) {
             setShowPopup(true);
             setTimeout(() => {
-                setShowPopup(false);
-                navigate('/');  // Optionally hide popup after a few seconds
+                setShowPopup(false);  // hide popup after a few seconds
+                navigate('/');
             }, 3000);
         }
     };
