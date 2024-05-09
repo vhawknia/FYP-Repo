@@ -1,0 +1,65 @@
+/* styles.css */
+
+.header {
+  background-color: #f0f0f0;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.header nav a {
+  margin: 0 15px;
+  color: #333;
+  text-decoration: none;
+}
+
+.voting-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  margin-top: 20px;
+}
+
+.avatar-placeholder {
+  width: 50px;
+  height: 50px;
+  background-color: #bbb;
+  border-radius: 50%;
+}
+
+.vote-button {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border: 1px solid black;
+  background-color: #9e9d9d;
+  z-index: 1000;
+  text-align: center;
+}
+
+/* CSS for the container */
+.center-container {
+  display: flex;
+  justify-content: center;  /* Horizontally centers the child in the flex container */
+  align-items: center;      /* Vertically centers the child in the flex container */
+}
+
+.terminate-button {
+  background-color: rgb(134, 33, 33);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+}
