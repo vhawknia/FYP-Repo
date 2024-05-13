@@ -1,0 +1,132 @@
+/* Basic styles */
+body, html {
+    font-family: Arial, sans-serif;
+  }
+  
+  .dashboard {
+    padding: 65px 120px;
+  }
+  
+  
+  .dashboardText {
+    font-size: 36px;
+    font-weight:bolder;
+    margin-right: 1100px;
+    margin-bottom: 20px;
+  }
+  
+/**** For search bar column ****/
+  .search-bar-column {
+    display: flex;
+    align-items: center;  /* Vertically aligns the elements in the middle */
+    padding: 0px,10px;        /* Adds some padding inside the search-bar */
+    gap: 10px;            /* Adds space between the input and select elements */
+    margin-bottom: 20px;
+    
+  }
+  
+  .search-bar-column input{
+    padding: 8px;         /* Padding for better text visibility */
+    border: 2px solid #ccc; /* Border to make it visually consistent */
+    border-radius: 4px;   /* Rounded corners */
+    font-size: 16px;      /* Makes the text large enough to be easily readable */
+    width: 700px;
+  }
+
+  .search-bar-column select {
+    padding: 10px;         /* Padding for better text visibility */
+    border: 2px solid #ccc; /* Border to make it visually consistent */
+    border-radius: 4px;   /* Rounded corners */
+    font-size: 16px;      /* Makes the text large enough to be easily readable */
+    width: 200px;
+    cursor: pointer;
+    margin-left: 15px;
+  }
+  
+  .search-bar-button{
+    margin-left: 10px;
+    margin-right: 167px;
+  }
+
+  .search-bar-column > button {
+    cursor: pointer;
+    padding: 10px 30px;
+    background-color: #ffffff;  /* White background */
+    color: #a376e2;             /* Purple text */
+    border: 2px solid #a376e2;  /* Purple border */
+    border-radius: 8px;
+    font-size: 16px;            /* Font size */
+    font-weight: bold;          /* Bold font */
+    
+  }
+
+  
+  .search-bar-column > button:hover {
+    background-color: #6200EE; /* Purple background on hover */
+    color: #ffffff;            /* White text on hover */
+  }
+  
+/**** For election items ****/
+  .election-item-titles {
+    display: flex;
+    align-items: center;  /* Vertically center the content */
+    border: 2px solid #ccc;  /* Light grey border */
+    border-radius: 4px;  /* Rounded corners */
+    padding: 10px;  /* Padding inside the container */
+    margin-bottom: 15px;  /* Space between each item */
+    background-color: #f9f9f9;  /* Light background color */
+    height: 10px;
+    font-size: 16px;            /* Font size */
+    font-weight: bold;          /* Bold font */
+  }
+  
+  .election-item-titles > div {
+    flex: 1;  /* Each child takes equal space */
+    text-align: center;  /* Center the text inside each child */
+    padding: 5px 10px;  /* Padding inside each child element */
+    box-sizing: border-box;  /* Include padding in the width calculation */
+  }
+  
+  .election-item {
+    display: flex;
+    align-items: center;  /* Vertically center the content */
+    border: 2px solid #212121;  /* Light grey border */
+    border-radius: 4px;  /* Rounded corners */
+    padding: 10px;  /* Padding inside the container */
+    margin-bottom: 30px;  /* Space between each item */
+    color: #262626;       
+    background-color: #bab9b9;  /* Light background color */
+    width: 100%;  /* Ensures the button expands to full width */
+    height: 90px;
+    text-align: left;  /* Aligns the text inside the button to the left */
+    cursor: pointer;  /* Changes cursor to pointer to indicate it's clickable */
+    border: none;  /* Removes default border */
+    outline: none;  /* Removes default focus outline */
+  }
+  
+  .election-item > div {
+    flex: 1;  /* Each child takes equal space */
+    text-align: center;  /* Center the text inside each child */
+    padding: 5px 10px;  /* Padding inside each child element */
+    box-sizing: border-box;  /* Include padding in the width calculation */
+    font-size: 16px;            /* Font size */
+  }
+  
+  
+/**** For pagination ****/
+  .pagination {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .pagination button {
+    background-color: transparent; /* Remove any background color */
+    border: none; /* Remove borders */
+    color: #333; /* Set text color, adjust as needed */
+    font-size: 16px; /* Set font size */
+    padding: 8px 12px; /* Top and bottom padding, and slightly more on the sides */
+    cursor: pointer; /* Cursor indicates the element is clickable */
+    transition: color 0.3s; /* Smooth transition for hover effects */
+  }
+  

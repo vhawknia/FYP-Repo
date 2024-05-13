@@ -1,9 +1,9 @@
 import React from 'react';
-import Header from './Components/Header'; 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import VotingBox from './Components/VotingBox';
-import Home from './Components/Home';
-import EndElection from './Components/EndElectionBox';
+import Header from './Components/Voter/Header'; 
+import VotingBox from './Components/Voter/VotingBox';
+import Home from './Components/Voter/Home';
+import EndElection from './Components/Voter/EndElectionBox';
 import './MainApp.css';
 
 
