@@ -1,4 +1,4 @@
-//for system admin
+/* for election manager */
 
 import React from 'react';
 import './ElectionDetails.css';

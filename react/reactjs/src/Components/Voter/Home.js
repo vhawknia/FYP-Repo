@@ -1,3 +1,5 @@
+/* for voter */
+
 import React from 'react';
 
 

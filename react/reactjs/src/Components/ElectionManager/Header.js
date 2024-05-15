@@ -1,3 +1,5 @@
+/* for election manager */
+
 import React from 'react';
 import './header.css';
 

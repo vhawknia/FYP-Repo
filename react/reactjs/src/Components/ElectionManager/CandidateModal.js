@@ -1,3 +1,5 @@
+/* for election manager */
+
 import React, { useState } from "react";
 import './CandidateModal.css';
 
