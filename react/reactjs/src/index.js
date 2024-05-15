@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 //import App from './MainApp';
-import SysAdminDashboard from './SysAdminDashboard';
+import SysAdminApp from './SysAdminApp';
+//import SysAdminElectionDetails from './SysAdminElectionDetails';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <SysAdminDashboard />
+    <SysAdminApp />
   </React.StrictMode>
 );
 

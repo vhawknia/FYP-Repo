@@ -1,0 +1,72 @@
+.container{
+    padding: 45px 100px;
+}
+
+.election-details-page {
+    display: flex;
+}
+  
+.sidebar {
+    flex: 0.75;
+    border-right: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 45px;
+}
+
+.sidebar h1 {
+    margin-bottom: 50px;
+    font-size: 24px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+.sidebar li.active {
+    color: #6200EE;
+    font-weight: bold;
+}
+
+.form-content {
+    flex: 3;
+    padding: 10px 40px;
+    margin-left: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+}
+
+input[type="text"], input[type="date"], select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-color:#928e98;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px;
+}
+
+.election-details-button{
+    padding: 10px 15px;
+    color: white;
+    background-color: #6200EE;
+    border: 2px;
+    border-radius: 8px;
+    cursor: pointer;
+
+}
+
+.election-details-button:hover {
+    background-color: darkblue;
+} 

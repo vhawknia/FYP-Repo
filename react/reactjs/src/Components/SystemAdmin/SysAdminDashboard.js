@@ -1,10 +1,18 @@
 import React from 'react';
 import './SysAdminDashboard.css';
-import Header from './Components/SystemAdmin/Header';
+import Header from './Header';
+//import SysAdminElectionDetails from './SysAdminElectionDetails.js'
+import { useNavigate } from 'react-router-dom';
 
 function SysAdminDashboard() {
+  const navigate = useNavigate();  
+  
+  function handleNewElection() {
+    navigate('/new-election'); 
+  }
+
   return (
-    <div className="App">
+    <>
       <Header />
 
       <div className="dashboard">
@@ -18,7 +26,7 @@ function SysAdminDashboard() {
             <option value="scheduled">Scheduled</option>
           </select>
           <button className='search-bar-button'>Search</button>
-          <button>New Election</button>
+          <button onClick={handleNewElection}>New Election</button>
         </div>
 
         <div className="election-item-titles">
@@ -54,8 +62,20 @@ function SysAdminDashboard() {
           <button>{">>"}</button>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
 export default SysAdminDashboard;
+
+// function App() {
+//   return (
+//     <Router>
+//       <Routes>
+//         <Route path='/' element={<SysAdminDashboard />} />
+//         <Route path='/new-election' element={<SysAdminElectionDetails />} />
+//       </Routes>
+//     </Router>
+//   );
+// }
+
