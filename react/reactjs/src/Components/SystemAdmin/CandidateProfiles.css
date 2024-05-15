@@ -1,0 +1,96 @@
+/* for system admin */
+
+.container{
+    padding: 45px 100px;
+}
+
+.candidate-profiles-page {
+    display: flex;
+}
+  
+.candidate-content {
+    flex: 3;
+    padding: 10px 40px;
+    margin-left: 20px;
+}
+
+.candidate-content h1 {
+    margin-right: 20px;     
+}
+
+
+.header-search {
+    display: flex;
+    align-items: center; /* Aligns items vertically in the center */
+    justify-content: space-between; /* Adjust this as needed for spacing */
+    width: 100%; /* Ensures the flex container takes full width */
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.header-search input {
+    flex-grow: 0; /* Prevents the input from growing to fill the space */
+    width: 450px; /* Sets a specific width to the input */
+    margin-right: 20px; /* Adds space between the input and the button */
+}
+
+.header-search button {
+    padding: 8px 16px; /* Adjust padding as needed for button size */
+    background-color: #6200EE; /* Example button color */
+    color: white; /* Text color for the button */
+    border: none; /* Removes the default border */
+    cursor: pointer; /* Shows a pointer cursor when hovering over the button */
+    border-radius: 8px; /* Optional: rounds the corners of the button */
+    margin-top:5px;
+}
+
+.header-search button:hover {
+    background-color: #4500c7; /* Darker shade on hover for better UI feedback */
+}
+
+.search-container {
+    display: flex;
+    align-items: center; /* Keeps the input and button aligned on the same line */
+}
+
+
+.candidate-profile {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    margin-bottom: 20px; /* Space between candidate profiles */
+}
+
+.candidate-card {
+    display: flex;
+    justify-content: space-between; /* This spreads the child elements across the full width */
+    align-items: center; /* Aligns items vertically in the center */
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    padding: 15px;
+    background-color: #f9f9f9;
+    height: 40px;
+    border-radius: 4px;
+    flex-grow: 1;
+}
+
+.remove-candidate-button {
+    padding: 8px 16px;
+    background-color: #B22222;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 20px; /* Space between the card and the button */
+}
+
+
+.add-candidate-button {
+    padding: 8px 16px; /* Adjust padding as needed for button size */
+    background-color: #6200EE; /* Example button color */
+    color: white; /* Text color for the button */
+    border: none; /* Removes the default border */
+    cursor: pointer; /* Shows a pointer cursor when hovering over the button */
+    border-radius: 4px; /* Optional: rounds the corners of the button */
+    margin-left:800px;
+}
+

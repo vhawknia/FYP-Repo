@@ -1,14 +1,15 @@
+//for system admin
+
 import React from 'react';
-import './SysAdminDashboard.css';
+import './Dashboard.css';
 import Header from './Header';
-//import SysAdminElectionDetails from './SysAdminElectionDetails.js'
 import { useNavigate } from 'react-router-dom';
 
 function SysAdminDashboard() {
   const navigate = useNavigate();  
   
   function handleNewElection() {
-    navigate('/new-election'); 
+    navigate('/election-details'); 
   }
 
   return (
@@ -67,15 +68,4 @@ function SysAdminDashboard() {
 }
 
 export default SysAdminDashboard;
-
-// function App() {
-//   return (
-//     <Router>
-//       <Routes>
-//         <Route path='/' element={<SysAdminDashboard />} />
-//         <Route path='/new-election' element={<SysAdminElectionDetails />} />
-//       </Routes>
-//     </Router>
-//   );
-// }
 
