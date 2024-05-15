@@ -5,7 +5,7 @@ import './Dashboard.css';
 import Header from './Header';
 import { useNavigate } from 'react-router-dom';
 
-function SysAdminDashboard() {
+function ElectionManagerDashboard() {
   const navigate = useNavigate();  
   
   function handleNewElection() {
@@ -67,5 +67,5 @@ function SysAdminDashboard() {
   );
 }
 
-export default SysAdminDashboard;
+export default ElectionManagerDashboard;
 

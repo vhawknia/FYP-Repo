@@ -2,14 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 //import App from './MainApp';
-import SysAdminApp from './SysAdminApp';
+import ElectionManagerApp from './ElectionManagerApp';
 //import SysAdminElectionDetails from './SysAdminElectionDetails';
 import reportWebVitals from './reportWebVitals';
+
+//import Practice from "./Practice";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <SysAdminApp />
+    <ElectionManagerApp />
   </React.StrictMode>
 );
 

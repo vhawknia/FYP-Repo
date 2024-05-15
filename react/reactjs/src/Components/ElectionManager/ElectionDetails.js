@@ -6,7 +6,7 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 import { useNavigate } from 'react-router-dom';
 
-function ElectionDetails() {
+function ElectionManagerElectionDetails() {
     const navigate = useNavigate();
 
     const handleNavigate = () =>{
@@ -60,4 +60,4 @@ function ElectionDetails() {
         </>
 );}
 
-export default ElectionDetails;
+export default ElectionManagerElectionDetails;
