@@ -114,9 +114,9 @@
     justify-content: space-between; /* This spreads the child elements across the full width */
     align-items: center; /* Aligns items vertically in the center */
     margin-bottom: 5px;
-    border: 2px solid #726e6e;
+    border: 2px solid #8d8d8d;
     padding: 15px;
-    background-color: #c4c4c4;
+    background-color: #d7d1e1;
     height: 40px;
     border-radius: 4px;
     flex-grow: 1;
