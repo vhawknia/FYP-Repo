@@ -38,6 +38,26 @@ function ElectionManagerCandidateProfiles() {
                             </div>
                         </div>
 
+                        <div className="candidate-profile">
+                            <div className="candidate-card">
+                                <span className="candidate-name">James Lee</span>
+                                <span className="candidate-role">Chief Information Officer</span>
+                                <button className="remove-candidate-button">
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                            
+                        <div className="candidate-profile">
+                            <div className="candidate-card">
+                                <span className="candidate-name">Thomas Soh</span>
+                                <span className="candidate-role">Chief Executive Officer</span>
+                                <button className="remove-candidate-button">
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                        
                         {candidates.map((candidate, index) => (
                             <div key={index} className="candidate-profile">
                                 <div className="candidate-card">

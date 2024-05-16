@@ -1,35 +1,36 @@
 import React, { useState } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-import './ListOfVoters.css'
+import './ListOfVoters.css';
 import VoterEmailModal from "./VoterEmailModal";
 import VoterDeptModal from "./VoterDeptModal";
 
-function ElectionManagerListOfVoters(){
+function ElectionManagerListOfVoters() {
     const [openModal, setOpenModal] = useState(null); // 'email' or 'dept' or null
-    
     const [voters, setVoters] = useState([]);
     const [votersDept, setVotersDept] = useState([]);
-     
+    const [departments, setDepartments] = useState(['IT', 'Sales', 'Finance', 'HR', 'Legal', 'R&D']);
 
     const handleOpenModal = (type) => setOpenModal(type);
     const handleCloseModal = () => setOpenModal(null);
 
-    const handleVoters = (voter) =>{
+    const handleVoters = (voter) => {
         setVoters([...voters, voter]);
-    }
+    };
 
-    const handleDept = (dept) =>{
+    const handleDept = (dept) => {
         setVotersDept([...votersDept, dept]);
-    }
+        setDepartments(prevDepartments => prevDepartments.filter(d => d !== dept.departmentname));
+    };
 
     const filterVoters = (email) => {
         setVoters(currentVoters => currentVoters.filter(voter => voter.voterEmail !== email));
-    }
+    };
     
     const filterDept = (deptname) => {
-        setVotersDept(currentDeptList => currentDeptList.filter(d => d.departmentname != deptname));
-    }
+        setVotersDept(currentDeptList => currentDeptList.filter(d => d.departmentname !== deptname));
+        setDepartments(prevDepartments => [...prevDepartments, deptname]); // Add department back to the list
+    };
 
     return (
         <>
@@ -62,37 +63,43 @@ function ElectionManagerListOfVoters(){
                             </div>
                         </div>
 
-                        {votersDept.map((dept, index) => {
-                            return (
-                                <div key={index} className="voter-profile">
-                                    <div className="voter-card">
-                                        <span>{dept.departmentname} Department</span>  
-                                        <button className="remove-voter-button" onClick={() => filterDept(dept.departmentname)}>Remove</button>
-                                    </div>
-                                </div>                               
-                                );
-                            })}
+                        {votersDept.map((dept, index) => (
+                            <div key={index} className="voter-profile">
+                                <div className="voter-card">
+                                    <span>{dept.departmentname} Department</span>  
+                                    <button className="remove-voter-button" onClick={() => filterDept(dept.departmentname)}>Remove</button>
+                                </div>
+                            </div>
+                        ))}
 
-                        {voters.map((voter, index) => {
-                            return (
-                                <div key={index} className="voter-profile">
-                                    <div className="voter-card">
-                                        <span>{voter.voterEmail}</span>  
-                                        <button className="remove-voter-button" onClick={() => filterVoters(voter.voterEmail)}>Remove</button>
-                                    </div>
-                                </div>                               
-                                );
-                            })}
-
+                        {voters.map((voter, index) => (
+                            <div key={index} className="voter-profile">
+                                <div className="voter-card">
+                                    <span>{voter.voterEmail}</span>  
+                                    <button className="remove-voter-button" onClick={() => filterVoters(voter.voterEmail)}>Remove</button>
+                                </div>
+                            </div>
+                        ))}
 
                         <div className="button-container">
                             <button className="add-voter-dept-button" onClick={() => handleOpenModal('dept')}>Add by Department</button>
                             <button className="add-voter-email-button" onClick={() => handleOpenModal('email')}>Add by Email</button>
-                            {openModal === 'dept' && <VoterDeptModal isOpen={true} onClose={handleCloseModal} onSave={handleDept} />}
-                            {openModal === 'email' && <VoterEmailModal isOpen={true} onClose={handleCloseModal} onSave={handleVoters} />}
-                            
+                            {openModal === 'dept' && (
+                                <VoterDeptModal
+                                    isOpen={true}
+                                    onClose={handleCloseModal}
+                                    onSave={handleDept}
+                                    allDepartments={departments}
+                                />
+                            )}
+                            {openModal === 'email' && (
+                                <VoterEmailModal
+                                    isOpen={true}
+                                    onClose={handleCloseModal}
+                                    onSave={handleVoters}
+                                />
+                            )}
                         </div>
-                        
                     </main>
                 </div>
             </div>
