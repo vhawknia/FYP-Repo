@@ -8,3 +8,10 @@
   justify-content: right; 
   border-bottom: 3px solid rgb(172, 171, 171); 
 }
+
+.companyLogo {
+  width: 100px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+  display: block;
+  margin-left: 0; /* Flush to the left */
+}

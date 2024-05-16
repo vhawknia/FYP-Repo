@@ -1,6 +1,55 @@
 /* for election manager */
 
-.submitButton {
+.voter-email-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.voter-email-modal {
+    background: white;
+    padding: 40px 70px;
+    width: 650px;
+    border-radius: 8px;
+    height: 400px;
+}
+
+.voter-email-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.voter-email-close-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.voter-email-modal {
+    background: white;
+    padding: 35px 70px;
+    width: 650px;
+    border-radius: 8px;
+    height: 250px;
+}
+
+.voter-email-button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.voter-email-submitButton {
     margin-left: 400px;
     background-color: #6200EE;
     color: white;
@@ -13,7 +62,7 @@
     height: 40px
 }
 
-.submitButtonCSV {
+.voter-email-submitButtonCSV {
     background-color: #6200EE;
     color: white;
     padding: 10px;
@@ -25,3 +74,18 @@
     height: 40px
 }
 
+.voter-email-modal-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.voter-email-modal-form label {
+    margin-bottom: 15px;
+}
+
+.voter-email-modal-form input {
+    padding: 8px;
+    margin-top: 5px;
+    width: 100%;
+    box-sizing: border-box; /* Makes sure padding doesn't affect width */
+}

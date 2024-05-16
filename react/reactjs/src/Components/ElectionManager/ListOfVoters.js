@@ -64,8 +64,8 @@ function ElectionManagerListOfVoters() {
                         </div>
 
                         {votersDept.map((dept, index) => (
-                            <div key={index} className="voter-profile">
-                                <div className="voter-card">
+                            <div key={index} className="dept-profile">
+                                <div className="dept-card">
                                     <span>{dept.departmentname} Department</span>  
                                     <button className="remove-voter-button" onClick={() => filterDept(dept.departmentname)}>Remove</button>
                                 </div>

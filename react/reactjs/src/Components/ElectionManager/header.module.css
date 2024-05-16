@@ -1,0 +1,21 @@
+/* header.module.css */
+.header {
+    display: flex;
+    align-items: center; /* Align items vertically center */
+    padding: 20px;
+    background-color: #ffffff;
+    justify-content: left; /* Align items to the left */
+    border-bottom: 3px solid rgb(172, 171, 171);
+}
+
+.logo {
+    width: 50px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+    margin-right: 1200px; 
+    margin-left: 67px;
+}
+
+.headerText {
+    font-size: 18px; /* Adjust the font size as needed */
+}

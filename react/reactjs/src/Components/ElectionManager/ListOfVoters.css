@@ -63,7 +63,6 @@
     display: flex;
     justify-content: space-between; /* This spreads the child elements across the full width */
     align-items: center; /* Aligns items vertically in the center */
-    margin-bottom: 20px;
     border: 2px solid #ccc;
     padding: 15px;
     background-color: #f9f9f9;
@@ -102,4 +101,23 @@
 
 .add-voter-dept-button {
     margin-left: 655px;
+}
+
+.dept-profile{
+    display: flex;
+    align-items: center; /* Align items vertically */
+    margin-bottom: 7px; /* Space between candidate profiles */
+}
+
+.dept-card {
+    display: flex;
+    justify-content: space-between; /* This spreads the child elements across the full width */
+    align-items: center; /* Aligns items vertically in the center */
+    margin-bottom: 5px;
+    border: 2px solid #726e6e;
+    padding: 15px;
+    background-color: #c4c4c4;
+    height: 40px;
+    border-radius: 4px;
+    flex-grow: 1;
 }

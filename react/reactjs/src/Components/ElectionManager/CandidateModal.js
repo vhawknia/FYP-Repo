@@ -17,13 +17,13 @@ function CandidateModal({ isOpen, onClose, onSave }) {
     if (!isOpen) return null;
 
     return (
-        <div className="modal-backdrop">
-            <div className="modal">
-                <div className="modal-header">
+        <div className="candidate-modal-backdrop">
+            <div className="candidate-modal">
+                <div className="candidate-modal-header">
                     <h2>Add Candidate</h2>
-                    <button onClick={onClose} className="close-button">x</button>
+                    <button onClick={onClose} className="candidate-close-button">x</button>
                 </div>
-                <form onSubmit={handleSubmit} className="modal-form">
+                <form onSubmit={handleSubmit} className="candidate-modal-form">
                     <label>
                         Candidate Email:
                         <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
@@ -36,7 +36,7 @@ function CandidateModal({ isOpen, onClose, onSave }) {
                         Candidate Role:
                         <input type="text" value={role} onChange={e => setRole(e.target.value)} required />
                     </label>
-                    <button type="submit" className="submit-button">Add Candidate</button>
+                    <button type="submit" className="candidate-submit-button">Add Candidate</button>
                 </form>
             </div>
         </div>

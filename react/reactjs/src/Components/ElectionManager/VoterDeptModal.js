@@ -13,13 +13,13 @@ function VoterDeptModal({ isOpen, onClose, onSave, allDepartments }) {
     if (!isOpen) return null;
 
     return (
-        <div className="modal-backdrop">
-            <div className="modal">
-                <div className="modal-header">
+        <div className="voter-dept-modal-backdrop">
+            <div className="voter-dept-modal">
+                <div className="voter-dept-modal-header">
                     <h2>Add Voters by Dept</h2>
-                    <button onClick={onClose} className="close-button">x</button>
+                    <button onClick={onClose} className="voter-dept-close-button">x</button>
                 </div>
-                <form onSubmit={handleSubmit} className="modal-form">
+                <form onSubmit={handleSubmit} className="voter-dept-modal-form">
                     <label>
                         Department
                     </label>
@@ -28,8 +28,8 @@ function VoterDeptModal({ isOpen, onClose, onSave, allDepartments }) {
                             <option key={dept} value={dept}>{dept} Dept</option>
                         ))}
                     </select>
-                    <div className="button-container">
-                        <button type="submit" className="submit-button">Add Department</button>
+                    <div className="voter-dept-button-container">
+                        <button type="submit" className="voter-dept-submit-button">Add Department</button>
                     </div>
                 </form>
             </div>

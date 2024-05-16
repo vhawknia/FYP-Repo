@@ -1,6 +1,6 @@
 /* for election manager */
 
-.modal-backdrop {
+.candidate-modal-backdrop {
     position: fixed;
     top: 0;
     left: 0;
@@ -13,7 +13,7 @@
     z-index: 1000;
 }
 
-.modal {
+.candidate-modal {
     background: white;
     padding: 40px 70px;
     width: 650px;
@@ -21,37 +21,37 @@
     height: 400px;
 }
 
-.modal-header {
+.candidate-modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.close-button {
+.candidate-close-button {
     border: none;
     background: none;
     cursor: pointer;
     font-size: 20px;
 }
 
-.modal-form {
+.candidate-modal-form {
     display: flex;
     flex-direction: column;
 }
 
-.modal-form label {
+.candidate-modal-form label {
     margin-bottom: 15px;
 }
 
-.modal-form input {
+.candidate-modal-form input {
     padding: 8px;
     margin-top: 5px;
     width: 100%;
     box-sizing: border-box; /* Makes sure padding doesn't affect width */
 }
 
-.submit-button {
+.candidate-submit-button {
     background-color: #6200EE;
     color: white;
     padding: 10px;
@@ -61,6 +61,6 @@
     margin-top: 30px;
 }
 
-.submit-button:hover {
+.candidate-submit-button:hover {
     background-color: #4500c7;
 }

@@ -1,14 +1,17 @@
-/* for election manager */
-
 import React from 'react';
-import './header.css';
+import companyLogo from './Starbucks_Corporation_Logo_2011.png';
+import styles from './header.module.css';
+import { Link } from 'react-router-dom';
 
-function Header(){
-    return(
-        <header className='header'>
-            <div className='headerText'>Election Manager 1</div>
+function Header() {
+    return (
+        <header className={styles.header}>
+            <Link to="/">
+                <img src={companyLogo} alt="Company Logo" className={styles.logo} />
+            </Link>
+            <div className={styles.headerText}>Election Manager 1</div>
         </header>
-    )
+    );
 }
 
 export default Header;
