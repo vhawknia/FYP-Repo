@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import './CandidateModal.css';
 
-function Modal({ isOpen, onClose, onSave }) {
+function CandidateModal({ isOpen, onClose, onSave }) {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [role, setRole] = useState('');
@@ -43,4 +43,4 @@ function Modal({ isOpen, onClose, onSave }) {
     );
 }
 
-export default Modal;
+export default CandidateModal;

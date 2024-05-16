@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-import Modal from "./CandidateModal";
+import CandidateModal from "./CandidateModal";
 import './CandidateProfiles.css';
 
 function ElectionManagerCandidateProfiles() {
@@ -53,7 +53,7 @@ function ElectionManagerCandidateProfiles() {
                         <button onClick={handleOpenModal} className="add-candidate-button">
                             Add New Candidate
                         </button>
-                        <Modal isOpen={modalOpen} onClose={handleCloseModal} onSave={handleAddCandidate} />
+                        <CandidateModal isOpen={modalOpen} onClose={handleCloseModal} onSave={handleAddCandidate} />
                     </main>
                 </div>
             </div>

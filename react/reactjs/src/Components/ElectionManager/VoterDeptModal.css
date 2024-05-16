@@ -1,0 +1,23 @@
+/* for election manager */
+
+.modal {
+    background: white;
+    padding: 35px 70px;
+    width: 650px;
+    border-radius: 8px;
+    height: 250px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.submit-button {
+    margin-left: 506px;
+    width: 150px;
+    height: 40px;  
+    margin-top: 20px;
+
+}

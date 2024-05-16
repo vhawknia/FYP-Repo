@@ -13,7 +13,7 @@ function SysAdminApp() {
           <Route path='/' element={<ElectionManagerDashboard />} />
           <Route path='/election-details' element={<ElectionManagerElectionDetails />} />
           <Route path='/candidate-profiles' element={<ElectionManagerCandidateProfiles />} />
-          <Route path='/list-of-voters' element={<ElectionManagerCandidateProfiles />} />
+          <Route path='/list-of-voters' element={<ElectionManagerListOfVoters />} />
           <Route path='/Summary' element={<ElectionManagerListOfVoters />} />
         </Routes>
       </Router>
