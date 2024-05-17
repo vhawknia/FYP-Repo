@@ -1,0 +1,93 @@
+.summary-page3 {
+    display: flex;
+}
+  
+.summary-page3-content {
+    flex: 3;
+    padding: 10px 40px;
+    margin-left: 20px;
+}
+
+.summary-page3-content h1 {
+    margin-right: 20px;     
+}
+
+/* Style the select element */
+#election-status {
+    background-color: #f0f0f0;  /* Background color */
+    color: #333;                /* Text color */
+    font-size: 16px;            /* Font size */
+    padding: 10px;              /* Padding */
+    border: 1px solid #ccc;     /* Border */
+    border-radius: 5px;         /* Rounded corners */
+    width: 60%;
+}
+
+/* Style the option elements */
+#election-status option {
+    background-color: #fff;     /* Background color */
+    color: #333;                /* Text color */
+    font-size: 16px;            /* Font size */
+}
+
+
+.url-container {
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 5px;
+    height: 50px;
+    width: 90%;
+}
+
+.url-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+}
+
+.copy-button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: 1px solid #7c4dff;
+    background-color: white;
+    color: #7c4dff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    outline: none;
+    margin-top: 5px;
+}
+
+.copy-button:hover {
+    background-color: #7c4dff;
+    color: white;
+}
+
+.url-note {
+    font-size: 14px;
+    color: #777;
+    margin-top: 5px;
+}
+
+.create-election-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #7c4dff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;
+}
+
+.create-election-button:hover {
+    background-color: #5a2ccc;
+}

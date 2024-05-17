@@ -29,8 +29,8 @@ function Sidebar() {
                     onClick={() => handleNavigate("list-of-voters")}>
                     List of Voters
                 </li>
-                <li className={location.pathname === "/summary" ? "active" : ""}
-                    onClick={() => handleNavigate("summary")}>
+                <li className={location.pathname === "/summary-1" ? "active" : ""}
+                    onClick={() => handleNavigate("summary-1")}>
                     Summary
                 </li>
             </ul>

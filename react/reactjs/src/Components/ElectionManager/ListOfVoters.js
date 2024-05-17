@@ -1,3 +1,5 @@
+/* for election manager */
+
 import React, { useState } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
@@ -42,7 +44,7 @@ function ElectionManagerListOfVoters() {
                         <div className="header-search">
                             <h1>Voters</h1>
                             <div className="search-container">
-                                <input type="text" placeholder="Search for candidate" />
+                                <input type="text" placeholder="Search for voter" />
                                 <button type="button">Search</button>
                             </div>
                         </div>
