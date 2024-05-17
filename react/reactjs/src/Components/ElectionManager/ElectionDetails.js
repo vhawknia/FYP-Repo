@@ -52,7 +52,7 @@ function ElectionManagerElectionDetails() {
                             <option value="GMT9">Tokyo GMT+9 (Greenwich Meantime)</option>
                         </select>
                         </div>
-                        <button type="submit" className='election-details-button' onClick={()=>handleNavigate()}>Next</button>
+                        <button type="submit" className='next-button' onClick={()=>handleNavigate()}>Next</button>
                     </form>
                     </main>
                 </div>

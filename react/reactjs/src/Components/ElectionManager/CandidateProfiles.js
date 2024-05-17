@@ -5,6 +5,7 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import CandidateModal from "./CandidateModal";
 import './CandidateProfiles.css';
+import { useNavigate } from "react-router-dom";
 
 function ElectionManagerCandidateProfiles() {
     const [modalOpen, setModalOpen] = useState(false);
@@ -22,6 +23,13 @@ function ElectionManagerCandidateProfiles() {
         setCandidates(candidates.filter(c => c.name !== candidateName)); //set the candidates array to a new array that
                                                                         // has all the candidates except the one that matches candidateName
     };
+
+    const navigate = useNavigate();
+
+    const handleNavigate = () =>{
+        navigate('/list-of-voters');
+    }
+
 
     return (
         <>
@@ -70,10 +78,14 @@ function ElectionManagerCandidateProfiles() {
                             </div>
                         ))}
 
-                        <button onClick={handleOpenModal} className="add-candidate-button">
-                            Add New Candidate
-                        </button>
-                        <CandidateModal isOpen={modalOpen} onClose={handleCloseModal} onSave={handleAddCandidate} />
+                        <div className="candidate-profile-button-container">
+                            <button type="submit" className='next-button' onClick={()=>handleNavigate()}>Next</button>
+                            <button onClick={handleOpenModal} className="add-candidate-button">
+                                Add New Candidate
+                            </button>
+                            <CandidateModal isOpen={modalOpen} onClose={handleCloseModal} onSave={handleAddCandidate} />
+                        </div>
+                        
                     </main>
                 </div>
             </div>

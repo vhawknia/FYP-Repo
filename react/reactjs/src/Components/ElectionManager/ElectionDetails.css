@@ -23,14 +23,14 @@
 }
 
 
-.election-details-button{
-    padding: 10px 15px;
-    color: white;
-    background-color: #6200EE;
-    border: 2px;
-    border-radius: 8px;
-    cursor: pointer;
-
+.next-button{
+    padding: 8px 16px; /* Adjust padding as needed for button size */
+    background-color: #6200EE; /* Example button color */
+    color: white; /* Text color for the button */
+    border: none; /* Removes the default border */
+    cursor: pointer; /* Shows a pointer cursor when hovering over the button */
+    border-radius: 8px; /* Optional: rounds the corners of the button */
+    margin-top:5px;
 }
 
 .election-details-button:hover {

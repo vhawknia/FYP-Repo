@@ -6,9 +6,11 @@ import { Link } from 'react-router-dom';
 function Header() {
     return (
         <header className={styles.header}>
-            <Link to="/">
-                <img src={companyLogo} alt="Company Logo" className={styles.logo} />
-            </Link>
+            <div className={styles.logoContainer}>
+                <Link to="/">
+                    <img src={companyLogo} alt="Company Logo" className={styles.logo} />
+                </Link>
+            </div>
             <div className={styles.headerText}>Election Manager 1</div>
         </header>
     );

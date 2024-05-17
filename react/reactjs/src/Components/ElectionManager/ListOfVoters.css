@@ -81,7 +81,7 @@
     margin-left: 20px; /* Space between the card and the button */
 }
 
-.button-container {
+.list-of-voters-button-container {
     display: flex;
     justify-content: space-between; /* Centers the buttons horizontally in the container */
     gap: 20px; /* Sets a gap between the buttons */
@@ -91,12 +91,12 @@
 
 
 .add-voter-email-button, .add-voter-dept-button {
-    padding: 8px 16px;
-    background-color: #6200EE;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
+    padding: 8px 16px; /* Adjust padding as needed for button size */
+    background-color: #6200EE; /* Example button color */
+    color: white; /* Text color for the button */
+    border: none; /* Removes the default border */
+    cursor: pointer; /* Shows a pointer cursor when hovering over the button */
+    border-radius: 4px; /* Optional: rounds the corners of the button */
 }
 
 .add-voter-dept-button {

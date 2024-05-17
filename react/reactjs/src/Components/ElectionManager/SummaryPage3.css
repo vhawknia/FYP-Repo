@@ -73,7 +73,8 @@
 .url-note {
     font-size: 14px;
     color: #777;
-    margin-top: 5px;
+    margin-top: 10px;
+    margin-bottom: 15px;
 }
 
 .create-election-button {
@@ -90,4 +91,10 @@
 
 .create-election-button:hover {
     background-color: #5a2ccc;
+}
+.copied-message {
+    font-size: 14px;
+    color: rgb(65, 136, 65);
+    margin-top: 5px;
+    font-weight: 600;
 }

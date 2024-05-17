@@ -84,13 +84,27 @@
 }
 
 
-.add-candidate-button {
+.candidate-profile-button-container {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    align-items: center;
+    gap: 20px; /* Space between the buttons */
+    margin-top: 20px;
+}
+
+.next-button, .add-candidate-button {
     padding: 8px 16px; /* Adjust padding as needed for button size */
     background-color: #6200EE; /* Example button color */
     color: white; /* Text color for the button */
     border: none; /* Removes the default border */
     cursor: pointer; /* Shows a pointer cursor when hovering over the button */
     border-radius: 4px; /* Optional: rounds the corners of the button */
-    margin-left:800px;
 }
 
+.add-candidate-button {
+    margin-left:725px;
+}
+
+.next-button:hover, .add-candidate-button:hover {
+    background-color: #4500c7; /* Darker shade on hover for better UI feedback */
+}

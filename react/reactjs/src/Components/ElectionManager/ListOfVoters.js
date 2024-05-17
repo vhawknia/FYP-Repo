@@ -6,6 +6,7 @@ import Sidebar from "./Sidebar";
 import './ListOfVoters.css';
 import VoterEmailModal from "./VoterEmailModal";
 import VoterDeptModal from "./VoterDeptModal";
+import { useNavigate } from "react-router-dom";
 
 function ElectionManagerListOfVoters() {
     const [openModal, setOpenModal] = useState(null); // 'email' or 'dept' or null
@@ -33,6 +34,12 @@ function ElectionManagerListOfVoters() {
         setVotersDept(currentDeptList => currentDeptList.filter(d => d.departmentname !== deptname));
         setDepartments(prevDepartments => [...prevDepartments, deptname]); // Add department back to the list
     };
+
+    const navigate = useNavigate();
+
+    const handleNavigate = () =>{
+        navigate('/summary-1');
+    }
 
     return (
         <>
@@ -83,7 +90,8 @@ function ElectionManagerListOfVoters() {
                             </div>
                         ))}
 
-                        <div className="button-container">
+                        <div className="list-of-voters-button-container">
+                            <button type="submit" className='next-button' onClick={()=>handleNavigate()}>Next</button>
                             <button className="add-voter-dept-button" onClick={() => handleOpenModal('dept')}>Add by Department</button>
                             <button className="add-voter-email-button" onClick={() => handleOpenModal('email')}>Add by Email</button>
                             {openModal === 'dept' && (
@@ -101,6 +109,7 @@ function ElectionManagerListOfVoters() {
                                     onSave={handleVoters}
                                 />
                             )}
+
                         </div>
                     </main>
                 </div>

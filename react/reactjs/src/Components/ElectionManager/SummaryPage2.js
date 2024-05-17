@@ -66,7 +66,7 @@ function Summary2() {
                             </div>
                         </div>
                         
-                        <button type="submit" className='election-details-button' onClick={()=>handleNavigate()}>Next</button>
+                        <button type="submit" className='next-button' onClick={()=>handleNavigate()}>Next</button>
                     </main>
                 </div>
             </div>

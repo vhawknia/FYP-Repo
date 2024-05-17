@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import './SummaryPage3.css';
+import { useNavigate } from "react-router-dom";
 
 function Summary3() {    
+    const [isCopied, setIsCopied] = useState(false);
     const electionUrl = 'https://example.com/election/512093';
 
     const copyToClipboard = () => {
         navigator.clipboard.writeText(electionUrl).then(() => {
-            alert('URL copied to clipboard!');
+            setIsCopied(true);
         }, (err) => {
             console.error('Could not copy text: ', err);
         });
@@ -17,6 +19,12 @@ function Summary3() {
     const createElection = () => {
         alert('Election Created!');
     };
+
+    const navigate = useNavigate();
+
+    const handleNavigate = () =>{
+        navigate('/');
+    }
 
     return (
         <>
@@ -37,9 +45,10 @@ function Summary3() {
                                 <button onClick={copyToClipboard} className="copy-button">Copy Link</button>
                             </div>
                             <p className="url-note">The URL will not be accessible until after the election has been launched.</p>
+                            {isCopied && <p className="copied-message">URL copied to clipboard!</p>}
                         </div>
 
-                        <button className="create-election-button" onClick={createElection}>Create Election</button>
+                        <button className="create-election-button" onClick={()=>{createElection(); handleNavigate();}}>Create Election</button>
                     </main>
                 </div>
             </div>
