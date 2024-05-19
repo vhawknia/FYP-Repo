@@ -5,7 +5,7 @@ body {
     font-family: 'Inter', sans-serif;
   }
   
-input[type="text"], input[type="date"], select {
+input[type="text"], input[type="date"], input[type="datetime-local"], select {
     width: 100%;
     padding: 8px;
     margin-top: 5px;

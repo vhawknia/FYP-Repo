@@ -33,13 +33,13 @@ function ElectionManagerElectionDetails() {
                         </div>
 
                         <div className="form-group">
-                        <label htmlFor="start-date">Start Date</label>
-                        <input type="date" id="start-date" name="start-date" />
+                        <label htmlFor="start-date">Start Date and Time</label>
+                        <input type="datetime-local" id="start-date" name="start-date" min="2024-05-01T00:00" max="2025-05-01T00:00"/>
                         </div>
                         
                         <div className="form-group">
-                        <label htmlFor="end-date">End Date</label>
-                        <input type="date" id="end-date" name="end-date" />
+                        <label htmlFor="end-date">End Date and Time</label>
+                        <input type="datetime-local" id="end-date" name="end-date" min="2024-05-01T00:00" max="2025-05-01T00:00"/>
                         </div>
 
                         <div className="form-group">
