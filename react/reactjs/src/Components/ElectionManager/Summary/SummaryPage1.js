@@ -2,8 +2,8 @@
 
 import React from 'react';
 //import './ElectionDetails.css';
-import Header from './Header';
-import Sidebar from './Sidebar';
+import Header from '../Header';
+import Sidebar from '../Sidebar';
 //import './Summary.css';
 import { useNavigate } from 'react-router-dom';
 

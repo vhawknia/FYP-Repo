@@ -1,9 +1,8 @@
 /* for election manager */
 
 import React, { useState } from "react";
-import Header from "./Header";
-import Sidebar from "./Sidebar";
-import './CandidateProfiles.css';
+import Header from "../Header";
+import Sidebar from "../Sidebar";
 import { useNavigate } from 'react-router-dom';
 
 function Summary2() {    
