@@ -8,6 +8,13 @@ import ElectionManagerListOfVoters from "./Components/ElectionManager/ListOfVote
 import Summary1 from "./Components/ElectionManager/SummaryPage1";
 import Summary2 from "./Components/ElectionManager/SummaryPage2";
 import Summary3 from "./Components/ElectionManager/SummaryPage3";
+import OngoingElectionSummary from "./Components/ElectionManager/Dashboard Elements/Ongoing/OngoingElectionSummary";
+import OngoingElectionSummary2 from "./Components/ElectionManager/Dashboard Elements/Ongoing/OngoingElectionSummary2";
+import OngoingElectionSummary3 from "./Components/ElectionManager/Dashboard Elements/Ongoing/OngoingElectionSummary3";
+import ScheduledElectionSummary from "./Components/ElectionManager/Dashboard Elements/Scheduled/ScheduledElectionSummary";
+import ScheduledElectionSummary2 from "./Components/ElectionManager/Dashboard Elements/Scheduled/ScheduledElectionSummary2";
+import ScheduledElectionSummary3 from "./Components/ElectionManager/Dashboard Elements/Scheduled/ScheduledElectionSummary3";
+
 
 function SysAdminApp() {
     return (
@@ -20,6 +27,13 @@ function SysAdminApp() {
           <Route path='/summary-1' element={<Summary1 />} />
           <Route path='/summary-2' element={<Summary2 />} />
           <Route path='/summary-3' element={<Summary3 />} />
+          <Route path='/ongoing-election' element={<OngoingElectionSummary/>} /> 
+          <Route path='/ongoing-election-summary2' element={<OngoingElectionSummary2 />} />
+          <Route path='/ongoing-election-summary3' element={<OngoingElectionSummary3 />} />
+          <Route path='/scheduled-election' element={<ScheduledElectionSummary/>} /> 
+          <Route path='/scheduled-election-summary2' element={<ScheduledElectionSummary2 />} />
+          <Route path='/scheduled-election-summary3' element={<ScheduledElectionSummary3 />} />
+
         </Routes>
       </Router>
     );

@@ -12,6 +12,14 @@ function ElectionManagerDashboard() {
     navigate('/election-details'); 
   }
 
+  function navigateScheduled(){
+    navigate('/scheduled-election');
+  }
+
+  function navigateOngoing(){
+    navigate('/ongoing-election');
+  }
+
   return (
     <>
       <Header />
@@ -37,14 +45,14 @@ function ElectionManagerDashboard() {
           <div><u>End Date</u></div>
         </div>
 
-        <button className="election-item">
+        <button className="election-item" onClick={navigateOngoing}>
           <div>Election Title 1</div>
           <div>Ongoing</div>
           <div>04/04/2024 8am</div>
           <div>10/04/2024 8am</div>
         </button>
 
-        <button className="election-item">
+        <button className="election-item" onClick={navigateScheduled}>
           <div>Election Title 2</div>
           <div>Scheduled</div>
           <div>04/04/2025 8am</div>

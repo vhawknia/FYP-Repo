@@ -1,26 +1,23 @@
 /* for election manager */
 
 import React from 'react';
-//import './ElectionDetails.css';
-import Header from './Header';
-import Sidebar from './Sidebar';
-//import './Summary.css';
+import Header from '../../Header';
+//import EditElectionSidebar from '../EditElectionSidebar';
 import { useNavigate } from 'react-router-dom';
 
-function Summary1() {    
+function OngoingElectionSummary() {    
     const navigate = useNavigate();
 
     const handleNavigate = () =>{
-        navigate('/summary-2')
+        navigate('/ongoing-election-summary2')
     }
        return (
         <>
             <Header />        
             <div className='container'>
                 <div className="election-details-page">
-                    <Sidebar />
                     <main className="form-content">
-                    <h1>Summary</h1>
+                    <h1>Ongoing Election - Summary</h1>
                     <div className="election-details-summary">
                         <div className="form-group">
                             <label htmlFor="title">Title</label>
@@ -62,4 +59,4 @@ function Summary1() {
         </>
 );}
 
-export default Summary1;
+export default OngoingElectionSummary;
