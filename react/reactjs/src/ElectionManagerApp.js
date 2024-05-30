@@ -16,7 +16,7 @@ import ScheduledElectionSummary2 from "./Components/ElectionManager/Dashboard El
 import ScheduledElectionSummary3 from "./Components/ElectionManager/Dashboard Elements/Scheduled/ScheduledElectionSummary3";
 
 
-function SysAdminApp() {
+function ElectionManagerApp() {
     return (
       <Router>
         <Routes>
@@ -39,5 +39,5 @@ function SysAdminApp() {
     );
   }
   
-  export default SysAdminApp;
+  export default ElectionManagerApp;
   

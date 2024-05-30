@@ -1,0 +1,30 @@
+/* For voter */
+
+.voter-account-section {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.voter-account-details {
+  margin-bottom: 20px;
+}
+
+.voter-reset-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #b56565;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.voter-reset-button:hover {
+  background-color: #a05555;
+}
+
+.info{
+  margin-bottom: 12px;
+}

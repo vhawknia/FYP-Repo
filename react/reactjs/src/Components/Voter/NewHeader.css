@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+  }
+  
+  .home-section {
+    background-color: rgb(189, 188, 192);
+    flex: 0 1 270px; /* Fixed width of 300px */
+    display: flex;
+    align-items: center; /* Center align vertically */
+    justify-content: center; /* Center align horizontally */
+    height: 95px; 
+    border-bottom: solid 2px rgb(176, 174, 174);
+  }
+  
+  .user-section {
+    background-color: #E6E6FA; /* Light lilac color */
+    flex: 1; /* Takes up remaining space */
+    display: flex;
+    align-items: center;
+    height: 97px; 
+  }
+  

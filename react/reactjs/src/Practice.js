@@ -1,16 +1,39 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from 'react';
 
-function Practice (){
-    const [candidate, setCandidates] = useState([])
+const Practice = () => {
+  const [searchInput, setSearchInput] = useState('');
+  const [data, setData] = useState([
+    'New York',
+    'London',
+    'Singapore',
+    'Sydney',
+    'Tokyo'
+    // Add more items as needed
+  ]);
 
-    const handleCandidate = (newCandidate) => {
-        setCandidates([...candidate, newCandidate]);
-    }
+  const handleInputChange = (event) => {
+    setSearchInput(event.target.value);
+  };
 
-    return (
-        <button onClick={handleCandidate}> Click here to add </button>
-    );
-}
+  const filteredData = data.filter(item =>
+    item.toLowerCase().includes(searchInput.toLowerCase())
+  );
+
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Search..."
+        value={searchInput}
+        onChange={handleInputChange}
+      />
+      <ul>
+        {filteredData.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export default Practice;

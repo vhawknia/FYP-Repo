@@ -41,12 +41,28 @@ function OngoingElectionSummary() {
 
                         <div className="form-group">
                             <label htmlFor="timezone">Timezone</label>
-                            <select id="timezone" name="timezone" disabled>
-                                <option value="GMT8">Singapore GMT+8 (Greenwich Meantime)</option>
-                                <option value="GMT-4">New York GMT-4 (Greenwich Meantime)</option>
-                                <option value="GMT1">London GMT+1 (Greenwich Meantime)</option>
-                                <option value="GMT10">Sydney GMT+10 (Greenwich Meantime)</option>
-                                <option value="GMT9">Tokyo GMT+9 (Greenwich Meantime)</option>
+                            <select id="timezone" name="timezone">
+                                <option value="GMT+8">Singapore GMT+8 (Greenwich Mean Time)</option>
+                                <option value="GMT+5">Pakistan GMT+5 (Greenwich Mean Time)</option>
+                                <option value="GMT+5:30">Sri Lanka GMT+5:30 (Greenwich Mean Time)</option>
+                                <option value="GMT+5:45">Nepal GMT+5:45 (Greenwich Mean Time)</option>
+                                <option value="GMT+6">Bangladesh GMT+6 (Greenwich Mean Time)</option>
+                                <option value="GMT+6:30">Myanmar GMT+6:30 (Greenwich Mean Time)</option>
+                                <option value="GMT+7">Thailand GMT+7 (Greenwich Mean Time)</option>
+                                <option value="GMT+7">Indonesia GMT+7 (Greenwich Mean Time)</option>
+                                <option value="GMT+8">China GMT+8 (Greenwich Mean Time)</option>
+                                <option value="GMT+8">Hong Kong GMT+8 (Greenwich Mean Time)</option>
+                                <option value="GMT+8">Malaysia GMT+8 (Greenwich Mean Time)</option>
+                                <option value="GMT+8">Philippines GMT+8 (Greenwich Mean Time)</option>
+                                <option value="GMT+9">Korea GMT+9 (Greenwich Mean Time)</option>
+                                <option value="GMT+9">Japan GMT+9 (Greenwich Mean Time)</option>
+                                <option value="GMT+9:30">Australia (Adelaide) GMT+9:30 (Greenwich Mean Time)</option>
+                                <option value="GMT+10">Australia (Sydney) GMT+10 (Greenwich Mean Time)</option>
+                                <option value="GMT+10">Papua New Guinea GMT+10 (Greenwich Mean Time)</option>
+                                <option value="GMT+11">Solomon Islands GMT+11 (Greenwich Mean Time)</option>
+                                <option value="GMT+11">New Caledonia GMT+11 (Greenwich Mean Time)</option>
+                                <option value="GMT+12">Fiji GMT+12 (Greenwich Mean Time)</option>
+                                <option value="GMT+12">New Zealand GMT+12 (Greenwich Mean Time)</option>
                             </select>
                         </div>
 

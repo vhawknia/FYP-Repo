@@ -1,0 +1,16 @@
+/* for voter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap'); /* Inter */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap'); /*Manrope*/
+@import url('https://fonts.googleapis.com/css2?family=Aileron:wght@400;500;600;700&display=swap'); /* Aileron */
+ 
+
+body {
+  font-family: 'Manrope', sans-serif;
+}
+
+/* Ensure the root element and body take up full height */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
