@@ -1,0 +1,57 @@
+.page {
+  display: flex;
+  min-height: 100vh; /* Ensures body fills the viewport height */
+  background-image: url("tempBG.png");
+  background-size: cover;
+}
+
+.left-div, .LoginForm{
+  padding: 20px;
+}
+.left-div {
+  width: 60%;
+}
+.LoginForm {
+  background-color: #fff; /* Optional background color for right div */
+  width: 40%;
+  display: flex; /* Make the right div a flexbox container */
+  flex-direction: column; /* Arrange elements vertically (top-to-bottom) */
+  align-items: left; /* Horizontally center the elements */
+  justify-content: center; /* Vertically center the elements */
+}
+.LoginForm form {  /* Add some margin to the form for spacing */
+  padding-left: 10px;
+  
+}
+
+/*
+table, th, td {
+  border: 1px solid black;
+}
+*/
+
+table {
+  width: 90%;
+  padding: 10px  
+}
+
+td input {
+  padding-left: 5px;
+  width: 100%;
+}
+
+
+tr, td {
+  text-align: left;
+  padding-left: 1px;
+}
+
+.lbl {
+  width: 30%;
+  text-align: left;
+  padding-left: 1px;
+}
+
+.inp {
+  width: 70%;
+}

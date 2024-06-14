@@ -1,0 +1,32 @@
+[
+    {
+        "email": "A@mail.com",
+        "dpt": "IT",
+        "pw": "qwerty"
+    },
+    {
+        "email": "S@mail.com",
+        "dpt": "Sales",
+        "pw": "qwerty"
+    },
+    {
+        "email": "D@mail.com",
+        "dpt": "RnD",
+        "pw": "qwerty"
+    },
+    {
+        "email": "F@mail.com",
+        "dpt": "Finance",
+        "pw": "qwerty"
+    },
+    {
+        "email": "G@mail.com",
+        "dpt": "General",
+        "pw": "qwerty"
+    },
+    {
+        "email": "H@mail.com",
+        "dpt": "HR",
+        "pw": "qwerty"
+    }
+]
