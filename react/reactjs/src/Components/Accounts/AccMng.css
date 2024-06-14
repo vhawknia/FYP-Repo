@@ -1,3 +1,8 @@
+.newHeader {
+  position: absolute;
+  top: 0;
+}
+
 .page1 {
     display: flex;
     min-height: 100vh; /* Ensures body fills the viewport height */
@@ -6,6 +11,8 @@
 .sidebar1 {
     padding: 20px;
     width: 20%;
+    position: absolute;
+    bottom: 0;
   }
 
 

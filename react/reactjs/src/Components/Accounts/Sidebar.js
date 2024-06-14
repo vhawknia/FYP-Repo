@@ -33,7 +33,7 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebar-item">
-        <button style={stylization} onClick={() => handleNavigate('admin/election-results')}>Election Results</button>
+        <button style={stylization} onClick={() => handleNavigate('AdminDashboard')}>Admin Dashboard</button>
       </div>
     <div className="sidebar-item">
         <button style={stylization} onClick={() => handleNavigate('AccMng')}>Account Management</button>

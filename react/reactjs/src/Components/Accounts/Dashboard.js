@@ -1,15 +1,9 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Logout from "./Logout";
-import LoginForm from './LoginForm'; 
-import AccMng from './AccMng';
-import AdminElectionResults from "./AdminElectionResults";
-
+import React from 'react';
 import NewHeader from './NewHeader';
 import Sidebar from './Sidebar';
-//import './AdminDashboard.css';
+import './Dashboard.css';
 
-function AdminDashboard() {
+function Dashboard() {
   return (
     <div className="voter-app-container">
       <NewHeader />
@@ -30,7 +24,7 @@ function AdminDashboard() {
                     <div>Start Date: 31 Dec</div>
                     <div>Deadline: 1st Jan</div>
                   </div>
-                  <button>Delete</button>
+                  <button>Vote</button>
                 </div>
               </div>
               <div className="voter-election">
@@ -42,7 +36,7 @@ function AdminDashboard() {
                   <div className="voter-election-deadline">
                     <div>Deadline: 2nd Jan 2024</div>
                   </div>
-                  <button>Delete</button>
+                  <button>Vote</button>
                 </div>
               </div>
               <div className="voter-election">
@@ -51,7 +45,7 @@ function AdminDashboard() {
                   <div className="voter-election-deadline">
                     <div>Deadline: 3rd Jan 2024</div>
                   </div>
-                  <button>Delete</button>
+                  <button>Vote</button>
                 </div>
               </div>
             </div>
@@ -87,6 +81,4 @@ function AdminDashboard() {
   );
 }
 
-  
-  export default AdminDashboard;
- 
+export default Dashboard;

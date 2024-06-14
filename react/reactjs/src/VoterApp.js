@@ -23,8 +23,8 @@ function VoterApp() {
           <Route path='/privacy-policy' element={<PrivacyPolicy />} />
           <Route path='/Logout' element={<Logout />} />
           <Route path='/AccMng' element={<AccMng />} />
+          //<Route path='/AdminDashboard' element={<AdminDashboard />} />
           <Route path='/AdminDashboard' element={<AdminDashboard />} />
-          <Route path='/admin/election-results' element={<AdminElectionResults />} />
         </Routes> 
       </Router>
     );
