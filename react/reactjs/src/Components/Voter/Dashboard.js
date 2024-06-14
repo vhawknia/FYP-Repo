@@ -2,8 +2,15 @@ import React from 'react';
 import NewHeader from './NewHeader';
 import Sidebar from './Sidebar';
 import './Dashboard.css';
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
+  const navigate = useNavigate();
+
+  const handleNavigate = (location) => {
+    navigate('/' + location);
+  };
+
   return (
     <div className="voter-app-container">
       <NewHeader />
@@ -24,7 +31,7 @@ function Dashboard() {
                     <div>Start Date: 31 Dec</div>
                     <div>Deadline: 1st Jan</div>
                   </div>
-                  <button>Vote</button>
+                  <button onClick={() => handleNavigate('election-voting')}>Vote</button>
                 </div>
               </div>
               <div className="voter-election">
@@ -36,7 +43,7 @@ function Dashboard() {
                   <div className="voter-election-deadline">
                     <div>Deadline: 2nd Jan 2024</div>
                   </div>
-                  <button>Vote</button>
+                  <button onClick={() => handleNavigate('election-voting')}>Vote</button>
                 </div>
               </div>
               <div className="voter-election">
@@ -45,7 +52,7 @@ function Dashboard() {
                   <div className="voter-election-deadline">
                     <div>Deadline: 3rd Jan 2024</div>
                   </div>
-                  <button>Vote</button>
+                  <button  onClick={() => handleNavigate('election-voting')}>Vote</button>
                 </div>
               </div>
             </div>

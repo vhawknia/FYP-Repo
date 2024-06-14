@@ -1,0 +1,120 @@
+.voter-app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .voter-main-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+  
+  .voter-content {
+    flex: 1;
+    padding: 20px 45px;
+    overflow: auto;
+  }
+  
+  .voter-content h2 {
+    font-weight: 700;
+    font-size: 29px;
+  }
+  
+  .voter-election-info {
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  
+  .voter-candidates {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 80px;
+  }
+  
+  .voter-candidate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .voter-candidate-image img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+  }
+  
+  .voter-candidate-info {
+    margin: 10px 0;
+    font-size: 17px;
+    margin-bottom: 40px;
+  }
+  
+  .voter-vote-button {
+    padding: 10px 20px;
+    border: 1px solid #8a4fff;
+    background-color: #fff;
+    color: #8a4fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .voter-vote-button:hover {
+    background-color: #8a4fff;
+    color: #fff;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: #dadbdd;
+    width: 50%;
+    max-width: 600px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    border: 2px solid #696969; /* Added grey border */
+  }
+  
+  .modal-content h3 {
+    margin-top: 0;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .yes-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .no-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #dc3545;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

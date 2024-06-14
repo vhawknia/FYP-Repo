@@ -6,6 +6,7 @@ import ElectionResults from "./Components/Voter/ElectionResults";
 import AccountSettings from "./Components/Voter/AccountSettings";
 import PrivacyPolicy from "./Components/Voter/PrivacyPolicy";
 import Logout from "./Logout";
+import Voting from "./Components/Voter/Voting";
 
 function VoterApp() {
     return (
@@ -16,6 +17,7 @@ function VoterApp() {
           <Route path='/account-settings' element={<AccountSettings/>} />
           <Route path='/privacy-policy' element={<PrivacyPolicy />} />
           <Route path='/logout' element={<Logout />} />
+          <Route path='/election-voting' element={<Voting />} />
         </Routes> 
       </Router>
     );
