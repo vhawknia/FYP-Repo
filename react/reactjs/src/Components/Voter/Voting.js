@@ -9,7 +9,9 @@ function Voting() {
   const [showRulesModal, setShowRulesModal] = useState(true);
   const [showVoteModal, setShowVoteModal] = useState(false);
   const [showFinalModal, setShowFinalModal] = useState(false);
+  const [showCandidateModal, setShowCandidateModal] = useState(false);
   const [selectedCandidate, setSelectedCandidate] = useState('');
+  const [candidateDetails, setCandidateDetails] = useState({});
   const navigate = useNavigate();
 
   const handleVoteClick = (candidate) => {
@@ -17,8 +19,17 @@ function Voting() {
     setShowVoteModal(true);
   };
 
+  const handleCandidateClick = (candidate) => {
+    setCandidateDetails(candidate);
+    setShowCandidateModal(true);
+  };
+
   const handleCloseVoteModal = () => {
     setShowVoteModal(false);
+  };
+
+  const handleCloseCandidateModal = () => {
+    setShowCandidateModal(false);
   };
 
   const handleConfirmVote = () => {
@@ -36,6 +47,11 @@ function Voting() {
   useEffect(() => {
     setShowRulesModal(true); // Show rules modal when component mounts
   }, []);
+
+  const candidates = [
+    { name: 'Jason Tan', department: 'Marketing Dept', bio: 'Experienced marketer with a decade of expertise...', avatar: avatar },
+    { name: 'Naomi Chow', department: 'Sales Dept', bio: 'Top-performing sales manager...', avatar: avatar }
+  ];
 
   return (
     <div className="voter-app-container">
@@ -59,7 +75,7 @@ function Voting() {
             <div className="modal">
               <div className="modal-content">
                 <h3>Vote for:</h3>
-                <p>{selectedCandidate}</p>
+                <p>{selectedCandidate.name}, {selectedCandidate.department}</p>
                 <div className="modal-buttons">
                   <button className="yes-button" onClick={handleConfirmVote}>Yes</button>
                   <button className="no-button" onClick={handleCloseVoteModal}>No</button>
@@ -67,40 +83,44 @@ function Voting() {
               </div>
             </div>
           )}
+          {showCandidateModal && (
+            <div className="modal">
+              <div className="modal-content">
+                <h3>{candidateDetails.name}</h3>
+                <p>{candidateDetails.department}</p>
+                <img src={candidateDetails.avatar} alt="Candidate" className="candidate-avatar"/>
+                <p>{candidateDetails.bio}</p>
+                <br></br>
+                <button onClick={handleCloseCandidateModal}>Close</button>
+              </div>
+            </div>
+          )}
           {showFinalModal && (
             <div className="modal">
               <div className="modal-content">
                 <h3>Voted for:</h3>
-                <p>{selectedCandidate}</p>
+                <p>{selectedCandidate.name}, {selectedCandidate.department}</p>
                 <p>Redirecting to homepage.</p>
               </div>
             </div>
           )}
           <h2>Voting</h2>
           <div className="voter-election-info">
-            Election 1 - Election Manager: xxx
+            Election 1
           </div>
           <div className="voter-candidates">
-            <div className="voter-candidate">
-              <div className="voter-candidate-image">
-                <img src={avatar} alt="Candidate" />
+            {candidates.map(candidate => (
+              <div className="voter-candidate" key={candidate.name} onClick={() => handleCandidateClick(candidate)}>
+                <div className="voter-candidate-image">
+                  <img src={candidate.avatar} alt="Candidate" />
+                </div>
+                <div className="voter-candidate-info">
+                  <div>{candidate.name},</div>
+                  <div>{candidate.department}</div>
+                </div>
+                <button className="voter-vote-button" onClick={(e) => { e.stopPropagation(); handleVoteClick(candidate); }}>Vote</button>
               </div>
-              <div className="voter-candidate-info">
-                <div>Jason Tan,</div>
-                <div>Marketing Dept</div>
-              </div>
-              <button className="voter-vote-button" onClick={() => handleVoteClick('Jason Tan, Marketing Dept')}>Vote</button>
-            </div>
-            <div className="voter-candidate">
-              <div className="voter-candidate-image">
-                <img src={avatar} alt="Candidate" />
-              </div>
-              <div className="voter-candidate-info">
-                <div>Naomi Chow,</div>
-                <div>Sales Dept</div>
-              </div>
-              <button className="voter-vote-button" onClick={() => handleVoteClick('Naomi Chow, Sales Dept')}>Vote</button>
-            </div>
+            ))}
           </div>
         </div>
       </div>

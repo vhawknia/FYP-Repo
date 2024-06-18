@@ -1,7 +1,7 @@
 import React from 'react';
 import './NewHeader.css';
 import { useNavigate } from 'react-router-dom';
-import companyLogo from '../../Starbucks_Corporation_Logo_2011.png';
+import companyLogo from '../../company-logo.png';
 import { Link } from 'react-router-dom';
 
 function NewHeader() {
@@ -20,11 +20,12 @@ function NewHeader() {
 
   const homeStylization={
     
-      width: '70px',
+      width: '115px',
       height: 'auto',
       display: 'block',
 
   }
+
 
   return (
     <div className="header">
