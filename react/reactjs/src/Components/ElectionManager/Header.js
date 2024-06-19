@@ -1,5 +1,5 @@
 import React from 'react';
-import companyLogo from '../../Starbucks_Corporation_Logo_2011.png';
+import companyLogo from '../../company-logo.png';
 import styles from './header.module.css';
 import { Link } from 'react-router-dom';
 

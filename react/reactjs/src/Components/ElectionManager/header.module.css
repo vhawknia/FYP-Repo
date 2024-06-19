@@ -2,17 +2,17 @@
 .header {
     display: flex;
     align-items: center; /* Align items vertically center */
-    padding: 20px;
+    padding: 10px;
     background-color: #ffffff;
     justify-content: left; /* Align items to the left */
     border-bottom: 3px solid rgb(172, 171, 171);
 }
 
 .logo {
-    width: 50px; /* Adjust the width as needed */
+    width: 75px; /* Adjust the width as needed */
     height: auto; /* Maintain aspect ratio */
     display: block;
-    margin-right: 1200px; 
+    margin-right: 1100px; 
     margin-left: 67px;
 }
 
