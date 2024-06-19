@@ -24,6 +24,10 @@ function ElectionManagerDashboard() {
     navigate('/completed-election');
   }
 
+  function navigateArchived(){
+    navigate('/archived-elections');
+  }
+
   return (
     <>
       <Header />
@@ -39,6 +43,7 @@ function ElectionManagerDashboard() {
             <option value="scheduled">Scheduled</option>
           </select>
           <button className='search-bar-button'>Search</button>
+          <button onClick={navigateArchived}>Archived Elections</button>
           <button onClick={handleNewElection}>New Election</button>
         </div>
 

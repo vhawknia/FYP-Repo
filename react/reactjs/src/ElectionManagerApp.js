@@ -15,6 +15,7 @@ import ScheduledElectionSummary from "./Components/ElectionManager/Dashboard Ele
 import ScheduledElectionSummary2 from "./Components/ElectionManager/Dashboard Elements/Scheduled/ScheduledElectionSummary2";
 import ScheduledElectionSummary3 from "./Components/ElectionManager/Dashboard Elements/Scheduled/ScheduledElectionSummary3";
 import CompletedElections from "./Components/ElectionManager/CompletedElections";
+import ArchivedElections from "./Components/ElectionManager/ArchivedElections";
 
 function ElectionManagerApp() {
     return (
@@ -34,6 +35,7 @@ function ElectionManagerApp() {
           <Route path='/scheduled-election-summary2' element={<ScheduledElectionSummary2 />} />
           <Route path='/scheduled-election-summary3' element={<ScheduledElectionSummary3 />} />
           <Route path='/completed-election' element={<CompletedElections />} />
+          <Route path='/archived-elections' element={<ArchivedElections />} />
 
         </Routes>
       </Router>
