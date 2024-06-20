@@ -8,6 +8,9 @@ const accountsData = require('./accounts.json'); // Import data synchronously
 
 function AccListEdit() {
   const [data, setData] = useState(accountsData); // Set initial data from import
+  
+  //console.log("DATATYPE OF DATA?", typeof(data))
+  //console.log("DATA IS ARRAY?", Array.isArray(data))
 
   // Function to create table rows based on data
   const createTR = (item) => (
