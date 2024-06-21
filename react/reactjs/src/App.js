@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ElectionManagerAppLayout from "./ElectionManagerAppLayout";
 import VoterAppLayout from "./VoterAppLayout";
+import ElectionManagerAppLayout from "./ElectionManagerAppLayout";
 
 // Import components for VoterApp
 import Dashboard from "./Components/Voter/Dashboard";
@@ -40,11 +40,12 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginForm2 />} />
         <Route path="/logout" element={<Logout />} />
+        
         {/* VoterApp Routes */}
-        <Route path="/voter/*" element={<VoterApp />} />
+        <Route path="/voter/*" element={<VoterAppLayout><VoterApp /></VoterAppLayout>} />
 
         {/* ElectionManagerApp Routes */}
-        <Route path="/election-manager/*" element={<ElectionManagerApp />} />
+        <Route path="/election-manager/*" element={<ElectionManagerAppLayout><ElectionManagerApp /></ElectionManagerAppLayout>} />
 
         {/* SystemAdmin Routes */}
         <Route path="/system-admin/*" element={<SystemAdminApp />} />
@@ -55,7 +56,6 @@ function App() {
 
 function VoterApp() {
   return (
-    <VoterAppLayout>
       <Routes>
         <Route path='/' element={<Dashboard />} />
         <Route path='/election-results' element={<ElectionResults />} />
@@ -63,7 +63,6 @@ function VoterApp() {
         <Route path='/privacy-policy' element={<PrivacyPolicy />} />
         <Route path='/election-voting' element={<Voting />} />
       </Routes>
-    </VoterAppLayout>
   );
 }
 
@@ -79,7 +78,6 @@ function SystemAdminApp() {
 
 function ElectionManagerApp() {
   return (
-    <ElectionManagerAppLayout>
       <Routes>
         <Route path='/' element={<ElectionManagerDashboard />} />
         <Route path='/election-details' element={<ElectionManagerElectionDetails />} />
@@ -97,7 +95,6 @@ function ElectionManagerApp() {
         <Route path='/completed-election' element={<CompletedElections />} />
         <Route path='/archived-elections' element={<ArchivedElections />} />
       </Routes>
-    </ElectionManagerAppLayout>
   );
 }
 

@@ -18,6 +18,16 @@
     margin-bottom: 20px;
 }
 
+.form-group input[type="text"], input[type="date"], input[type="datetime-local"], select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-color:#928e98;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px;
+}
+
 .form-group label {
     display: block;
 }

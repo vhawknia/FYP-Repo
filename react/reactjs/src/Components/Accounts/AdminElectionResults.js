@@ -1,8 +1,6 @@
 import React from 'react';
 //import NewHeader from './NewHeader';
 import Sidebar from './Sidebar';
-import './AdminElectionResults.css';
-
 function AdminElectionResults() {
   return (
     <div className="voter-app-container">

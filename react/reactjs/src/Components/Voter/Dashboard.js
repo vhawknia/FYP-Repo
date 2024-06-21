@@ -72,7 +72,7 @@ function Dashboard() {
                   </div>
                 
                   <div className="voter-election-deadline">
-                    <div>Completed Date: 15 Dec</div>
+                    <div>Completion Date: 15 Dec 2024</div>
                   </div>
                 </div>
               </div>
@@ -80,7 +80,7 @@ function Dashboard() {
                 <div className="voter-election-info">
                 <div><span><b><u>Election 5</u></b></span></div>
                   <div className="voter-election-deadline">
-                    <div>Completed Date: 25 Dec</div>
+                    <div>Completion Date: 25 Dec 2024</div>
                   </div>
                 </div>
               </div>
