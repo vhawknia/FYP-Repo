@@ -30,7 +30,7 @@ function NewHeader() {
   return (
     <div className="header">
       <div className="home-section">
-        <Link to="/">
+        <Link to="/voter">
           <img src={companyLogo} alt="Company Logo" style={homeStylization} />
         </Link>
       </div>

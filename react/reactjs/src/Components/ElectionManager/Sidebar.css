@@ -1,28 +1,28 @@
 /* for election manager */
 
-.sidebar {
+.election-manager-sidebar {
     flex: 0.75;
     border-right: 1px solid #ccc;
     padding: 20px;
     margin-top: 45px;
 }
 
-.sidebar h1 {
+.election-manager-sidebar h1 {
     margin-bottom: 50px;
     font-size: 24px;
 }
 
-.sidebar ul {
+.election-manager-sidebar ul {
     list-style: none;
     padding: 0;
 }
 
-.sidebar li {
+.election-manager-sidebar li {
     margin-bottom: 40px;
     cursor: pointer;
 }
 
-.sidebar li.active {
+.election-manager-sidebar li.active {
     color: #6200EE;
     font-weight: bold;
 }

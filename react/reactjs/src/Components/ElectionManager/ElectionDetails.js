@@ -10,7 +10,7 @@ function ElectionManagerElectionDetails() {
     const navigate = useNavigate();
 
     const handleNavigate = () =>{
-        navigate('/candidate-profiles')
+        navigate('/election-manager/candidate-profiles')
     }
 
     return (

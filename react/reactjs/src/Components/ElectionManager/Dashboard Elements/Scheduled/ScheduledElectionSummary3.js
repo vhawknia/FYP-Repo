@@ -17,7 +17,7 @@ function ScheduledElectionSummary3() {
     const navigate = useNavigate();
 
     const handleNavigate = () =>{
-        navigate('/election-details');
+        navigate('/election-manager/election-details');
     }
 
     return (
