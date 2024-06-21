@@ -11,7 +11,7 @@ function Summary1() {
     const navigate = useNavigate();
 
     const handleNavigate = () =>{
-        navigate('/summary-2')
+        navigate('/election-manager/summary-2')
     }
        return (
         <>

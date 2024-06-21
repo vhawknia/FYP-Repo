@@ -6,7 +6,7 @@ import './ArchivedElections.css';
 function ArchivedElections() {    
     const navigate = useNavigate();
     const handleNavigate = (data) =>{
-        navigate('/' + data);
+        navigate('/election-manager/' + data);
     }
 
     const searchbarStyle = {

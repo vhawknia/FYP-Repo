@@ -9,23 +9,23 @@ function ElectionManagerDashboard() {
   const navigate = useNavigate();  
   
   function handleNewElection() {
-    navigate('/election-details'); 
+    navigate('/election-manager/election-details'); 
   }
 
   function navigateScheduled(){
-    navigate('/scheduled-election');
+    navigate('/election-manager/scheduled-election');
   }
 
   function navigateOngoing(){
-    navigate('/ongoing-election');
+    navigate('/election-manager/ongoing-election');
   }
 
   function navigateCompleted(){
-    navigate('/completed-election');
+    navigate('/election-manager/completed-election');
   }
 
   function navigateArchived(){
-    navigate('/archived-elections');
+    navigate('/election-manager/archived-elections');
   }
 
   return (

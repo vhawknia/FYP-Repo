@@ -10,7 +10,7 @@ function Sidebar() {
 
     // Function to navigate and ignore setting active state manually
     const handleNavigate = (navigatePath) => {
-        navigate('/' + navigatePath); // Navigate to the path provided
+        navigate('/election-manager/' + navigatePath); // Navigate to the path provided
     }
 
     return (

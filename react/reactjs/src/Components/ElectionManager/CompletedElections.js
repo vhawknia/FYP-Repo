@@ -8,7 +8,7 @@ function CompletedElections() {
     const navigate = useNavigate();
 
     const handleNavigate = () => {
-        navigate('/');
+        navigate('/election-manager/');
     }
 
     const candidate_data = [

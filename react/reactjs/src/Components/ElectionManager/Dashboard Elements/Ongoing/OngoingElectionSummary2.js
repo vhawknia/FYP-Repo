@@ -8,7 +8,7 @@ function OngoingElectionSummary2() {
     const navigate = useNavigate();
 
     const handleNavigate = () =>{
-        navigate('/ongoing-election-summary3')
+        navigate('/election-manager/ongoing-election-summary3')
     }
 
     return (

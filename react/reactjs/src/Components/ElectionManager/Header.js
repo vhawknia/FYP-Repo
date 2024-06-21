@@ -7,7 +7,7 @@ function Header() {
     return (
         <header className={styles.header}>
             <div className={styles.logoContainer}>
-                <Link to="/">
+                <Link to="/election-manager/">
                     <img src={companyLogo} alt="Company Logo" className={styles.logo} />
                 </Link>
             </div>
