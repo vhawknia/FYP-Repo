@@ -10,11 +10,11 @@ function Sidebar() {
 
     // Function to navigate and ignore setting active state manually
     const handleNavigate = (navigatePath) => {
-        navigate('/' + navigatePath); // Navigate to the path provided
+        navigate('/election-manager/' + navigatePath); // Navigate to the path provided
     }
 
     return (
-        <aside className="sidebar">
+        <aside className="election-manager-sidebar">
             <h1>New Election</h1>
             <ul>
                 <li className={location.pathname === "/election-details" ? "active" : ""}

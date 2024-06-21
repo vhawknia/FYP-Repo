@@ -38,7 +38,7 @@ function ElectionManagerListOfVoters() {
     const navigate = useNavigate();
 
     const handleNavigate = () =>{
-        navigate('/summary-1');
+        navigate('/election-manager/summary-1');
     }
 
     return (

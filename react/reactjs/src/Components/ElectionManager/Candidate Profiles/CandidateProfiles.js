@@ -27,7 +27,7 @@ function ElectionManagerCandidateProfiles() {
     const navigate = useNavigate();
 
     const handleNavigate = () =>{
-        navigate('/list-of-voters');
+        navigate('/election-manager/list-of-voters');
     }
 
 

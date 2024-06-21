@@ -29,7 +29,7 @@ function NewHeader() {
   return (
     <div className="header">
       <div className="home-section">
-        <Link to="/">
+        <Link to="/system-admin">
           <img src={companyLogo} alt="Company Logo" style={homeStylization} />
         </Link>
       </div>

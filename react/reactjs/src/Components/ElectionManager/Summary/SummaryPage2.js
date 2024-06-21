@@ -9,7 +9,7 @@ function Summary2() {
     const navigate = useNavigate();
 
     const handleNavigate = () =>{
-        navigate('/summary-3')
+        navigate('/election-manager/summary-3')
     }
 
     return (
@@ -65,7 +65,7 @@ function Summary2() {
                             </div>
                         </div>
                         
-                        <button type="submit" className='next-button' onClick={()=>handleNavigate()}>Next</button>
+                        <button className='next-button' onClick={()=>handleNavigate()}>Next</button>
                     </main>
                 </div>
             </div>

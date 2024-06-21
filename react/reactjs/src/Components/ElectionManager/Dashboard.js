@@ -9,15 +9,23 @@ function ElectionManagerDashboard() {
   const navigate = useNavigate();  
   
   function handleNewElection() {
-    navigate('/election-details'); 
+    navigate('/election-manager/election-details'); 
   }
 
   function navigateScheduled(){
-    navigate('/scheduled-election');
+    navigate('/election-manager/scheduled-election');
   }
 
   function navigateOngoing(){
-    navigate('/ongoing-election');
+    navigate('/election-manager/ongoing-election');
+  }
+
+  function navigateCompleted(){
+    navigate('/election-manager/completed-election');
+  }
+
+  function navigateArchived(){
+    navigate('/election-manager/archived-elections');
   }
 
   return (
@@ -35,6 +43,7 @@ function ElectionManagerDashboard() {
             <option value="scheduled">Scheduled</option>
           </select>
           <button className='search-bar-button'>Search</button>
+          <button onClick={navigateArchived}>Archived Elections</button>
           <button onClick={handleNewElection}>New Election</button>
         </div>
 
@@ -58,6 +67,32 @@ function ElectionManagerDashboard() {
           <div>04/04/2025 8am</div>
           <div>10/04/2025 8am</div>
         </button>
+
+        {/* Completed Elections part */}
+        <br />
+        <div className="dashboardText"><span>Completed Elections</span></div>
+        
+        <div className="election-item-titles">
+          <div><u>Election Name</u></div>
+          <div><u>Status</u></div>
+          <div><u>Start Date</u></div>
+          <div><u>End Date</u></div>
+        </div>
+
+        <button className="election-item" onClick={navigateCompleted}>
+          <div>Election Title 3</div>
+          <div>Completed</div>
+          <div>04/04/2024 8am</div>
+          <div>10/04/2024 8am</div>
+        </button>
+
+        <button className="election-item" onClick={navigateCompleted}>
+          <div>Election Title 4</div>
+          <div>Completed</div>
+          <div>04/04/2025 8am</div>
+          <div>10/04/2025 8am</div>
+        </button>
+
 
         <div className="pagination">
           <button>{"<<"}</button>

@@ -1,0 +1,43 @@
+.em-election-results {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.em-election-results-candidates {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 15px;
+}
+
+.em-election-results-candidates-winner {
+    text-align: center;
+    font-size: large;
+    font-weight: bolder;
+}
+
+.em-election-results-vote-statistics {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 15px;
+}
+
+.archive {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.archive-button{
+    padding: 8px 16px;
+    background-color: #6200EE;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    align-items: center;
+    height: 45px;
+    width: auto;
+}

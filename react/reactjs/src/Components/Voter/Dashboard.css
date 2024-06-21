@@ -47,12 +47,6 @@
   height: 80px;
 }
 
-.voter-election-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex: 1;
-}
 
 .voter-election-deadline {
   text-align: right;
@@ -71,4 +65,17 @@
 .voter-election button:hover {
   background-color: #007bff;
   color: #fff;
+}
+
+.voter-election-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.voter-election-section-header input {
+  border-radius: 4px;
+  height: 25px;
+  width: 30%; 
+  border-color: rgb(174, 171, 171);
 }

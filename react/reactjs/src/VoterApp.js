@@ -6,6 +6,7 @@ import ElectionResults from "./Components/Voter/ElectionResults";
 import AccountSettings from "./Components/Voter/AccountSettings";
 import PrivacyPolicy from "./Components/Voter/PrivacyPolicy";
 import Logout from "./Logout";
+import Voting from "./Components/Voter/Voting";
 import LoginForm from './Components/Accounts/LoginForm'; // Import LoginForm component
 import LoginForm2 from './Components/Accounts/LoginForm2'; // Import LoginForm component
 import AccMng from './Components/Accounts/AccMng';
@@ -23,6 +24,7 @@ function VoterApp() {
           <Route path='/election-results' element={<ElectionResults />} />
           <Route path='/account-settings' element={<AccountSettings/>} />
           <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+          <Route path='/election-voting' element={<Voting />} />
           <Route path='/Logout' element={<Logout />} />
           <Route path='/AccMng' element={<AccMng />} />
           <Route path='/AdminDashboard' element={<AdminDashboard />} />

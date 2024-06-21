@@ -8,7 +8,7 @@ function ScheduledElectionSummary2() {
     const navigate = useNavigate();
 
     const handleNavigate = () =>{
-        navigate('/scheduled-election-summary3')
+        navigate('/election-manager/scheduled-election-summary3')
     }
 
     return (
@@ -63,7 +63,7 @@ function ScheduledElectionSummary2() {
                             </div>
                         </div>
                         
-                        <button type="submit" className='next-button' onClick={()=>handleNavigate()}>Next</button>
+                        <button className='next-button' onClick={()=>handleNavigate()}>Next</button>
                     </main>
                 </div>
             </div>

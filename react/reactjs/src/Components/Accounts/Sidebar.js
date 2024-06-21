@@ -6,7 +6,7 @@ function Sidebar() {
   const navigate = useNavigate();
 
   const handleNavigate = (location) => {
-    navigate('/' + location);
+    navigate(location);
   };
 
   const stylization = {
@@ -33,14 +33,14 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebar-item">
-        <button style={stylization} onClick={() => handleNavigate('AdminDashboard')}>Admin Dashboard</button>
+        <button style={stylization} onClick={() => handleNavigate('/system-admin/')}>Admin Dashboard</button>
       </div>
     <div className="sidebar-item">
-        <button style={stylization} onClick={() => handleNavigate('AccMng')}>Account Management</button>
+        <button style={stylization} onClick={() => handleNavigate('/system-admin/AccMng')}>Account Management</button>
       </div>
       
       <div className="sidebar-item">
-        <button style={stylizationLogout} onClick={() => handleNavigate('logout')}>Logout</button>
+        <button style={stylizationLogout} onClick={() => handleNavigate('/logout')}>Logout</button>
       </div>
     </div>
   );
