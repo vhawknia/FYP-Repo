@@ -1,0 +1,74 @@
+/* For voter */
+
+/* Main container needs to take up the full height */
+.voter-app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* 100vh ensures the container takes up the full viewport height */
+}
+
+.voter-main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden; /* Ensures the sidebar and content fill the remaining space */
+}
+
+.voter-content {
+  flex: 1;
+  padding: 20px 45px;
+  overflow: auto; /* Allow scrolling if content overflows */
+}
+
+.voter-content h2 {
+  font-weight: 700;
+  font-size: 29px;
+}
+
+.voter-elections-section {
+  margin-bottom: 100px;
+}
+
+.voter-elections-list {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.voter-election {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 20px;
+  height: 80px;
+}
+
+.voter-election-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+}
+
+.voter-election-deadline {
+  text-align: right;
+}
+
+.voter-election button {
+  padding: 10px 20px;
+  border: 1px solid #007bff;
+  background-color: #fff;
+  color: #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.voter-election button:hover {
+  background-color: #007bff;
+  color: #fff;
+}

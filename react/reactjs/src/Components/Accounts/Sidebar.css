@@ -1,0 +1,21 @@
+.sidebar {
+    background-color: rgb(189, 188, 192);
+    width: 270px; /* Same width as the home-section */
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px; /* Adjust padding as needed */
+    height: 100%; /* Ensure the sidebar takes up the full height */
+    overflow: auto; /* Allow scrolling if content overflows */
+  }
+  
+  .sidebar-item {
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center; /* Center align vertically */
+    justify-content: center; /* Center align horizontally */
+    text-align: center; /* Ensure text is centered */
+    margin-bottom: 20px;
+    margin-top: 40px;
+  }
+  
