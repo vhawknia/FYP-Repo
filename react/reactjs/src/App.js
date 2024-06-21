@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ElectionManagerAppLayout from "./ElectionManagerAppLayout";
+import VoterAppLayout from "./VoterAppLayout";
 
 // Import components for VoterApp
 import Dashboard from "./Components/Voter/Dashboard";
@@ -53,13 +55,15 @@ function App() {
 
 function VoterApp() {
   return (
-    <Routes>
-      <Route path='/' element={<Dashboard />} />
-      <Route path='/election-results' element={<ElectionResults />} />
-      <Route path='/account-settings' element={<AccountSettings />} />
-      <Route path='/privacy-policy' element={<PrivacyPolicy />} />
-      <Route path='/election-voting' element={<Voting />} />
-    </Routes>
+    <VoterAppLayout>
+      <Routes>
+        <Route path='/' element={<Dashboard />} />
+        <Route path='/election-results' element={<ElectionResults />} />
+        <Route path='/account-settings' element={<AccountSettings />} />
+        <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+        <Route path='/election-voting' element={<Voting />} />
+      </Routes>
+    </VoterAppLayout>
   );
 }
 
@@ -75,23 +79,25 @@ function SystemAdminApp() {
 
 function ElectionManagerApp() {
   return (
-    <Routes>
-      <Route path='/' element={<ElectionManagerDashboard />} />
-      <Route path='/election-details' element={<ElectionManagerElectionDetails />} />
-      <Route path='/candidate-profiles' element={<ElectionManagerCandidateProfiles />} />
-      <Route path='/list-of-voters' element={<ElectionManagerListOfVoters />} />
-      <Route path='/summary-1' element={<Summary1 />} />
-      <Route path='/summary-2' element={<Summary2 />} />
-      <Route path='/summary-3' element={<Summary3 />} />
-      <Route path='/ongoing-election' element={<OngoingElectionSummary />} /> 
-      <Route path='/ongoing-election-summary2' element={<OngoingElectionSummary2 />} />
-      <Route path='/ongoing-election-summary3' element={<OngoingElectionSummary3 />} />
-      <Route path='/scheduled-election' element={<ScheduledElectionSummary />} /> 
-      <Route path='/scheduled-election-summary2' element={<ScheduledElectionSummary2 />} />
-      <Route path='/scheduled-election-summary3' element={<ScheduledElectionSummary3 />} />
-      <Route path='/completed-election' element={<CompletedElections />} />
-      <Route path='/archived-elections' element={<ArchivedElections />} />
-    </Routes>
+    <ElectionManagerAppLayout>
+      <Routes>
+        <Route path='/' element={<ElectionManagerDashboard />} />
+        <Route path='/election-details' element={<ElectionManagerElectionDetails />} />
+        <Route path='/candidate-profiles' element={<ElectionManagerCandidateProfiles />} />
+        <Route path='/list-of-voters' element={<ElectionManagerListOfVoters />} />
+        <Route path='/summary-1' element={<Summary1 />} />
+        <Route path='/summary-2' element={<Summary2 />} />
+        <Route path='/summary-3' element={<Summary3 />} />
+        <Route path='/ongoing-election' element={<OngoingElectionSummary />} /> 
+        <Route path='/ongoing-election-summary2' element={<OngoingElectionSummary2 />} />
+        <Route path='/ongoing-election-summary3' element={<OngoingElectionSummary3 />} />
+        <Route path='/scheduled-election' element={<ScheduledElectionSummary />} /> 
+        <Route path='/scheduled-election-summary2' element={<ScheduledElectionSummary2 />} />
+        <Route path='/scheduled-election-summary3' element={<ScheduledElectionSummary3 />} />
+        <Route path='/completed-election' element={<CompletedElections />} />
+        <Route path='/archived-elections' element={<ArchivedElections />} />
+      </Routes>
+    </ElectionManagerAppLayout>
   );
 }
 

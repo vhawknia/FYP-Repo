@@ -54,7 +54,7 @@ function Dashboard() {
 
                   <div className="voter-election-deadline">
                     <div>Deadline: {election.deadline}</div>
-                    <button onClick={() => handleNavigate('election-voting')}>Vote</button>
+                    <button onClick={() => handleNavigate('voter/election-voting')}>Vote</button>
                   </div>
                 </div>
               ))}
