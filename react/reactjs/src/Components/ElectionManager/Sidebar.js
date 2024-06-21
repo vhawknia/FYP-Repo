@@ -14,7 +14,7 @@ function Sidebar() {
     }
 
     return (
-        <aside className="sidebar">
+        <aside className="election-manager-sidebar">
             <h1>New Election</h1>
             <ul>
                 <li className={location.pathname === "/election-details" ? "active" : ""}

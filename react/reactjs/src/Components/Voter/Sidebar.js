@@ -31,20 +31,20 @@ function Sidebar() {
   };
 
   return (
-    <div className="sidebar">
-      <div className="sidebar-item">
+    <div className="voter-sidebar">
+      <div className="voter-sidebar-item">
         <button style={stylization} onClick={() => handleNavigate('/voter/')}>Pending Elections</button>
       </div>
-      <div className="sidebar-item">
+      <div className="voter-sidebar-item">
         <button style={stylization} onClick={() => handleNavigate('/voter/election-results')}>Election Results</button>
       </div>
-      <div className="sidebar-item">
+      <div className="voter-sidebar-item">
         <button style={stylization} onClick={() => handleNavigate('/voter/account-settings')}>Account Settings</button>
       </div>
-      <div className="sidebar-item">
+      <div className="voter-sidebar-item">
         <button style={stylization} onClick={() => handleNavigate('/voter/privacy-policy')}>Privacy Policy</button>
       </div>
-      <div className="sidebar-item">
+      <div className="voter-sidebar-item">
         <button style={stylizationLogout} onClick={() => handleNavigate('/voter/logout')}>Logout</button>
       </div>
     </div>
