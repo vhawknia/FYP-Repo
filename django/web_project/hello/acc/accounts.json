@@ -1,0 +1,38 @@
+[
+    {
+        "email": "A@mail.com",
+        "dpt": "IT",
+        "role": "admin",
+        "pw": "qwerty"
+    },
+    {
+        "email": "S@mail.com",
+        "dpt": "Sales",
+        "role": "user",
+        "pw": "qwerty"
+    },
+    {
+        "email": "D@mail.com",
+        "dpt": "RnD",
+        "role": "user",
+        "pw": "qwerty"
+    },
+    {
+        "email": "F@mail.com",
+        "dpt": "Finance",
+        "role": "user",
+        "pw": "qwerty"
+    },
+    {
+        "email": "G@mail.com",
+        "dpt": "General",
+        "role": "mngr",
+        "pw": "qwerty"
+    },
+    {
+        "email": "H@mail.com",
+        "dpt": "HR",
+        "role": "e-mngr",
+        "pw": "qwerty"
+    }
+]
