@@ -6,7 +6,7 @@ function Sidebar() {
   const navigate = useNavigate();
 
   const handleNavigate = (location) => {
-    navigate('/' + location);
+    navigate(location);
   };
 
   const stylization = {
@@ -33,19 +33,19 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebar-item">
-        <button style={stylization} onClick={() => handleNavigate('')}>Pending Elections</button>
+        <button style={stylization} onClick={() => handleNavigate('/voter/')}>Pending Elections</button>
       </div>
       <div className="sidebar-item">
-        <button style={stylization} onClick={() => handleNavigate('election-results')}>Election Results</button>
+        <button style={stylization} onClick={() => handleNavigate('/voter/election-results')}>Election Results</button>
       </div>
       <div className="sidebar-item">
-        <button style={stylization} onClick={() => handleNavigate('account-settings')}>Account Settings</button>
+        <button style={stylization} onClick={() => handleNavigate('/voter/account-settings')}>Account Settings</button>
       </div>
       <div className="sidebar-item">
-        <button style={stylization} onClick={() => handleNavigate('privacy-policy')}>Privacy Policy</button>
+        <button style={stylization} onClick={() => handleNavigate('/voter/privacy-policy')}>Privacy Policy</button>
       </div>
       <div className="sidebar-item">
-        <button style={stylizationLogout} onClick={() => handleNavigate('logout')}>Logout</button>
+        <button style={stylizationLogout} onClick={() => handleNavigate('/voter/logout')}>Logout</button>
       </div>
     </div>
   );

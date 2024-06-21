@@ -18,4 +18,18 @@
 
 .headerText {
     font-size: 18px; /* Adjust the font size as needed */
+    margin-left: 30px;
+    margin-right: 10px;
+}
+
+
+.noStyleButton {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-size: 18px
 }
