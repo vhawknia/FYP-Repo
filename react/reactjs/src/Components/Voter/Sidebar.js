@@ -45,7 +45,7 @@ function Sidebar() {
         <button style={stylization} onClick={() => handleNavigate('/voter/privacy-policy')}>Privacy Policy</button>
       </div>
       <div className="voter-sidebar-item">
-        <button style={stylizationLogout} onClick={() => handleNavigate('/voter/logout')}>Logout</button>
+        <button style={stylizationLogout} onClick={() => handleNavigate('/')}>Logout</button>
       </div>
     </div>
   );

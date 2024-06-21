@@ -1,18 +1,12 @@
-/* login comp*/
-
-import React, {useState}from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import './LoginForm.css'; // Import the CSS file for styling
 
-//import CSRFTokenRequest from './CSRFTokenRequest';
-
-function LoginForm2(/*{ csrfToken }*/) {
+function LoginForm2() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [data, setData] = useState(null);
   const navigate = useNavigate();
-  
-
 
   const handleLogin = async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
@@ -23,67 +17,79 @@ function LoginForm2(/*{ csrfToken }*/) {
         body: JSON.stringify({ username: username, password: password }),
         headers: {
           'Content-Type': 'application/json',
-          //'X-CSRFToken': csrfToken, // Use the passed token here
         },
       });
-      
-      
-      //console.log("WHAT THE FUCK IS THE BODY?", JSON.stringify({ username: username, password: password }))
-      
-      
-      /*
-      if (!response.ok) {
-        console.log("RESPONSE???", response);
-        throw new Error(`THIS ONE THE PROBLEM Error fetching data: ${response.status}`);
-      }*/
+
       const data = await response.json();
       console.log("BACKEND RETURNED WITH", data)
       console.log("VALUE WITH PROPERTY OF KEY IS", data.RESULT)
-      
-      
+
       // Handle successful login based on data (e.g., redirect, display success message)
-      if (data.RESULT == "admin"){
-        console.log("YES IT RETURNED SUCCESSFULLY")
+      if (data.RESULT === "admin") {
         navigate('/system-admin/');
-      } else if (data.RESULT == "mngr"){
-        console.log("YES IT RETURNED SUCCESSFULLY")
-        navigate('/election-manager/');  
-      } else if (data.RESULT == "user"){
-        console.log("YES IT RETURNED SUCCESSFULLY")
+      } else if (data.RESULT === "mngr") {
+        navigate('/election-manager/');
+      } else if (data.RESULT === "user") {
         navigate('/voter/');
-      
       } else {
-        console.log("LOGIN FAILED. REMEMBER TO IMPLEMENT FAILURE COMP")
+        alert("Login failed! Please try again."); // Or display an error message
       }
       console.log('Login successful:', data); // Replace with your logic
-        
     } catch (error) {
       console.error('Error:', error.message); // Handle errors appropriately (display error message)
     }
   };
 
   return (
-    <div>
-      <h1>Login Form</h1>
-      <form onSubmit={handleLogin}>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
+    <div className="page">
+      <div className="left-div">
+        {/* Left side content if any */}
+      </div>
+
+      <div className="LoginForm">
+        <form onSubmit={handleLogin}>
+          <table>
+            <thead>
+              <tr>
+                <th colSpan="2"><h1>Login</h1></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="lbl"> <label htmlFor="username">Username:</label> </td>
+                <td className="inp">
+                  <input
+                    type="text"
+                    id="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </td>
+              </tr>
+
+              <tr>
+                <td className="lbl"><label htmlFor="password">Password:</label></td>
+                <td className="inp">
+                  <input
+                    type="password"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td colSpan="2"><button type="submit">Login</button></td>
+              </tr>
+              <tr>
+                <td colSpan="2"> <Link to="/forgot-password">Forgot Password?</Link> </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
     </div>
   );
 }
 
-export default LoginForm2
+export default LoginForm2;

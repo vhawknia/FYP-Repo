@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .utilities import vote_handling
 import traceback
 import json
+import os
 from hello.acc.jsonFuncs import jsonReader
 
 @csrf_exempt  # Remove for production (CSRF protection for token endpoint)
@@ -84,39 +85,40 @@ def jsonReader(filepath):
   except json.JSONDecodeError:
     raise JSONDecodeError(f"Error: Unable to decode JSON data in {filepath}")
 
-@csrf_exempt 
+
+
+# Assuming jsonReader is a function that reads JSON files
+def jsonReader(filePath):
+    with open(filePath, 'r') as file:
+        return json.load(file)
+
+@csrf_exempt
 def loginFunc(request):
-  if request.method == 'POST':
-    try:
-      # Access JSON data from request body
-      data = json.loads(request.body)
-      print(data)
-      username = data.get('username')
-      password = data.get('password')
+    if request.method == 'POST':
+        try:
+            # Access JSON data from request body
+            data = json.loads(request.body)
+            print(data)
+            username = data.get('username')
+            password = data.get('password')
+            
+            # Error handling for missing keys
+            if not username or not password:
+                return JsonResponse({'error': 'Missing username or password', 'username': username, 'password': password}, status=400)
+            
+            # Construct the path to the accounts.json file
+            filePath = os.path.join(os.path.dirname(__file__), 'acc', 'accounts.json')
+            accList = jsonReader(filePath)
+            print(accList)
+            
+            for acc in accList:
+                if acc['email'].lower() == username.lower() and acc['pw'] == password:
+                    print("EMAIL AND PASSWORD IS CONFIRMED")
+                    return JsonResponse({'RESULT': acc['role']})
+            else:
+                return JsonResponse({'RESULT': 'deny'})  # Return JSON response if no match found
         
-      
-      # Error handling for missing keys
-      if not username or not password:
-        return JsonResponse({'error': 'Missing username or password', 'username':username, 'password':password}, status=400)
-      
-        
-      #accList = jsonFuncs.jsonReader("accounts.json")
-      #accList = jsonReader("hello/acc/accounts.json")
-      #accList = jsonReader("hello/accounts.json")
-      accList = jsonReader("/home/vic/Desktop/proj/FYP-Repo/django/web_project/hello/acc/accounts.json")
-      
-      print(accList)
-      
-      
-      for acc in accList:
-        if acc['email'].lower() == username.lower() and acc['pw'] == password:
-          print("EMAIL AND PASSWORD IS CONFIRMED")
-          print(JsonResponse({'RESULT': acc['role']}))
-          return JsonResponse({'RESULT': acc['role']}) 
-      else:
-        r = "deny"
-        return JsonResponse({'RESULT': r})  # Return JSON response
-    except json.JSONDecodeError:
-      return JsonResponse({'RESULT': 'Invalid JSON data'}, status=400)
-  else:
-    return JsonResponse({'RESULT': 'Invalid request method'}, status=400)
+        except json.JSONDecodeError:
+            return JsonResponse({'RESULT': 'Invalid JSON data'}, status=400)
+    else:
+        return JsonResponse({'RESULT': 'Invalid request method'}, status=400)

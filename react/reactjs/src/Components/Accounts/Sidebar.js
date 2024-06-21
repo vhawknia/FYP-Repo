@@ -40,7 +40,7 @@ function Sidebar() {
       </div>
       
       <div className="sidebar-item">
-        <button style={stylizationLogout} onClick={() => handleNavigate('/logout')}>Logout</button>
+        <button style={stylizationLogout} onClick={() => handleNavigate('/')}>Logout</button>
       </div>
     </div>
   );

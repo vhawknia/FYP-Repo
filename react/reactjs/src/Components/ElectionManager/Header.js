@@ -18,7 +18,7 @@ function Header() {
                     <img src={companyLogo} alt="Company Logo" className={styles.logo} />
                 </Link>
             </div>
-            <button className={styles.noStyleButton} onClick={() => handleNavigate('/logout')}> Logout </button>
+            <button className={styles.noStyleButton} onClick={() => handleNavigate('/')}> Logout </button>
             <div className={styles.headerText}>Election Manager 1</div>
         </header>
     );
