@@ -10,7 +10,7 @@ import AccountSettings from "./Components/Voter/AccountSettings";
 import PrivacyPolicy from "./Components/Voter/PrivacyPolicy";
 import Logout from "./Logout";
 import Voting from "./Components/Voter/Voting";
-import LoginForm from './Components/Accounts/LoginForm';
+import LoginForm2 from './Components/Accounts/LoginForm2';
 
 // Import components for SystemAdminApp
 import AccMng from './Components/Accounts/AccMng';
@@ -38,7 +38,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LoginForm />} />
+        <Route path="/" element={<LoginForm2 />} />
         <Route path="/logout" element={<Logout />} />
         {/* VoterApp Routes */}
         <Route path="/voter/*" element={<VoterApp />} />

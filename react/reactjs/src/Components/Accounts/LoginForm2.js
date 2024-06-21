@@ -44,13 +44,13 @@ function LoginForm2(/*{ csrfToken }*/) {
       // Handle successful login based on data (e.g., redirect, display success message)
       if (data.RESULT == "admin"){
         console.log("YES IT RETURNED SUCCESSFULLY")
-        navigate('/adminDashboard');
+        navigate('/system-admin/');
       } else if (data.RESULT == "mngr"){
         console.log("YES IT RETURNED SUCCESSFULLY")
-        navigate('/');  
+        navigate('/election-manager/');  
       } else if (data.RESULT == "user"){
         console.log("YES IT RETURNED SUCCESSFULLY")
-        navigate('/');
+        navigate('/voter/');
       
       } else {
         console.log("LOGIN FAILED. REMEMBER TO IMPLEMENT FAILURE COMP")
