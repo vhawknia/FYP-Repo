@@ -25,7 +25,55 @@ SECRET_KEY = 'django-insecure-2u6=m8%e2605v-&0i^_x@p6xsm%zdt0=n8o#)c7=rezci#oi6&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost',
+    'https://localhost',
+    'http://localhost:3000',
+    'https://localhost:3000',
+    'http://127.0.0.1',
+    'https://127.0.0.1',
+    'http://127.0.0.1:3000',
+    'https://127.0.0.1:3000',
+]
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost',
+    'https://localhost',
+    'http://localhost:3000',
+    'https://localhost:3000',
+    'http://127.0.0.1',
+    'https://127.0.0.1',
+    'http://127.0.0.1:3000',
+    'https://127.0.0.1:3000',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost',
+    'https://localhost',
+    'http://localhost:3000',
+    'https://localhost:3000',
+    'http://127.0.0.1',
+    'https://127.0.0.1',
+    'http://127.0.0.1:3000',
+    'https://127.0.0.1:3000',
+]
+
+#CORS_ALLOWED_ORIGINS = ['*']
+
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'DELETE',
+    'PATCH',
+]
+CORS_ALLOW_HEADERS = [
+    'Content-Type',
+    'Authorization',
+    'X-Requested-With',
+]
 
 
 # Application definition
@@ -40,6 +88,7 @@ INSTALLED_APPS = [
     'hello',
     'rest_framework',
     'corsheaders',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
