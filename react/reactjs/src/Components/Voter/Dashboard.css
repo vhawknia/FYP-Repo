@@ -50,6 +50,8 @@
 
 .voter-election-deadline {
   text-align: right;
+  margin-left:650px;
+  margin-right:30px;
 }
 
 .voter-election button {

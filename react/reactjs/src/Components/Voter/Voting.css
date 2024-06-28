@@ -24,6 +24,8 @@
 .voter-election-info {
   font-weight: 500;
   margin-bottom: 20px;
+  display:flex;
+  justify-content: space-between;
 }
 
 .voter-candidates {
