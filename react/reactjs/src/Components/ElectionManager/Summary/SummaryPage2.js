@@ -1,16 +1,14 @@
-/* for election manager */
-
-import React, { useState } from "react";
+import React from "react";
 import Header from "../Header";
 import Sidebar from "../Sidebar";
 import { useNavigate } from 'react-router-dom';
 
-function Summary2() {    
+function Summary2({ formData }) {
     const navigate = useNavigate();
 
-    const handleNavigate = () =>{
-        navigate('/election-manager/summary-3')
-    }
+    const handleNavigate = (location) => {
+        navigate('/election-manager/' + location);
+    };
 
     return (
         <>
@@ -18,6 +16,8 @@ function Summary2() {
             <div className="container">
                 <div className="candidate-profiles-page">
                     <Sidebar />
+                    
+                    {/* For candidates */}
                     <main className="candidate-content">
                         <div className="header-search">
                             <h1>Candidates</h1>
@@ -27,20 +27,16 @@ function Summary2() {
                             </div>
                         </div>
 
-                        <div className="candidate-profile">
-                            <div className="candidate-card">
-                                <span className="candidate-name">James Lee</span>
-                                <span className="candidate-role">Chief Information Officer</span>
+                        {formData.candidates.map((candidate, index) => (
+                            <div key={index} className="candidate-profile">
+                                <div className="candidate-card">
+                                    <span className="candidate-name">{candidate.name}</span>
+                                    <span className="candidate-role">{candidate.role}</span>
+                                </div>
                             </div>
-                        </div>
-                            
-                        <div className="candidate-profile">
-                            <div className="candidate-card">
-                                <span className="candidate-name">Thomas Soh</span>
-                                <span className="candidate-role">Chief Executive Officer</span>
-                            </div>
-                        </div>
+                        ))}
 
+                        {/* For voters */}
                         <div className="voter-content-summary">
                             <div className="header-search">
                                 <h1>Voters</h1>
@@ -50,22 +46,28 @@ function Summary2() {
                                 </div>
                             </div>
 
-                            <div className="voter-profile">
-                                <div className="voter-card">
-                                    <span>Voter 1</span>
-                                    <span>Data Analyst</span>
+                            {formData.votersDept.map((dept, index) => (
+                                <div key={index} className="dept-profile">
+                                    <div className="dept-card">
+                                        <span>{dept.departmentname} Department</span>
+                                    </div>
                                 </div>
-                            </div>
+                            ))}
 
-                            <div className="voter-profile">
-                                <div className="voter-card">
-                                    <span>Voter 2</span>
-                                    <span>Data Analyst</span>
+                            {formData.voters.map((voter, index) => (
+                                <div key={index} className="voter-profile">
+                                    <div className="voter-card">
+                                        <span>{voter.voterEmail}</span>
+                                    </div>
                                 </div>
-                            </div>
+                            ))} 
                         </div>
                         
-                        <button className='next-button' onClick={()=>handleNavigate()}>Next</button>
+                        <div className="summary3-button-container">
+                            <button className='next-button' onClick={() => handleNavigate('summary-3')}>Next</button>
+                            <button className='next-button' onClick={() => handleNavigate('summary-1')}>Back</button>
+                        </div>
+                        
                     </main>
                 </div>
             </div>

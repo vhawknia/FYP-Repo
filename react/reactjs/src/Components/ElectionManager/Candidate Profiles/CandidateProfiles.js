@@ -1,5 +1,3 @@
-/* for election manager */
-
 import React, { useState } from "react";
 import Header from "../Header";
 import Sidebar from "../Sidebar";
@@ -7,29 +5,36 @@ import CandidateModal from "./CandidateModal";
 import './CandidateProfiles.css';
 import { useNavigate } from "react-router-dom";
 
-function ElectionManagerCandidateProfiles() {
+function ElectionManagerCandidateProfiles({ formData, updateCandidates }) {
     const [modalOpen, setModalOpen] = useState(false);
-    const [candidates, setCandidates] = useState([]); // Initialize candidate list as empty
+    const [candidates, setCandidates] = useState(formData.candidates);
 
     const handleOpenModal = () => setModalOpen(true);
     const handleCloseModal = () => setModalOpen(false);
 
     const handleAddCandidate = (candidate) => {
-        setCandidates([...candidates, candidate]); //set the candidates array by combining the existing array with the new candidate
+        const updatedCandidates = [...candidates, candidate]; //variable updatedCandidates is adding the new candidate parameter into
+                                                             // the existing candidates array
+        setCandidates(updatedCandidates);
+        updateCandidates(updatedCandidates); //updating the parent form
         handleCloseModal();
     };
 
     const handleRemoveCandidate = (candidateName) => {
-        setCandidates(candidates.filter(c => c.name !== candidateName)); //set the candidates array to a new array that
-                                                                        // has all the candidates except the one that matches candidateName
+        const updatedCandidates = candidates.filter(c => c.name !== candidateName); //removing candidate from array if it matches parameter
+        setCandidates(updatedCandidates); 
+        updateCandidates(updatedCandidates); //updating parent form
     };
 
     const navigate = useNavigate();
 
-    const handleNavigate = () =>{
-        navigate('/election-manager/list-of-voters');
+    const handleNavigate = () => {
+        if (candidates.length === 0) {
+            alert("Please add at least one candidate before proceeding.");
+        } else {
+            navigate('/election-manager/list-of-voters');
+        }
     }
-
 
     return (
         <>
@@ -46,26 +51,6 @@ function ElectionManagerCandidateProfiles() {
                             </div>
                         </div>
 
-                        <div className="candidate-profile">
-                            <div className="candidate-card">
-                                <span className="candidate-name">James Lee</span>
-                                <span className="candidate-role">Chief Information Officer</span>
-                                <button className="remove-candidate-button">
-                                    Remove
-                                </button>
-                            </div>
-                        </div>
-                            
-                        <div className="candidate-profile">
-                            <div className="candidate-card">
-                                <span className="candidate-name">Thomas Soh</span>
-                                <span className="candidate-role">Chief Executive Officer</span>
-                                <button className="remove-candidate-button">
-                                    Remove
-                                </button>
-                            </div>
-                        </div>
-                        
                         {candidates.map((candidate, index) => (
                             <div key={index} className="candidate-profile">
                                 <div className="candidate-card">
@@ -79,7 +64,11 @@ function ElectionManagerCandidateProfiles() {
                         ))}
 
                         <div className="candidate-profile-button-container">
-                            <button type="submit" className='next-button' onClick={()=>handleNavigate()}>Next</button>
+                            <button 
+                                type="submit" 
+                                className='next-button' 
+                                onClick={handleNavigate}>                              
+                            Next</button>
                             <button onClick={handleOpenModal} className="add-candidate-button">
                                 Add New Candidate
                             </button>

@@ -8,37 +8,50 @@ import VoterEmailModal from "./VoterEmailModal";
 import VoterDeptModal from "./VoterDeptModal";
 import { useNavigate } from "react-router-dom";
 
-function ElectionManagerListOfVoters() {
+function ElectionManagerListOfVoters( {formData, updateVoters} ) {
     const [openModal, setOpenModal] = useState(null); // 'email' or 'dept' or null
-    const [voters, setVoters] = useState([]);
-    const [votersDept, setVotersDept] = useState([]);
+    const [voters, setVoters] = useState(formData.voters);
+    const [votersDept, setVotersDept] = useState(formData.votersDept);
     const [departments, setDepartments] = useState(['IT', 'Sales', 'Finance', 'HR', 'Legal', 'R&D']);
 
     const handleOpenModal = (type) => setOpenModal(type);
     const handleCloseModal = () => setOpenModal(null);
 
     const handleVoters = (voter) => {
-        setVoters([...voters, voter]);
+        const updatedVoters = [...voters, voter];
+        setVoters(updatedVoters);
+        updateVoters('voters', updatedVoters);
     };
 
     const handleDept = (dept) => {
-        setVotersDept([...votersDept, dept]);
+        const updatedDept = [...votersDept,dept];
+        setVotersDept(updatedDept);
+        updateVoters('votersDept', updatedDept);
         setDepartments(prevDepartments => prevDepartments.filter(d => d !== dept.departmentname));
     };
 
     const filterVoters = (email) => {
-        setVoters(currentVoters => currentVoters.filter(voter => voter.voterEmail !== email));
+        const updatedVoters = currentVoters.filter(voter => voter.voterEmail !== email)
+        setVoters('voters', updatedVoters);
+        updateVoters(updatedVoters);
     };
     
     const filterDept = (deptname) => {
-        setVotersDept(currentDeptList => currentDeptList.filter(d => d.departmentname !== deptname));
+        const updatedDept = currentDeptList.filter(d => d.departmentname !== deptname)
+        setVotersDept(updatedDept);
+        updateVoters('votersDept', updatedDept);
         setDepartments(prevDepartments => [...prevDepartments, deptname]); // Add department back to the list
     };
 
     const navigate = useNavigate();
 
     const handleNavigate = () =>{
-        navigate('/election-manager/summary-1');
+        if (voters.length == 0 && votersDept.length == 0 ){
+            alert('Please add in the voters');
+        }
+        else{
+            navigate('/election-manager/summary-1');
+        }
     }
 
     return (
@@ -53,22 +66,6 @@ function ElectionManagerListOfVoters() {
                             <div className="search-container">
                                 <input type="text" placeholder="Search for voter" />
                                 <button type="button">Search</button>
-                            </div>
-                        </div>
-
-                        <div className="voter-profile">
-                            <div className="voter-card">
-                                <span>Voter 1</span>
-                                <span>Data Analyst</span>
-                                <button className="remove-voter-button">Remove</button>
-                            </div>
-                        </div>
-
-                        <div className="voter-profile">
-                            <div className="voter-card">
-                                <span>Voter 2</span>
-                                <span>Data Analyst</span>
-                                <button className="remove-voter-button">Remove</button>
                             </div>
                         </div>
 
