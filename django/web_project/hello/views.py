@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .utilities import vote_handling
+from .utilities import ElectionHandling
 import traceback
 import json
 import os
@@ -122,3 +123,28 @@ def loginFunc(request):
             return JsonResponse({'RESULT': 'Invalid JSON data'}, status=400)
     else:
         return JsonResponse({'RESULT': 'Invalid request method'}, status=400)
+
+
+
+@csrf_exempt
+def handle_new_election(request):
+    if request.method == 'POST':
+        data = json.loads(request.body.decode('utf-8'))
+        title = data.get('title')
+        description = data.get('description')
+        start_date = data.get('startDate')
+        end_date = data.get('endDate')
+        timezone = data.get('timezone')
+        candidates = data.get('candidates')
+        voters = data.get('voters')
+        voters_dept = data.get('votersDept')
+        
+        new_election = ElectionHandling.Election(title,description,start_date,end_date,timezone,
+                                                 candidates, voters, voters_dept)
+
+        # Process the data as needed, e.g., save it to the database
+
+        return JsonResponse({'status': 'success', 'message': 'Form data received'})
+
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
+    

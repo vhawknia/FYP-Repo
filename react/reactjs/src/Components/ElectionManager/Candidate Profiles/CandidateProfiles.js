@@ -29,8 +29,8 @@ function ElectionManagerCandidateProfiles({ formData, updateCandidates }) {
     const navigate = useNavigate();
 
     const handleNavigate = () => {
-        if (candidates.length === 0) {
-            alert("Please add at least one candidate before proceeding.");
+        if (candidates.length < 2) {
+            alert("You have insufficient candidates. ");
         } else {
             navigate('/election-manager/list-of-voters');
         }

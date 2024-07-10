@@ -12,10 +12,18 @@ function ElectionManagerElectionDetails({ formData, updateFormData }) {
         updateFormData(name, value);
     };
 
+    const startDate = new Date(formData.startDate);
+    const endDate = new Date(formData.endDate);
+
+   
     const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Form data submitted:', formData);
-        navigate('/election-manager/candidate-profiles');
+        e.preventDefault(); 
+        if (startDate >= endDate) {
+            alert('The start date must be before the end date.');
+        }
+        else{
+            navigate('/election-manager/candidate-profiles');
+        }
     };
 
     return (

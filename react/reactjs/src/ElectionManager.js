@@ -59,7 +59,7 @@ function ElectionManager() {
 
     useEffect(() => {
         // Reset form data if navigating to '/'
-        if (location.pathname === '/election-manager/') {
+        if (location.pathname === '/election-manager/' || location.pathname === '/') {
             resetFormData();
         }
     }, [location]);
@@ -81,7 +81,7 @@ function ElectionManager() {
 
             <Route path="summary-1" element={<Summary1 formData={formData} />} />
             <Route path="summary-2" element={<Summary2 formData={formData} />} />
-            <Route path="summary-3" element={<Summary3 formData={formData} />} />
+            <Route path="summary-3" element={<Summary3 formData={formData} resetFormData={resetFormData} />} />
             <Route path="ongoing-election" element={<OngoingElectionSummary />} />
             <Route path="ongoing-election-summary2" element={<OngoingElectionSummary2 />} />
             <Route path="ongoing-election-summary3" element={<OngoingElectionSummary3 />} />

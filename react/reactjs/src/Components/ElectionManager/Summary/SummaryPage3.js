@@ -4,7 +4,7 @@ import Sidebar from "../Sidebar";
 import './SummaryPage3.css';
 import { useNavigate } from "react-router-dom";
 
-function Summary3({ formData }) {    
+function Summary3({ formData, resetFormData }) {    
     const [isCopied, setIsCopied] = useState(false);
     const electionUrl = 'https://example.com/election/512093';
 
@@ -18,13 +18,43 @@ function Summary3({ formData }) {
 
     const navigate = useNavigate();
 
+    const handleSubmit = async () => {
+        try {
+            const response = await fetch('http://localhost:8000/api/form-data/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+            const data = await response.json();
+            if (data.status === 'success') {
+                console.log('Form data submitted successfully:', data.message);
+                resetFormData();
+                alert('Election created!');
+                navigate('/election-manager/');
+            } else {
+                console.error('Error submitting form data:', data.message);
+            }
+        } catch (error) {
+            console.error('Error submitting form data:', error);
+        }
+    };
+
     const createElection = () => {
-        if (formData.title === '' || formData.description === '' || formData.startDate === '' ||
-            formData.endDate === '' || formData.candidates.length === 0 || formData.voters.length === 0 ||
-            formData.votersDept.length === 0) {
-                alert("Your election is still missing some empty fields. Please fill them up");
-        } else {
-            navigate('/election-manager/');
+        if (formData.title === '' || formData.description === '' || formData.start_date === '' 
+            || formData.end_date === '' || formData.timezone === '' || formData.candidates.length === ''){
+                if (formData.voters.length === 0 && formData.votersDept.length === 0)
+                {
+                    alert("You still have missing form fields. Please fill them up.");
+                }
+                else
+                {
+                    alert("You still have missing form fields. Please fill them up.");
+                }
+            }
+        else{
+            handleSubmit();
         }
     }
 

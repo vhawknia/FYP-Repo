@@ -46,8 +46,8 @@ function ElectionManagerListOfVoters( {formData, updateVoters} ) {
     const navigate = useNavigate();
 
     const handleNavigate = () =>{
-        if (voters.length == 0 && votersDept.length == 0 ){
-            alert('Please add in the voters');
+        if (voters.length < 2 && votersDept.length == 0 ){
+            alert('You have insufficient voters');
         }
         else{
             navigate('/election-manager/summary-1');
