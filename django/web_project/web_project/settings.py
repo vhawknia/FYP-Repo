@@ -130,11 +130,14 @@ WSGI_APPLICATION = 'web_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'electsgc_testDB',
+        'USER': 'electsgc_gab',
+        'PASSWORD': 'ccqsf$[0}qOx',
+        'HOST': '23.106.53.146',  # The IP or hostname provided by GreenGeeks
+        'PORT': '3306',  # Default MySQL port
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
