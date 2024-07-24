@@ -3,6 +3,27 @@
   top: 0;
 }
 
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+
+
 .page1 {
     display: flex;
     min-height: 100vh; /* Ensures body fills the viewport height */
@@ -24,3 +45,42 @@
   align-items: left; /* Horizontally center the elements */
 }
   
+input[type="text"] {
+  width: 400px; 
+  height: 30px; 
+  padding: 10px; /* Add padding inside the input box */
+  border: 1px solid #ccc; 
+  font-size: 16px; 
+  box-sizing: border-box; /* Include padding and border in the width and height */
+}
+
+input[type="Password"] {
+  width: 400px; 
+  height: 30px; 
+  padding: 10px; /* Add padding inside the input box */
+  border: 1px solid #ccc; 
+  font-size: 16px; 
+  box-sizing: border-box; /* Include padding and border in the width and height */
+}
+
+
+.btn {
+  padding: 10px 12px; 
+  font-size: 16px; 
+  background-color: transparent; /* Transparent background */
+  color: hsl(0, 0%, 3%); 
+  border: none; 
+  border-bottom: 1px solid transparent; /* Initially transparent bottom border */
+  text-decoration: none; /* Remove default text decoration */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+.btn:hover {
+  border-bottom-color: #007bff; /* Set bottom border color on hover */
+}
+
+.btn:focus,
+.btn:active {
+  outline: none; /* Remove outline on focus and active states */
+}

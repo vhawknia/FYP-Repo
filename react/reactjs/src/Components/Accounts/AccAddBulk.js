@@ -2,6 +2,7 @@
 
 import React from 'react';
 import './LoginForm.css';
+import './AccAddBulk.css';
 //import Header from './Header';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -26,7 +27,7 @@ function AccAddBulk() {
                         <tbody>
                             <tr>
                                 <td className="lbl"> <label htmlFor="username">Username:</label> </td>
-                                <td className="textdield"><textArea
+                                <td className="textdield" ><textArea
                                       type="text"
                                       id="usernames"
                                       name="usernames"
@@ -58,7 +59,7 @@ function AccAddBulk() {
                                 </td>
                             </tr>
                             <tr>
-                                <td colSpan="2"><button type="submit">Add</button></td>
+                                <td colSpan="2"><button type="submit" class="add">Add</button></td>
                             </tr>
                         </tbody>
                     </table>

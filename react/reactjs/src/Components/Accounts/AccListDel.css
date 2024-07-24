@@ -1,0 +1,53 @@
+/* AccListDel.css*/
+
+
+
+.spaced-table {
+  width: 120%; /* Optional: Set table width to 100% of its container */
+  border-collapse: collapse; /* Optional: Collapse table borders */
+}
+
+.spaced-table th {
+  padding: 10px; /* Adjust padding for table headings */
+  text-align: center; /* Optional: Align text in the center of each heading */
+  background-color: #f0f0f0; /* Optional: Set background color for headings */
+}
+
+.spaced-table th:nth-child(1) {
+  width: 40%; /* Set width for the first heading */
+}
+
+.spaced-table th:nth-child(2) {
+  width: 40%; /* Set width for the second heading */
+}
+
+.spaced-table th:nth-child(3) {
+  width: 40%; /* Set width for the third heading */
+}
+
+
+.spaced-table th {
+  background-color: #f2f2f2;
+}
+
+.spaced-table th:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.Del {
+  padding: 10px 35.5px; 
+  font-size: 15px; 
+  background-color: transparent; /* Transparent background */
+  color: hsl(0, 0%, 6%); 
+  border: none; 
+  border-bottom: 1px solid transparent; /* Initially transparent bottom border */
+  text-decoration: none; /* Remove default text decoration */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: border-color 0.3s ease; /* Smooth transition for border color */
+  text-align: center; 
+  vertical-align: middle;
+  background-color: #f1a2a2;
+}
+
+
+

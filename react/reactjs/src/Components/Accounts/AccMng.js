@@ -33,12 +33,12 @@ function AccMng({ children, style }) {
                     <SideBar className='sidebar1'/>
                 </div>
                 <div className="cont">
-                    <h1> ADMIN PAGE </h1>
+                    <h1>ADMIN PAGE </h1>
                     <div className="container">
-                        <button onClick={() => handleClick(0)}>Add Accounts</button>
-                        <button onClick={() => handleClick(1)}>Add Accounts in Bulk</button>
-                        <button onClick={() => handleClick(2)}>Edit Accounts</button>
-                        <button onClick={() => handleClick(3)}>Delete Accounts</button>
+                        <button onClick={() => handleClick(0)} class="btn">Add Accounts</button>
+                        <button onClick={() => handleClick(1)} class="btn">Add Accounts in Bulk</button>
+                        <button onClick={() => handleClick(2)} class="btn">Edit Accounts</button>
+                        <button onClick={() => handleClick(3)} class="btn" >Delete Accounts</button>
                         <div className="child-container">{childComponents[activeChild]}</div>
                     </div>
                 </div> 

@@ -1,4 +1,5 @@
 import './LoginForm.css';
+import './AccListEdit.css';
 //import Header from './Header';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -18,14 +19,14 @@ function AccListEdit() {
       {/* Access data properties within the loop and display them in table cells */}
       <td>{item.email}</td>
       <td>{item.dpt}</td>
-      <td><button> RESET PASSWORD </button></td>  {/* Assuming "pw" exists for password */}
+      <td><button class="Edit"> RESET PASSWORD </button></td>  {/* Assuming "pw" exists for password */}
       {/* Add more table cells for other properties */}
     </tr>
   );
 
   return (
     <div>
-      <table>
+      <table class="space-table">
         <thead>
           <tr>
             <th>Email</th>

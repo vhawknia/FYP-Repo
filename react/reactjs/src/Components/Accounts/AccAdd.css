@@ -1,0 +1,24 @@
+/* AccAdd.css */
+
+
+.add {
+    padding: 8px 12px; /* Adjust padding for button size */
+    font-size: 20px; /* Set font size */
+    float: right; /* Float the button to the right */
+    background-color: transparent; /* Transparent background */
+    color: #121213; /* Button text color */
+    border: none; /* Remove default button border */
+    border-bottom: 1px solid transparent; /* Initially transparent bottom border */
+    text-decoration: none; /* Remove default text decoration */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+.add:hover {
+    border-bottom-color: #007bff; /* Set bottom border color on hover */
+}
+
+.add:focus,
+.add:active {
+    outline: none; /* Remove outline on focus and active states */
+}
