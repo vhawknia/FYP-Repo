@@ -24,20 +24,20 @@ function ElectionManagerListOfVoters( {formData, updateVoters} ) {
     };
 
     const handleDept = (dept) => {
-        const updatedDept = [...votersDept,dept];
+        const updatedDept = [...votersDept, dept];
         setVotersDept(updatedDept);
         updateVoters('votersDept', updatedDept);
         setDepartments(prevDepartments => prevDepartments.filter(d => d !== dept.departmentname));
     };
 
     const filterVoters = (email) => {
-        const updatedVoters = currentVoters.filter(voter => voter.voterEmail !== email)
-        setVoters('voters', updatedVoters);
-        updateVoters(updatedVoters);
+        const updatedVoters = voters.filter(voter => voter.voterEmail !== email);
+        setVoters(updatedVoters);
+        updateVoters('voters', updatedVoters);
     };
     
     const filterDept = (deptname) => {
-        const updatedDept = currentDeptList.filter(d => d.departmentname !== deptname)
+        const updatedDept = votersDept.filter(d => d.departmentname !== deptname);
         setVotersDept(updatedDept);
         updateVoters('votersDept', updatedDept);
         setDepartments(prevDepartments => [...prevDepartments, deptname]); // Add department back to the list
@@ -45,14 +45,13 @@ function ElectionManagerListOfVoters( {formData, updateVoters} ) {
 
     const navigate = useNavigate();
 
-    const handleNavigate = () =>{
-        if (voters.length < 2 && votersDept.length == 0 ){
+    const handleNavigate = () => {
+        if (voters.length < 2 && votersDept.length === 0) {
             alert('You have insufficient voters');
-        }
-        else{
+        } else {
             navigate('/election-manager/summary-1');
         }
-    }
+    };
 
     return (
         <>
@@ -88,7 +87,7 @@ function ElectionManagerListOfVoters( {formData, updateVoters} ) {
                         ))}
 
                         <div className="list-of-voters-button-container">
-                            <button type="submit" className='next-button' onClick={()=>handleNavigate()}>Next</button>
+                            <button type="submit" className='next-button' onClick={handleNavigate}>Next</button>
                             <div className="list-of-voters-button-container-2">
                                 <button className="add-voter-dept-button" onClick={() => handleOpenModal('dept')}>Add by Department</button>
                                 <button className="add-voter-email-button" onClick={() => handleOpenModal('email')}>Add by Email</button>
