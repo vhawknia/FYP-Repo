@@ -89,8 +89,10 @@ function ElectionManagerListOfVoters( {formData, updateVoters} ) {
 
                         <div className="list-of-voters-button-container">
                             <button type="submit" className='next-button' onClick={()=>handleNavigate()}>Next</button>
-                            <button className="add-voter-dept-button" onClick={() => handleOpenModal('dept')}>Add by Department</button>
-                            <button className="add-voter-email-button" onClick={() => handleOpenModal('email')}>Add by Email</button>
+                            <div className="list-of-voters-button-container-2">
+                                <button className="add-voter-dept-button" onClick={() => handleOpenModal('dept')}>Add by Department</button>
+                                <button className="add-voter-email-button" onClick={() => handleOpenModal('email')}>Add by Email</button>
+                            </div>                        
                             {openModal === 'dept' && (
                                 <VoterDeptModal
                                     isOpen={true}

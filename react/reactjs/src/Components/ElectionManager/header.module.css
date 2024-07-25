@@ -1,27 +1,24 @@
-/* header.module.css */
 .header {
     display: flex;
     align-items: center; /* Align items vertically center */
-    padding: 10px;
+    padding: 1rem; /* Use rem units for padding */
     background-color: #ffffff;
-    justify-content: left; /* Align items to the left */
+    justify-content: space-between; /* Distribute space between items */
     border-bottom: 3px solid rgb(172, 171, 171);
 }
 
 .logo {
-    width: 75px; /* Adjust the width as needed */
+    width: 5rem; /* Use rem units for width */
     height: auto; /* Maintain aspect ratio */
     display: block;
-    margin-right: 1100px; 
-    margin-left: 67px;
+    margin-left: 1rem; /* Use rem units for margin */
 }
 
 .headerText {
-    font-size: 18px; /* Adjust the font size as needed */
-    margin-left: 30px;
-    margin-right: 10px;
+    font-size: 1rem; /* Use rem units for font size */
+    margin-left: 1rem; /* Use rem units for margin */
+    margin-right: 0.5rem; /* Use rem units for margin */
 }
-
 
 .noStyleButton {
     background: none;
@@ -31,5 +28,14 @@
     cursor: pointer;
     padding: 0;
     margin: 0;
-    font-size: 18px
+    font-size: 1rem; /* Use rem units for font size */
+}
+
+.navContainer {
+    display: flex;
+    align-items: center;
+}
+
+.navItem {
+    margin-left: 2rem; /* Use rem units for spacing between nav items */
 }

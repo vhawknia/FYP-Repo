@@ -89,7 +89,6 @@
 }
 
 
-
 .add-voter-email-button, .add-voter-dept-button {
     padding: 8px 16px; /* Adjust padding as needed for button size */
     background-color: #6200EE; /* Example button color */
@@ -97,11 +96,9 @@
     border: none; /* Removes the default border */
     cursor: pointer; /* Shows a pointer cursor when hovering over the button */
     border-radius: 4px; /* Optional: rounds the corners of the button */
+    margin-left: 5px;
 }
 
-.add-voter-dept-button {
-    margin-left: 655px;
-}
 
 .dept-profile{
     display: flex;

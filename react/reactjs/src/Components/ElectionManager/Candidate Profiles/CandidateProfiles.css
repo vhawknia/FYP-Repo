@@ -1,47 +1,45 @@
-/* for election manager */
-
-.container{
-    padding: 45px 100px;
+.container {
+    padding: 3rem 5rem; /* Use rem for padding */
 }
 
 .candidate-profiles-page {
     display: flex;
 }
-  
+
 .candidate-content {
     flex: 3;
-    padding: 10px 40px;
-    margin-left: 20px;
+    padding: 1rem 2.5rem; /* Use rem for padding */
+    margin-left: 1.25rem; /* Use rem for margin */
 }
 
 .candidate-content h1 {
-    margin-right: 20px;     
+    margin-right: 1.25rem; /* Use rem for margin */
 }
-
 
 .header-search {
     display: flex;
     align-items: center; /* Aligns items vertically in the center */
     justify-content: space-between; /* Adjust this as needed for spacing */
     width: 100%; /* Ensures the flex container takes full width */
-    margin-top: 30px;
-    margin-bottom: 20px;
+    margin-top: 2rem; /* Use rem for margin */
+    margin-bottom: 1.25rem; /* Use rem for margin */
 }
 
 .header-search input {
     flex-grow: 0; /* Prevents the input from growing to fill the space */
-    width: 450px; /* Sets a specific width to the input */
-    margin-right: 20px; /* Adds space between the input and the button */
+    width: 100%; /* Full width, but limited by flex item constraints */
+    max-width: 28.125rem; /* Set a max-width in rem */
+    margin-right: 1.25rem; /* Use rem for margin */
 }
 
 .header-search button {
-    padding: 8px 16px; /* Adjust padding as needed for button size */
+    padding: 0.5rem 1rem; /* Use rem for padding */
     background-color: #6200EE; /* Example button color */
     color: white; /* Text color for the button */
     border: none; /* Removes the default border */
     cursor: pointer; /* Shows a pointer cursor when hovering over the button */
-    border-radius: 8px; /* Optional: rounds the corners of the button */
-    margin-top:5px;
+    border-radius: 0.5rem; /* Optional: rounds the corners of the button */
+    margin-top: 0.3125rem; /* Use rem for margin */
 }
 
 .header-search button:hover {
@@ -53,56 +51,50 @@
     align-items: center; /* Keeps the input and button aligned on the same line */
 }
 
-
 .candidate-profile {
     display: flex;
     align-items: center; /* Align items vertically */
-    margin-bottom: 20px; /* Space between candidate profiles */
+    margin-bottom: 1.25rem; /* Use rem for margin */
 }
 
 .candidate-card {
     display: flex;
     justify-content: space-between; /* This spreads the child elements across the full width */
     align-items: center; /* Aligns items vertically in the center */
-    margin-bottom: 20px;
-    border: 2px solid #ccc;
-    padding: 15px;
+    margin-bottom: 1.25rem; /* Use rem for margin */
+    border: 0.125rem solid #ccc; /* Use rem for border */
+    padding: 0.9375rem; /* Use rem for padding */
     background-color: #f9f9f9;
-    height: 40px;
-    border-radius: 4px;
+    height: 2.5rem; /* Use rem for height */
+    border-radius: 0.25rem; /* Use rem for border radius */
     flex-grow: 1;
 }
 
 .remove-candidate-button {
-    padding: 8px 16px;
+    padding: 0.5rem 1rem; /* Use rem for padding */
     background-color: #B22222;
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 4px;
-    margin-left: 20px; /* Space between the card and the button */
+    border-radius: 0.25rem; /* Use rem for border radius */
+    margin-left: 1.25rem; /* Use rem for margin */
 }
-
 
 .candidate-profile-button-container {
     display: flex;
-    justify-content: flex-end; /* Align buttons to the right */
+    justify-content: space-between;
     align-items: center;
-    gap: 20px; /* Space between the buttons */
-    margin-top: 20px;
+    gap: 1.25rem; /* Use rem for gap */
+    margin-top: 1.25rem; /* Use rem for margin */
 }
 
 .next-button, .add-candidate-button {
-    padding: 8px 16px; /* Adjust padding as needed for button size */
+    padding: 0.5rem 1rem; /* Use rem for padding */
     background-color: #6200EE; /* Example button color */
     color: white; /* Text color for the button */
     border: none; /* Removes the default border */
     cursor: pointer; /* Shows a pointer cursor when hovering over the button */
-    border-radius: 4px; /* Optional: rounds the corners of the button */
-}
-
-.add-candidate-button {
-    margin-left:725px;
+    border-radius: 0.25rem; /* Optional: rounds the corners of the button */
 }
 
 .next-button:hover, .add-candidate-button:hover {

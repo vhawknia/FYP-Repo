@@ -7,6 +7,9 @@ import traceback
 import json
 import os
 from hello.acc.jsonFuncs import jsonReader
+from .models import Election
+from .serializer import ElectionSerializer
+from rest_framework import generics
 
 @csrf_exempt  # Remove for production (CSRF protection for token endpoint)
 def CSRFTokenDispenser(request):
@@ -126,25 +129,63 @@ def loginFunc(request):
 
 
 
+# @csrf_exempt
+# def handle_new_election(request):
+#     if request.method == 'POST':
+#         data = json.loads(request.body.decode('utf-8'))
+#         title = data.get('title')
+#         description = data.get('description')
+#         start_date = data.get('startDate')
+#         end_date = data.get('endDate')
+#         timezone = data.get('timezone')
+#         candidates = data.get('candidates')
+#         voters = data.get('voters')
+#         voters_dept = data.get('votersDept')
+        
+#         new_election = ElectionHandling.Election(title,description,start_date,end_date,timezone,
+#                                                  candidates, voters, voters_dept)
+
+#         # Process the data as needed, e.g., save it to the database
+
+#         return JsonResponse({'status': 'success', 'message': 'Form data received'})
+
+#     return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
+    
+    
 @csrf_exempt
 def handle_new_election(request):
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
         title = data.get('title')
         description = data.get('description')
-        start_date = data.get('startDate')
-        end_date = data.get('endDate')
+        startDate = data.get('startDate')
+        endDate = data.get('endDate')
         timezone = data.get('timezone')
         candidates = data.get('candidates')
         voters = data.get('voters')
-        voters_dept = data.get('votersDept')
+        votersDept = data.get('votersDept')
+
+        try:
+            # Create and save the Election instance
+            new_election = Election(
+                title=title,
+                description=description,
+                startDate=startDate,
+                endDate=endDate,
+                timezone=timezone,
+                candidates=candidates,
+                voters=voters,
+                votersDept=votersDept
+            )
+            new_election.save()
+
+            return JsonResponse({'status': 'success', 'message': 'Election created successfully'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
         
-        new_election = ElectionHandling.Election(title,description,start_date,end_date,timezone,
-                                                 candidates, voters, voters_dept)
+        
 
-        # Process the data as needed, e.g., save it to the database
-
-        return JsonResponse({'status': 'success', 'message': 'Form data received'})
-
-    return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
-    
+class DisplayElections(generics.ListAPIView):
+    queryset = Election.objects.all()
+    serializer_class = ElectionSerializer
+ 

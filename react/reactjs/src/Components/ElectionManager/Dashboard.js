@@ -1,23 +1,33 @@
-/* for election manager */
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import Header from './Header';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function ElectionManagerDashboard() {
-  const navigate = useNavigate();  
+  const [elections, setElections] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchElections();
+  }, []);
+
+
+
+  const fetchElections = async () => {
+    try {
+      console.log('Fetching elections...');
+      const response = await axios.get('http://127.0.0.1:8000/api/elections/');  // Ensure this URL matches your Django server's URL
+      console.log('Fetched data:', response.data);
+      setElections(response.data);
+    } catch (error) {
+      console.error('Error fetching election data:', error);
+    }
+  };
   
+
   function handleNewElection() {
-    navigate('/election-manager/election-details'); 
-  }
-
-  function navigateScheduled(){
-    navigate('/election-manager/scheduled-election');
-  }
-
-  function navigateOngoing(){
-    navigate('/election-manager/ongoing-election');
+    navigate('/election-manager/election-details');
   }
 
   function navigateCompleted(){
@@ -54,21 +64,19 @@ function ElectionManagerDashboard() {
           <div><u>End Date</u></div>
         </div>
 
-        <button className="election-item" onClick={navigateOngoing}>
-          <div>Election Title 1</div>
-          <div>Ongoing</div>
-          <div>04/04/2024 8am</div>
-          <div>10/04/2024 8am</div>
-        </button>
+        {elections.map(election => (
+          <button 
+            key={election.id} 
+            className="election-item" 
+            onClick={() => navigate(`/election-manager/${election.status}-election`)}
+          >
+            <div>{election.title}</div>
+            <div>{election.status}</div>
+            <div>{new Date(election.startDate).toLocaleString()}</div>
+            <div>{new Date(election.endDate).toLocaleString()}</div>
+          </button>
+        ))}
 
-        <button className="election-item" onClick={navigateScheduled}>
-          <div>Election Title 2</div>
-          <div>Scheduled</div>
-          <div>04/04/2025 8am</div>
-          <div>10/04/2025 8am</div>
-        </button>
-
-        {/* Completed Elections part */}
         <br />
         <div className="dashboardText"><span>Completed Elections</span></div>
         
@@ -77,22 +85,21 @@ function ElectionManagerDashboard() {
           <div><u>Status</u></div>
           <div><u>Start Date</u></div>
           <div><u>End Date</u></div>
+          <div><u>Voters Dept</u></div>
         </div>
 
-        <button className="election-item" onClick={navigateCompleted}>
-          <div>Election Title 3</div>
-          <div>Completed</div>
-          <div>04/04/2024 8am</div>
-          <div>10/04/2024 8am</div>
-        </button>
-
-        <button className="election-item" onClick={navigateCompleted}>
-          <div>Election Title 4</div>
-          <div>Completed</div>
-          <div>04/04/2025 8am</div>
-          <div>10/04/2025 8am</div>
-        </button>
-
+        {elections.filter(election => election.status === 'completed').map(election => (
+          <button 
+            key={election.id} 
+            className="election-item" 
+            onClick={navigateCompleted}
+          >
+            <div>{election.title}</div>
+            <div>{election.status}</div>
+            <div>{new Date(election.startDate).toLocaleString()}</div>
+            <div>{new Date(election.endDate).toLocaleString()}</div>
+          </button>
+        ))}
 
         <div className="pagination">
           <button>{"<<"}</button>
@@ -111,4 +118,3 @@ function ElectionManagerDashboard() {
 }
 
 export default ElectionManagerDashboard;
-

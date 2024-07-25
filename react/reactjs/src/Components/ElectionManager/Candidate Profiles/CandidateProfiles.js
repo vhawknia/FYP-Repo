@@ -13,17 +13,16 @@ function ElectionManagerCandidateProfiles({ formData, updateCandidates }) {
     const handleCloseModal = () => setModalOpen(false);
 
     const handleAddCandidate = (candidate) => {
-        const updatedCandidates = [...candidates, candidate]; //variable updatedCandidates is adding the new candidate parameter into
-                                                             // the existing candidates array
+        const updatedCandidates = [...candidates, candidate];
         setCandidates(updatedCandidates);
-        updateCandidates(updatedCandidates); //updating the parent form
+        updateCandidates(updatedCandidates);
         handleCloseModal();
     };
 
     const handleRemoveCandidate = (candidateName) => {
-        const updatedCandidates = candidates.filter(c => c.name !== candidateName); //removing candidate from array if it matches parameter
+        const updatedCandidates = candidates.filter(c => c.name !== candidateName);
         setCandidates(updatedCandidates); 
-        updateCandidates(updatedCandidates); //updating parent form
+        updateCandidates(updatedCandidates);
     };
 
     const navigate = useNavigate();

@@ -4,12 +4,11 @@ import styles from './header.module.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
-    
 function Header() {
     const navigate = useNavigate();
-    const handleNavigate = (location) =>{
+    const handleNavigate = (location) => {
         navigate(location);
-    }      
+    }
 
     return (
         <header className={styles.header}>
@@ -18,8 +17,10 @@ function Header() {
                     <img src={companyLogo} alt="Company Logo" className={styles.logo} />
                 </Link>
             </div>
-            <button className={styles.noStyleButton} onClick={() => handleNavigate('/')}> Logout </button>
-            <div className={styles.headerText}>Election Manager 1</div>
+            <div className={styles.navContainer}>
+                <button className={`${styles.noStyleButton} ${styles.navItem}`} onClick={() => handleNavigate('/')}>Logout</button>
+                <div className={`${styles.headerText} ${styles.navItem}`}>Election Manager 1</div>
+            </div>
         </header>
     );
 }
