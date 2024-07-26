@@ -16,8 +16,13 @@ function ElectionManagerDashboard() {
   }, []);
 
   useEffect(() => {
-    handleSearch();
-  }, [filterState, searchBar, elections]);
+    // Filter elections to show only 'Scheduled' and 'Ongoing' initially
+    // When elections value is changed, which happens when react pulls data from the django api
+    const filtered = elections.filter(election => 
+      election.status === 'Scheduled' || election.status === 'Ongoing'
+    );
+    setFilteredElections(filtered);
+  }, [elections]);
 
   const fetchElections = async () => {
     try {
@@ -25,7 +30,6 @@ function ElectionManagerDashboard() {
       const response = await axios.get('http://127.0.0.1:8000/api/elections/'); // Ensure this URL matches your Django server's URL
       console.log('Fetched data:', response.data);
       setElections(response.data);
-      setFilteredElections(response.data); // Initialize filtered elections
     } catch (error) {
       console.error('Error fetching election data:', error);
     }
@@ -43,6 +47,11 @@ function ElectionManagerDashboard() {
         );
     setFilteredElections(filtered);
   };
+  // ternary operator
+  // filters the elections based on the filterState, if the statement filterState === 'All' is true then
+  // the elections will filter to display both scheduled and ongoing elections, and also whereby the value in the search bar exists in the election title 
+  // else it will display the elections whose status matches the filter state, along with the search criteria
+
 
   function handleNewElection() {
     navigate('/election-manager/election-details');
