@@ -52,6 +52,23 @@ function ElectionManagerDashboard() {
   // the elections will filter to display both scheduled and ongoing elections, and also whereby the value in the search bar exists in the election title 
   // else it will display the elections whose status matches the filter state, along with the search criteria
 
+  const formatDate = (dateString, timezone) => {
+    const date = new Date(dateString);
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      timeZone: timezone,
+      timeZoneName: 'short',
+    };
+
+return new Intl.DateTimeFormat('en-US', options).format(date);
+
+};
+
 
   function handleNewElection() {
     navigate('/election-manager/election-details');
@@ -79,7 +96,7 @@ function ElectionManagerDashboard() {
             placeholder="Search by election title" 
             value={searchBar} 
             onChange={(e) => setSearchBar(e.target.value)}
-          />
+          /> 
           <select 
             className='filter' 
             value={filterState} 
@@ -97,6 +114,7 @@ function ElectionManagerDashboard() {
         <div className="election-item-titles">
           <div><u>Election Name</u></div>
           <div><u>Status</u></div>
+          <div><u>Timezone</u></div>
           <div><u>Start Date</u></div>
           <div><u>End Date</u></div>
         </div>
@@ -109,8 +127,9 @@ function ElectionManagerDashboard() {
           >
             <div>{election.title}</div>
             <div>{election.status}</div>
-            <div>{new Date(election.startDate).toLocaleString()}</div>
-            <div>{new Date(election.endDate).toLocaleString()}</div>
+            <div>{election.timezone}</div>
+            <div>{formatDate(election.startDate, election.timezone)}</div>
+            <div>{formatDate(election.endDate, election.timezone)}</div>
           </button>
         ))}
 
@@ -120,6 +139,7 @@ function ElectionManagerDashboard() {
         <div className="election-item-titles">
           <div><u>Election Name</u></div>
           <div><u>Status</u></div>
+          <div><u>Timezone</u></div>
           <div><u>Start Date</u></div>
           <div><u>End Date</u></div>
         </div>
@@ -132,8 +152,9 @@ function ElectionManagerDashboard() {
           >
             <div>{election.title}</div>
             <div>{election.status}</div>
-            <div>{new Date(election.startDate).toLocaleString()}</div>
-            <div>{new Date(election.endDate).toLocaleString()}</div>
+            <div>{election.timezone}</div>
+            <div>{formatDate(election.startDate, election.timezone)}</div>
+            <div>{formatDate(election.endDate, election.timezone)}</div>
           </button>
         ))}
 

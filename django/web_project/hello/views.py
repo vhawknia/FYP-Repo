@@ -10,6 +10,8 @@ from hello.acc.jsonFuncs import jsonReader
 from .models import Election
 from .serializer import ElectionSerializer
 from rest_framework import generics
+from datetime import datetime
+import pytz
 
 @csrf_exempt  # Remove for production (CSRF protection for token endpoint)
 def CSRFTokenDispenser(request):
@@ -126,64 +128,88 @@ def loginFunc(request):
             return JsonResponse({'RESULT': 'Invalid JSON data'}, status=400)
     else:
         return JsonResponse({'RESULT': 'Invalid request method'}, status=400)
-
-
-
+    
+    
 # @csrf_exempt
 # def handle_new_election(request):
 #     if request.method == 'POST':
 #         data = json.loads(request.body.decode('utf-8'))
 #         title = data.get('title')
 #         description = data.get('description')
-#         start_date = data.get('startDate')
-#         end_date = data.get('endDate')
+#         startDate = data.get('startDate')
+#         endDate = data.get('endDate')
 #         timezone = data.get('timezone')
 #         candidates = data.get('candidates')
 #         voters = data.get('voters')
-#         voters_dept = data.get('votersDept')
+#         votersDept = data.get('votersDept')
+
+#         try:
+#             # Create and save the Election instance
+#             new_election = Election(
+#                 title=title,
+#                 description=description,
+#                 startDate=startDate,
+#                 endDate=endDate,
+#                 timezone=timezone,
+#                 candidates=candidates,
+#                 voters=voters,
+#                 votersDept=votersDept
+#             )
+#             new_election.save()
+
+#             return JsonResponse({'status': 'success', 'message': 'Election created successfully'})
+#         except Exception as e:
+#             return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
         
-#         new_election = ElectionHandling.Election(title,description,start_date,end_date,timezone,
-#                                                  candidates, voters, voters_dept)
-
-#         # Process the data as needed, e.g., save it to the database
-
-#         return JsonResponse({'status': 'success', 'message': 'Form data received'})
-
-#     return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
-    
-    
 @csrf_exempt
 def handle_new_election(request):
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
         title = data.get('title')
         description = data.get('description')
-        startDate = data.get('startDate')
-        endDate = data.get('endDate')
-        timezone = data.get('timezone')
+        start_date_str = data.get('startDate')
+        end_date_str = data.get('endDate')
+        timezone_str = data.get('timezone')
         candidates = data.get('candidates')
         voters = data.get('voters')
-        votersDept = data.get('votersDept')
+        voters_dept = data.get('votersDept')
 
         try:
+            # Validate and adjust the timezone string
+            if timezone_str.startswith('GMT') and len(timezone_str) > 3:
+                offset = int(timezone_str[3:])
+                # Adjust the timezone string for pytz compatibility
+                timezone_str = f'Etc/GMT{-offset}' if offset >= 0 else f'Etc/GMT+{abs(offset)}'
+
+            # Convert string dates to datetime objects
+            start_date = datetime.fromisoformat(start_date_str)
+            end_date = datetime.fromisoformat(end_date_str)
+
+            # Convert to specified timezone
+            user_timezone = pytz.timezone(timezone_str)
+            start_date = user_timezone.localize(start_date)
+            end_date = user_timezone.localize(end_date)
+
+            # Convert to UTC
+            start_date_utc = start_date.astimezone(pytz.utc)
+            end_date_utc = end_date.astimezone(pytz.utc)
+
             # Create and save the Election instance
             new_election = Election(
                 title=title,
                 description=description,
-                startDate=startDate,
-                endDate=endDate,
-                timezone=timezone,
+                startDate=start_date_utc,
+                endDate=end_date_utc,
+                timezone=timezone_str,
                 candidates=candidates,
                 voters=voters,
-                votersDept=votersDept
+                votersDept=voters_dept
             )
             new_election.save()
 
             return JsonResponse({'status': 'success', 'message': 'Election created successfully'})
         except Exception as e:
-            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
-        
-        
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)   
 
 class DisplayElections(generics.ListAPIView):
     queryset = Election.objects.all()
