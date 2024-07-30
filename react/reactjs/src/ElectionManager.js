@@ -21,7 +21,7 @@ const initialFormData = {
     description: '',
     startDate: '',
     endDate: '',
-    timezone: 'GMT+8',
+    timezone: 'Asia/Singapore', // Set default timezone to Singapore
     candidates: [],
     voters: [],
     votersDept: []
