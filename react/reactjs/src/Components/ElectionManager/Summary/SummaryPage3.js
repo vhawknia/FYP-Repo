@@ -56,7 +56,7 @@ function Summary3({ formData, resetFormData }) {
             <Header />
             <div className="container">
                 <div className="summary-page3">
-                    <Sidebar />
+                <Sidebar electionType={formData.electionType}/>
                     <main className="summary-page3-content">
                         <h1>Election Status</h1>
                         <select id="election-status" >

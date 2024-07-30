@@ -15,7 +15,7 @@ function Summary2({ formData }) {
             <Header />
             <div className="container">
                 <div className="candidate-profiles-page">
-                    <Sidebar />
+                <Sidebar electionType={formData.electionType}/>
                     
                     <main className="candidate-content">
                         <div className="header-search">

@@ -44,7 +44,7 @@ function ElectionManagerElectionTopics({ formData, updateTopics }) {
             <Header />
             <div className="container">
                 <div className="topics-page">
-                    <Sidebar />
+                <Sidebar electionType={formData.electionType}/>
                     <main className="topics-content">
                         <div className="header-search">
                             <h1>Topics</h1>

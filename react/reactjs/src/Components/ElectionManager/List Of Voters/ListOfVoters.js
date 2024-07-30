@@ -58,7 +58,7 @@ function ElectionManagerListOfVoters( {formData, updateVoters} ) {
             <Header />
             <div className="container">
                 <div className="list-of-voters-page">
-                    <Sidebar />
+                <Sidebar electionType={formData.electionType}/>
                     <main className="voter-content">
                         <div className="header-search">
                             <h1>Voters</h1>

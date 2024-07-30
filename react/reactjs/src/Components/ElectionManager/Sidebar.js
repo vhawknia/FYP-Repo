@@ -4,7 +4,7 @@ import React from "react";
 import './Sidebar.css';
 import { useNavigate, useLocation } from "react-router-dom";
 
-function Sidebar() {
+function Sidebar({electionType}) {
     const navigate = useNavigate();
     const location = useLocation();  // Access location details
 
@@ -21,10 +21,14 @@ function Sidebar() {
                     onClick={() => handleNavigate("election-details")}>
                     Election Details
                 </li>
-                <li className={location.pathname === "/candidate-profiles" ? "active" : ""}
+                {electionType === 'Candidates' && <li className={location.pathname === "/candidate-profiles" ? "active" : ""}
                     onClick={() => handleNavigate("candidate-profiles")}>
                     Candidate Profiles
-                </li>
+                </li>}
+                {electionType === 'Topics' &&<li className={location.pathname === "/election-topics" ? "active" : ""}
+                    onClick={() => handleNavigate("election-topics")}>
+                        Election Topics
+                </li>}
                 <li className={location.pathname === "/list-of-voters" ? "active" : ""}
                     onClick={() => handleNavigate("list-of-voters")}>
                     List of Voters

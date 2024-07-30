@@ -37,7 +37,7 @@ function ElectionManagerElectionDetails({ formData, updateFormData }) {
             <Header />
             <div className='container'>
                 <div className="election-details-page">
-                    <Sidebar />
+                <Sidebar electionType={formData.electionType}/>
                     <main className="form-content">
                         <h1>Election Details</h1>
                         <form onSubmit={handleSubmit}>
