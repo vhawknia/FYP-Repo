@@ -97,7 +97,6 @@ function ElectionManagerDashboard() {
         <div className="election-item-titles">
           <div><u>Election Name</u></div>
           <div><u>Status</u></div>
-          <div><u>Timezone</u></div>
           <div><u>Start Date</u></div>
           <div><u>End Date</u></div>
         </div>
@@ -110,7 +109,6 @@ function ElectionManagerDashboard() {
           >
             <div>{election.title}</div>
             <div>{election.status}</div>
-            <div>{election.timezone}</div>
             <div>{new Date(election.startDate).toLocaleString()}</div>
             <div>{new Date(election.endDate).toLocaleString()}</div>
           </button>
