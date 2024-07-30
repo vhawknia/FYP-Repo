@@ -22,7 +22,13 @@ function ElectionManagerElectionDetails({ formData, updateFormData }) {
             alert('The start date must be before the end date.');
         }
         else{
-            navigate('/election-manager/candidate-profiles');
+            if (formData.electionType === 'Candidates'){
+                navigate('/election-manager/candidate-profiles');
+            }
+            else
+            {
+                navigate('/election-manager/election-topics');
+            }
         }
     };
 
@@ -117,6 +123,20 @@ function ElectionManagerElectionDetails({ formData, updateFormData }) {
                                     <option value="GMT+11">New Caledonia GMT+11 (Greenwich Mean Time)</option>
                                     <option value="GMT+12">Fiji GMT+12 (Greenwich Mean Time)</option>
                                     <option value="GMT+12">New Zealand GMT+12 (Greenwich Mean Time)</option>
+                                </select>
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="electionType">Election Type</label>
+                                <select
+                                    id="electionType"
+                                    name="electionType"
+                                    value={formData.electionType}
+                                    onChange={handleChange}
+                                    required
+                                >
+                                    <option value="Candidates">Candidates</option>
+                                    <option value="Topics">Topic</option>
                                 </select>
                             </div>
 
