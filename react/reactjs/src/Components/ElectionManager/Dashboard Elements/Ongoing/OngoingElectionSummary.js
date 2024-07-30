@@ -1,17 +1,17 @@
-/* for election manager */
-
 import React from 'react';
 import Header from '../../Header';
-//import EditElectionSidebar from '../EditElectionSidebar';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function OngoingElectionSummary() {    
     const navigate = useNavigate();
+    const location = useLocation();
+    const { election } = location.state;
 
-    const handleNavigate = () =>{
-        navigate('/election-manager/ongoing-election-summary2')
-    }
-       return (
+    const handleNavigate = () => {
+        navigate('/election-manager/ongoing-election-summary2', { state: { election } });
+    };
+
+    return (
         <>
             <Header />        
             <div className='container'>
@@ -21,27 +21,27 @@ function OngoingElectionSummary() {
                     <div className="election-details-summary">
                         <div className="form-group">
                             <label htmlFor="title">Title</label>
-                            <input type="text" id="title" name="title" disabled/>
+                            <input type="text" id="title" name="title" value={election.title} disabled/>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="description">Description</label>
-                            <input type="text" id="description" name="description" disabled/>
+                            <input type="text" id="description" name="description" value={election.description} disabled/>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="start-date">Start Date</label>
-                            <input type="datetime-local" id="start-date" name="start-date" disabled/>
+                            <input type="datetime-local" id="start-date" name="start-date" value={election.startDate} disabled/>
                         </div>
                         
                         <div className="form-group">
                             <label htmlFor="end-date">End Date</label>
-                            <input type="datetime-local" id="end-date" name="end-date" disabled />
+                            <input type="datetime-local" id="end-date" name="end-date" value={election.endDate} disabled/>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="timezone">Timezone</label>
-                            <select id="timezone" name="timezone">
+                            <select id="timezone" name="timezone" value={election.timezone} disabled>
                                 <option value="GMT+8">Singapore GMT+8 (Greenwich Mean Time)</option>
                                 <option value="GMT+5">Pakistan GMT+5 (Greenwich Mean Time)</option>
                                 <option value="GMT+5:30">Sri Lanka GMT+5:30 (Greenwich Mean Time)</option>
@@ -66,13 +66,13 @@ function OngoingElectionSummary() {
                             </select>
                         </div>
 
-                        
-                        <button type="submit" className='next-button' onClick={()=>handleNavigate()}>Next</button>
+                        <button type="submit" className='next-button' onClick={handleNavigate}>Next</button>
                     </div>
                     </main>
                 </div>
             </div>
         </>
-);}
+    );
+}
 
 export default OngoingElectionSummary;

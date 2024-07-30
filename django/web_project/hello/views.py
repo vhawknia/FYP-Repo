@@ -170,7 +170,9 @@ def handle_new_election(request):
         start_date_str = data.get('startDate')
         end_date_str = data.get('endDate')
         timezone_str = data.get('timezone')
+        electionType = data.get('electionType')
         candidates = data.get('candidates')
+        topics = data.get('topics')
         voters = data.get('voters')
         voters_dept = data.get('votersDept')
 
@@ -201,7 +203,9 @@ def handle_new_election(request):
                 startDate=start_date_utc,
                 endDate=end_date_utc,
                 timezone=timezone_str,
+                electionType=electionType,
                 candidates=candidates,
+                topics=topics,
                 voters=voters,
                 votersDept=voters_dept
             )
@@ -214,4 +218,17 @@ def handle_new_election(request):
 class DisplayElections(generics.ListAPIView):
     queryset = Election.objects.all()
     serializer_class = ElectionSerializer
- 
+
+@csrf_exempt
+def delete_election(request, id):
+    if request.method == 'DELETE':
+        try:
+            election = Election.objects.get(id=id)
+            election.delete()
+            return JsonResponse({'message': 'Election deleted successfully'}, status=200)
+        except Election.DoesNotExist:
+            return JsonResponse({'error': 'Election not found'}, status=404)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=405)

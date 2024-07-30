@@ -17,21 +17,28 @@ function Summary2({ formData }) {
                 <div className="candidate-profiles-page">
                     <Sidebar />
                     
-                    {/* For candidates */}
                     <main className="candidate-content">
                         <div className="header-search">
-                            <h1>Candidates</h1>
+                            <h1>{formData.electionType === 'Candidates' ? 'Candidates' : 'Topics'}</h1>
                             <div className="search-container">
-                                <input type="text" placeholder="Search for candidate" />
+                                <input type="text" placeholder={`Search for ${formData.electionType.toLowerCase()}`} />
                                 <button type="button">Search</button>
                             </div>
                         </div>
 
-                        {formData.candidates.map((candidate, index) => (
+                        {formData.electionType === 'Candidates' && formData.candidates.map((candidate, index) => (
                             <div key={index} className="candidate-profile">
                                 <div className="candidate-card">
                                     <span className="candidate-name">{candidate.name}</span>
                                     <span className="candidate-role">{candidate.role}</span>
+                                </div>
+                            </div>
+                        ))}
+
+                        {formData.electionType === 'Topics' && formData.topics.map((topic, index) => (
+                            <div key={index} className="candidate-profile">
+                                <div className="candidate-card">
+                                    <span className="candidate-name">{topic.name}</span>
                                 </div>
                             </div>
                         ))}

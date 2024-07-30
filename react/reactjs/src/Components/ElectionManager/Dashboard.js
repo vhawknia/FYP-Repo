@@ -17,7 +17,6 @@ function ElectionManagerDashboard() {
 
   useEffect(() => {
     // Filter elections to show only 'Scheduled' and 'Ongoing' initially
-    // When elections value is changed, which happens when react pulls data from the django api
     const filtered = elections.filter(election => 
       election.status === 'Scheduled' || election.status === 'Ongoing'
     );
@@ -27,13 +26,17 @@ function ElectionManagerDashboard() {
   const fetchElections = async () => {
     try {
       console.log('Fetching elections...');
-      const response = await axios.get('http://127.0.0.1:8000/api/elections/'); // Ensure this URL matches your Django server's URL
+      const response = await axios.get('http://127.0.0.1:8000/api/elections/');
       console.log('Fetched data:', response.data);
       setElections(response.data);
     } catch (error) {
       console.error('Error fetching election data:', error);
     }
-  };
+  };  
+  // ternary operator
+  // filters the elections based on the filterState, if the statement filterState === 'All' is true then
+  // the elections will filter to display both scheduled and ongoing elections, and also whereby the value in the search bar exists in the election title 
+  // else it will display the elections whose status matches the filter state, along with the search criteria
 
   const handleSearch = () => {
     const filtered = filterState === 'All'
@@ -47,10 +50,6 @@ function ElectionManagerDashboard() {
         );
     setFilteredElections(filtered);
   };
-  // ternary operator
-  // filters the elections based on the filterState, if the statement filterState === 'All' is true then
-  // the elections will filter to display both scheduled and ongoing elections, and also whereby the value in the search bar exists in the election title 
-  // else it will display the elections whose status matches the filter state, along with the search criteria
 
   const formatDate = (dateString, timezone) => {
     const date = new Date(dateString);
@@ -65,10 +64,8 @@ function ElectionManagerDashboard() {
       timeZoneName: 'short',
     };
 
-return new Intl.DateTimeFormat('en-US', options).format(date);
-
-};
-
+    return new Intl.DateTimeFormat('en-US', options).format(date);
+  };
 
   function handleNewElection() {
     navigate('/election-manager/election-details');
@@ -123,7 +120,7 @@ return new Intl.DateTimeFormat('en-US', options).format(date);
           <button 
             key={election.id} 
             className="election-item" 
-            onClick={() => navigate(`/election-manager/${election.status}-election`)}
+            onClick={() => navigate(`/election-manager/${election.status}-election`, { state: { election } })}
           >
             <div>{election.title}</div>
             <div>{election.status}</div>

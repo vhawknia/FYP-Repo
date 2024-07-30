@@ -1,14 +1,14 @@
-/* for election manager */
-
-import React, { useState } from "react";
+import React from "react";
 import Header from '../../Header';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function OngoingElectionSummary2() {    
     const navigate = useNavigate();
+    const location = useLocation();
+    const { election } = location.state;
 
     const handleNavigate = () =>{
-        navigate('/election-manager/ongoing-election-summary3')
+        navigate('/election-manager/ongoing-election-summary3', { state: { election } });
     }
 
     return (
@@ -18,26 +18,29 @@ function OngoingElectionSummary2() {
                 <div className="candidate-profiles-page">
                     <main className="candidate-content">
                         <div className="header-search">
-                            <h1>Candidates</h1>
+                            <h1>{election.electionType === 'Candidates' ? 'Candidates' : 'Topics'}</h1>
                             <div className="search-container">
-                                <input type="text" placeholder="Search for candidate" />
+                                <input type="text" placeholder={`Search for ${election.electionType.toLowerCase()}`} />
                                 <button type="button">Search</button>
                             </div>
                         </div>
 
-                        <div className="candidate-profile">
-                            <div className="candidate-card">
-                                <span className="candidate-name">James Lee</span>
-                                <span className="candidate-role">Chief Information Officer</span>
+                        {election.electionType === 'Candidates' && election.candidates.map((candidate, index) => (
+                            <div key={index} className="candidate-profile">
+                                <div className="candidate-card">
+                                    <span className="candidate-name">{candidate.name}</span>
+                                    <span className="candidate-role">{candidate.role}</span>
+                                </div>
                             </div>
-                        </div>
-                            
-                        <div className="candidate-profile">
-                            <div className="candidate-card">
-                                <span className="candidate-name">Thomas Soh</span>
-                                <span className="candidate-role">Chief Executive Officer</span>
+                        ))}
+
+                        {election.electionType === 'Topics' && election.topics.map((topic, index) => (
+                            <div key={index} className="candidate-profile">
+                                <div className="candidate-card">
+                                    <span className="candidate-name">{topic.name}</span>
+                                </div>
                             </div>
-                        </div>
+                        ))}
 
                         <div className="voter-content-summary">
                             <div className="header-search">
@@ -48,22 +51,25 @@ function OngoingElectionSummary2() {
                                 </div>
                             </div>
 
-                            <div className="voter-profile">
-                                <div className="voter-card">
-                                    <span>Voter 1</span>
-                                    <span>Data Analyst</span>
+                            {election.votersDept.map((dept, index) => (
+                                <div key={index} className="dept-profile">
+                                    <div className="dept-card">
+                                        <span>{dept.departmentname} Department</span>
+                                    </div>
                                 </div>
-                            </div>
+                            ))}
 
-                            <div className="voter-profile">
-                                <div className="voter-card">
-                                    <span>Voter 2</span>
-                                    <span>Data Analyst</span>
+                            {election.voters.map((voter, index) => (
+                                <div key={index} className="voter-profile">
+                                    <div className="voter-card">
+                                        <span>{voter.voterEmail}</span>
+                                        <span>{voter.role}</span>
+                                    </div>
                                 </div>
-                            </div>
+                            ))}
                         </div>
                         
-                        <button type="submit" className='next-button' onClick={()=>handleNavigate()}>Next</button>
+                        <button type="submit" className='next-button' onClick={handleNavigate}>Next</button>
                     </main>
                 </div>
             </div>

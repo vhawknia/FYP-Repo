@@ -15,6 +15,7 @@ import ScheduledElectionSummary2 from "./Components/ElectionManager/Dashboard El
 import ScheduledElectionSummary3 from "./Components/ElectionManager/Dashboard Elements/Scheduled/ScheduledElectionSummary3";
 import CompletedElections from "./Components/ElectionManager/CompletedElections";
 import ArchivedElections from "./Components/ElectionManager/ArchivedElections";
+import ElectionManagerElectionTopics from './Components/ElectionManager/Election Topics/ElectionTopics';
 
 const initialFormData = {
     title: '',
@@ -22,7 +23,9 @@ const initialFormData = {
     startDate: '',
     endDate: '',
     timezone: 'GMT+8',
+    electionType: 'Candidates',
     candidates: [],
+    topics: [],
     voters: [],
     votersDept: []
 };
@@ -43,6 +46,13 @@ function ElectionManager() {
         setFormData(prevState => ({
             ...prevState,
             candidates: candidates
+        }));
+    };
+
+    const updateTopics = (topic) => {
+        setFormData(prevState => ({
+            ...prevState,
+            topics: topic
         }));
     };
 
@@ -78,6 +88,10 @@ function ElectionManager() {
             <Route
                 path="list-of-voters"
                 element={<ElectionManagerListOfVoters formData={formData} updateVoters={updateVoters} />} />
+            
+            <Route 
+                path="election-topics"
+                element={<ElectionManagerElectionTopics formData={formData} updateTopics={updateTopics} />} />
 
             <Route path="summary-1" element={<Summary1 formData={formData} />} />
             <Route path="summary-2" element={<Summary2 formData={formData} />} />

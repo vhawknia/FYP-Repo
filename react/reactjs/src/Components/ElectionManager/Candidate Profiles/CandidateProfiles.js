@@ -13,11 +13,16 @@ function ElectionManagerCandidateProfiles({ formData, updateCandidates }) {
     const handleCloseModal = () => setModalOpen(false);
 
     const handleAddCandidate = (candidate) => {
-        const updatedCandidates = [...candidates, candidate];
-        setCandidates(updatedCandidates);
-        updateCandidates(updatedCandidates);
-        handleCloseModal();
+        if (candidates.some(c => c.email === candidate.email)) {
+            alert('This candidate already exists.');
+        } else {
+            const updatedCandidates = [...candidates, candidate];
+            setCandidates(updatedCandidates);
+            updateCandidates(updatedCandidates);
+            handleCloseModal();
+        }
     };
+
 
     const handleRemoveCandidate = (candidateName) => {
         const updatedCandidates = candidates.filter(c => c.name !== candidateName);
