@@ -13,6 +13,8 @@ from rest_framework import generics
 from datetime import datetime
 import pytz
 
+from hello.mySQLfuncs import sql_validateLogin
+
 @csrf_exempt  # Remove for production (CSRF protection for token endpoint)
 def CSRFTokenDispenser(request):
   return JsonResponse({'csrfToken': request.META['CSRF_TOKEN']})
@@ -92,12 +94,11 @@ def jsonReader(filepath):
     raise JSONDecodeError(f"Error: Unable to decode JSON data in {filepath}")
 
 
-
-# Assuming jsonReader is a function that reads JSON files
 def jsonReader(filePath):
     with open(filePath, 'r') as file:
         return json.load(file)
 
+"""
 @csrf_exempt
 def loginFunc(request):
     if request.method == 'POST':
@@ -128,7 +129,27 @@ def loginFunc(request):
             return JsonResponse({'RESULT': 'Invalid JSON data'}, status=400)
     else:
         return JsonResponse({'RESULT': 'Invalid request method'}, status=400)
-    
+""" 
+
+@csrf_exempt
+def loginFunc(request):
+    if request.method == 'POST':
+        try:
+            # Access JSON data from request body
+            data = json.loads(request.body)
+            username = data.get('username')
+            password = data.get('password')
+            
+            if not username or not password:
+                return JsonResponse({'error': 'Missing username or password', 'username':username, 'password':password}, status=400)
+            
+            check = sql_validateLogin(username, password) 
+            if check == 'deny':
+                return JsonResponse({'RESULT': 'deny'})
+            else:
+                return JsonResponse({'RESULT': check})
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON data'}, status=400)
     
 # @csrf_exempt
 # def handle_new_election(request):

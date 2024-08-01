@@ -22,14 +22,14 @@ function LoginForm2() {
 
       const data = await response.json();
       console.log("BACKEND RETURNED WITH", data)
-      console.log("VALUE WITH PROPERTY OF KEY IS", data.RESULT)
+      //console.log("VALUE WITH PROPERTY OF KEY IS", data.RESULT)
 
       // Handle successful login based on data (e.g., redirect, display success message)
-      if (data.RESULT === "admin") {
+      if (data.RESULT === "System Admin") {
         navigate('/system-admin/');
-      } else if (data.RESULT === "mngr") {
+      } else if (data.RESULT === "Election Manager") {
         navigate('/election-manager/');
-      } else if (data.RESULT === "user") {
+      } else if (data.RESULT === "Voter") {
         navigate('/voter/');
       } else {
         alert("Login failed! Please try again."); // Or display an error message
