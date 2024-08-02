@@ -145,6 +145,7 @@ def loginFunc(request):
                 return JsonResponse({'error': 'Missing username or password', 'username':username, 'password':password}, status=400)
             
             check = sql_validateLogin(username, password) 
+            
             if check == 'deny':
                 return JsonResponse({'RESULT': 'deny'})
             else:
