@@ -9,7 +9,7 @@
     color: #121213; /* Button text color */
     border: none; /* Remove default button border */
     border-bottom: 1px solid transparent; /* Initially transparent bottom border */
-    text-decoration: none; /* Remove default text decoration */
+    /*text-decoration: none; /* Remove default text decoration */
     cursor: pointer; /* Change cursor to pointer on hover */
     transition: border-color 0.3s ease; /* Smooth transition for border color */
 }

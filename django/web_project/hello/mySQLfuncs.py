@@ -13,30 +13,31 @@ port = 3306
 #working code but not safe. Should instead ask for specific details rather than fetching wholesale?
 
 def sql_sendQuery(q):
-   try:
-       connection = pymysql.connect(
+    try:
+        connection = pymysql.connect(
            host=host,
            user=user,
            password=password,
            database=database
-       )
-       
-       cursor = connection.cursor()
-       
-       query = q
-       cursor.execute(query)
-       result = cursor.fetchall()
+        )
 
-       return result
+        cursor = connection.cursor()
 
-   except pymysql.Error as e:
-       print("Error:", e)
+        query = q
+        cursor.execute(query)
+        result = cursor.fetchall()
 
-   finally:
-       cursor.close()
-       connection.close()
-
-
+        return result
+        
+    except pymysql.Error as e:
+        print("Error:", e)
+        
+    except pymysql.Error as e:
+        return f"Database error: {str(e)}"
+        
+    finally:
+        cursor.close()
+        connection.close()
 
 def sql_validateLogin(usern, passw):
     query = f"SELECT usertype  FROM user_accounts WHERE username= '{usern}' AND password = '{passw}'"
@@ -44,23 +45,29 @@ def sql_validateLogin(usern, passw):
     
     if result:
         #print(result)
-        return result[0][0]
+        return result
     else: 
         return 'deny'
         
 def sql_insertAcc(usern, passw, usert, firstn, lastn, dpt):
-    q = f"INSERT INTO user_accounts (username, password, usertype, firstname, lastname, department) VALUES ('{usern}', '{passw}', '{usert}', '{firstn}', '{lastn}', '{dpt}');"   
-    insert = sql_sendQuery(q)
+    #q = f"INSERT INTO user_accounts (username, password, usertype, firstname, lastname, department) VALUES ('{usern}', '{passw}', '{usert}', '{firstn}', '{lastn}', '{dpt}');"   
+    q="INSERT INTO z_testTable (co1) VALUES ('aaa')"
     
-    q = f"SELECT * FROM user_accounts WHERE username = '{usern}'"
+    insert = sql_sendQuery(q)
+    print(insert)
+    
+    q = f"SELECT * FROM user_accounts WHERE username = '{usern}' AND password ='{passw}' and "
     result = sql_sendQuery(q)
     
     if result:
-        #print(result)
-        return result[0][0]
+        print(result)
+        return result
     else: 
-        return 'failed'
+        return result
     
 
 if __name__ == "__main__":
-    print(sql_validateLogin("voter001", "password123"))
+    #print(sql_insertAcc('a', 'a', 'voter', '', '', 'HR'))
+    q="INSERT INTO z_testTable (col1, col2) VALUES ('aaa', 'bbb')"
+    sql_sendQuery(q)
+    

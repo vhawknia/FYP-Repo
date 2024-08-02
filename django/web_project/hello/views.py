@@ -159,21 +159,22 @@ def insertAcc(request):
         try:
             # Access JSON data from request body
             data = json.loads(request.body)
-            usern = data.get('username')
-            passw = data.get('password')
-            usert = data.get('usertype')
-            frstn = data.get('firstname')
-            lastn = data.get('lastname')
+            usern = data.get('usern')
+            passw = data.get('passw')
+            usert = data.get('usert')
+            frstn = data.get('frstn')
+            lastn = data.get('lastn')
             dpt = data.get('dpt')
             
-            if not username or not password or not data:
+            if not usern or not passw or not usert:
                 return JsonResponse({'error': 'Missing username or password or usertype', 'username':username, 'password':password}, status=400)
             insert = sql_insertAcc(usern, passw, usert, frstn, lastn, dpt)
             
+            
             if insert == 'failed':
-                return JsonResponse({'RESULT': 'deny'})
+                return JsonResponse({'RESULT': 'denied'})
             else:
-                return JsonResponse({'RESULT': 'sucess'})
+                return JsonResponse({'RESULT': 'success'})
         except json.JSONDecodeError:
             return JsonResponse({'error': 'Invalid JSON data'}, status=400)    
     
