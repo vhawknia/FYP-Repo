@@ -1,0 +1,11 @@
+.scheduled-election-summary3-buttons {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #7c4dff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;   
+}

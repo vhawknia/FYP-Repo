@@ -35,7 +35,11 @@ function ElectionManagerCandidateProfiles({ formData, updateCandidates }) {
     const handleNavigate = () => {
         if (candidates.length < 2) {
             alert("You have insufficient candidates. ");
-        } else {
+        }
+        else if (candidates.length > 2){
+            alert("You have too many candidates. The maximum number of candidates is 2.")
+        }
+        else{
             navigate('/election-manager/list-of-voters');
         }
     }

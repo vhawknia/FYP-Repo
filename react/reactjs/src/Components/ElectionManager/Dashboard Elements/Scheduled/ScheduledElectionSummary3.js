@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import Header from '../../Header';
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from 'axios';
+import './ScheduledElectionSummary3.css';
 
 function ScheduledElectionSummary3() {    
-    const [isCopied, setIsCopied] = useState(false);
-    const electionUrl = 'https://example.com/election/512093';
     const navigate = useNavigate();
     const location = useLocation();
     const { election } = location.state;
@@ -21,6 +20,10 @@ function ScheduledElectionSummary3() {
         }
     };
 
+    const handleNavigate = () =>{
+        navigate('/election-manager/');
+    }
+
     return (
         <>
             <Header />
@@ -35,7 +38,9 @@ function ScheduledElectionSummary3() {
                         </select>
 
                         <br /><br /><br />
-                        <button className="next-button" onClick={handleDelete}>Delete Election</button>
+                        <button className="scheduled-election-summary3-buttons" onClick={handleDelete}>Delete Election</button>
+                        <br />
+                        <button className="scheduled-election-summary3-buttons" onClick={handleNavigate}>Back to Dashboard</button>
                     </main>
                 </div>
             </div>

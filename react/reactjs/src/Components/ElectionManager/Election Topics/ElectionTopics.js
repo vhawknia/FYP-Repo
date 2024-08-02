@@ -34,7 +34,11 @@ function ElectionManagerElectionTopics({ formData, updateTopics }) {
     const handleNavigate = () => {
         if (topics.length < 2) {
             alert("You have insufficient topics.");
-        } else {
+        } 
+        else if (topics.length > 2){
+            alert("You have too many topics. The maximum number of topics allowed is 2.")
+        }
+        else {
             navigate('/election-manager/list-of-voters');
         }
     }

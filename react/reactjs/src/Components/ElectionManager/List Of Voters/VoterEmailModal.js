@@ -32,7 +32,6 @@ function VoterEmailModal({ isOpen, onClose, onSave }) {
                     />
                     <div className="voter-email-button-container">
                         <button type="submit" className='voter-email-submitButton'>Add</button>
-                        <button type="button" className='voter-email-submitButtonCSV' onClick={() => {/* handle CSV upload */}}>Upload CSV</button>
                     </div>
                 </form>
             </div>

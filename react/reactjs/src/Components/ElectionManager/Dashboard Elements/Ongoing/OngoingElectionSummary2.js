@@ -1,14 +1,29 @@
 import React from "react";
 import Header from '../../Header';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 
 function OngoingElectionSummary2() {    
     const navigate = useNavigate();
     const location = useLocation();
     const { election } = location.state;
 
+    const [filteredVoters, setFilteredVoters] = useState(election.voters || []);
+    const [filteredVotersDept, setFilteredVotersDept] = useState(election.votersDept || []);
+    const [searchBar, setSearchBar] = useState("");
+
     const handleNavigate = () =>{
         navigate('/election-manager/ongoing-election-summary3', { state: { election } });
+    }
+
+    const handleSearch = () => {
+        setFilteredVoters(election.voters.filter(voter =>
+            voter.voterEmail.toLowerCase().includes(searchBar.toLowerCase())
+        ));
+
+        setFilteredVotersDept(election.votersDept.filter(dept =>
+            dept.departmentname.toLowerCase().includes(searchBar.toLowerCase())
+        ));
     }
 
     return (
@@ -19,10 +34,10 @@ function OngoingElectionSummary2() {
                     <main className="candidate-content">
                         <div className="header-search">
                             <h1>{election.electionType === 'Candidates' ? 'Candidates' : 'Topics'}</h1>
-                            <div className="search-container">
+                            {/* <div className="search-container">
                                 <input type="text" placeholder={`Search for ${election.electionType.toLowerCase()}`} />
                                 <button type="button">Search</button>
-                            </div>
+                            </div> */}
                         </div>
 
                         {election.electionType === 'Candidates' && election.candidates.map((candidate, index) => (
@@ -46,12 +61,13 @@ function OngoingElectionSummary2() {
                             <div className="header-search">
                                 <h1>Voters</h1>
                                 <div className="search-container">
-                                    <input type="text" placeholder="Search for voter" />
-                                    <button type="button">Search</button>
+                                    <input type="text" placeholder="Search for voter" 
+                                        value={searchBar} onChange={(e) => setSearchBar(e.target.value)}/>
+                                    <button type="button"onClick={handleSearch} >Search</button>
                                 </div>
                             </div>
 
-                            {election.votersDept.map((dept, index) => (
+                            {filteredVotersDept.map((dept, index) => (
                                 <div key={index} className="dept-profile">
                                     <div className="dept-card">
                                         <span>{dept.departmentname} Department</span>
@@ -59,7 +75,7 @@ function OngoingElectionSummary2() {
                                 </div>
                             ))}
 
-                            {election.voters.map((voter, index) => (
+                            {filteredVoters.map((voter, index) => (
                                 <div key={index} className="voter-profile">
                                     <div className="voter-card">
                                         <span>{voter.voterEmail}</span>

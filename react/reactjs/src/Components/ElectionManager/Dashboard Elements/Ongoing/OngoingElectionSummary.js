@@ -7,6 +7,18 @@ function OngoingElectionSummary() {
     const location = useLocation();
     const { election } = location.state;
 
+    // Helper function to format the date
+    function formatISODate(isoDate) {
+        const date = new Date(isoDate);
+        const day = String(date.getUTCDate()).padStart(2, '0');
+        const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Months are zero-based
+        const year = date.getUTCFullYear();
+        const hours = String(date.getUTCHours()).padStart(2, '0');
+        const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+        const seconds = String(date.getUTCSeconds()).padStart(2, '0');
+        return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+    }
+
     const handleNavigate = () => {
         navigate('/election-manager/ongoing-election-summary2', { state: { election } });
     };
@@ -31,12 +43,12 @@ function OngoingElectionSummary() {
 
                         <div className="form-group">
                             <label htmlFor="start-date">Start Date</label>
-                            <input type="datetime-local" id="start-date" name="start-date" value={election.startDate} disabled/>
+                            <input type="text" id="start-date" name="start-date" value={formatISODate(election.startDate)} disabled/>
                         </div>
                         
                         <div className="form-group">
                             <label htmlFor="end-date">End Date</label>
-                            <input type="datetime-local" id="end-date" name="end-date" value={election.endDate} disabled/>
+                            <input type="text" id="end-date" name="end-date" value={formatISODate(election.endDate)} disabled/>
                         </div>
 
                         <div className="form-group">
