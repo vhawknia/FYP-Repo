@@ -12,4 +12,5 @@ urlpatterns = [
     path('api/form-data/', handle_new_election, name='handle_new_election'),
     path('api/elections/', DisplayElections.as_view(), name='election-list'),
     path('api/elections/<int:id>/', views.delete_election, name='delete_election'),
+    path('insertAcc/', views.insertAcc, name='insertAcc')
 ]

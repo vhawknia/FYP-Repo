@@ -13,7 +13,7 @@ from rest_framework import generics
 from datetime import datetime
 import pytz
 
-from hello.mySQLfuncs import sql_validateLogin
+from hello.mySQLfuncs import sql_validateLogin, sql_insertAcc
 
 @csrf_exempt  # Remove for production (CSRF protection for token endpoint)
 def CSRFTokenDispenser(request):
@@ -99,6 +99,7 @@ def jsonReader(filePath):
         return json.load(file)
 
 """
+# old login functions using json as db
 @csrf_exempt
 def loginFunc(request):
     if request.method == 'POST':
@@ -150,6 +151,31 @@ def loginFunc(request):
                 return JsonResponse({'RESULT': check})
         except json.JSONDecodeError:
             return JsonResponse({'error': 'Invalid JSON data'}, status=400)
+            
+            
+@csrf_exempt
+def insertAcc(request):
+    if request.method == 'POST':
+        try:
+            # Access JSON data from request body
+            data = json.loads(request.body)
+            usern = data.get('username')
+            passw = data.get('password')
+            usert = data.get('usertype')
+            frstn = data.get('firstname')
+            lastn = data.get('lastname')
+            dpt = data.get('dpt')
+            
+            if not username or not password or not data:
+                return JsonResponse({'error': 'Missing username or password or usertype', 'username':username, 'password':password}, status=400)
+            insert = sql_insertAcc(usern, passw, usert, frstn, lastn, dpt)
+            
+            if insert == 'failed':
+                return JsonResponse({'RESULT': 'deny'})
+            else:
+                return JsonResponse({'RESULT': 'sucess'})
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON data'}, status=400)    
     
 # @csrf_exempt
 # def handle_new_election(request):
