@@ -13,7 +13,7 @@ from rest_framework import generics
 from datetime import datetime
 import pytz
 
-from hello.mySQLfuncs import sql_validateLogin, sql_insertAcc
+from hello.mySQLfuncs import sql_validateLogin, sql_insertAcc, get_user_related_elections
 
 @csrf_exempt  # Remove for production (CSRF protection for token endpoint)
 def CSRFTokenDispenser(request):
@@ -168,7 +168,7 @@ def insertAcc(request):
             dpt = data.get('dpt')
             
             if not usern or not passw or not usert:
-                return JsonResponse({'error': 'Missing username or password or usertype', 'username':username, 'password':password}, status=400)
+                return JsonResponse({'error': 'Missing username or password or usertype', 'username':usern, 'password':passw}, status=400)
             insert = sql_insertAcc(usern, passw, usert, frstn, lastn, dpt)
             
             
@@ -281,3 +281,16 @@ def delete_election(request, id):
             return JsonResponse({'error': str(e)}, status=500)
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+
+@csrf_exempt
+def get_user_elections(request):
+    if request.method == 'GET':
+        username = request.GET.get('username')
+        department = request.GET.get('department')
+        
+        elections = get_user_related_elections(username, department)
+        
+        return JsonResponse({'elections': elections}, safe=False)
+    else:
+        return JsonResponse({'error': 'Invalid HTTP method'}, status=405)

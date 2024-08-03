@@ -1,4 +1,5 @@
 import pymysql
+from .models import Election
 
 
 # Replace with your database credentials
@@ -31,13 +32,13 @@ def sql_sendQuery(q):
     finally:
         cursor.close()
         connection.close()
-        
-        
 
     """    
     except pymysql.Error as e:
         return f"Database error: {str(e)}"
     """ 
+    
+    
 def sql_validateLogin(usern, passw):
     query = f"SELECT usertype  FROM user_accounts WHERE username= '{usern}' AND password = '{passw}'"
     result = sql_sendQuery(query)
@@ -65,8 +66,40 @@ def sql_insertAcc(usern, passw, usert, firstn, lastn, dpt):
         return result
     
 
-#if __name__ == "__main__":
-#   print(sql_insertAcc('a', 'a', 'voter', '', '', 'HR'))
-#   q="INSERT INTO z_testTable (col1, col2) VALUES ('aaa', 'bbb')"
-#   sql_sendQuery(q)
+
+
+
+
+##### gab functions
+
+def get_user_related_elections(username, department):
+    # Define the SQL query with string formatting for parameters
+    query = f"""
+        SELECT e.*
+        FROM elections e
+        WHERE JSON_CONTAINS(e.voters, '{{"username": "{username}"}}')
+          OR JSON_CONTAINS(e.votersDept, '{{"departmentname": "{department}"}}')
+    """
     
+    # Execute the query and fetch the results
+    result = sql_sendQuery(query)
+
+    if result:
+        # Example column names, adjust according to your database schema
+        column_names = ['id', 'title', 'description', 'startDate', 'endDate', 'timezone',
+                        'electionType','candidates','topics', 'voters', 'votersDept', 'status']
+
+        elections = [
+            dict(zip(column_names, row))
+            for row in result
+        ]
+        return elections
+    else:
+        return []
+    
+# Execute the query for the user 'voter001' from the 'IT' department
+# user_related_elections = get_user_related_elections('voter001', 'IT')
+
+# # Print the results
+# for election in user_related_elections:
+#     print(election)

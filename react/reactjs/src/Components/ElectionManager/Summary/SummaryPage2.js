@@ -85,7 +85,7 @@ function Summary2({ formData }) {
                                         <span>{voter.voterEmail}</span>
                                     </div>
                                 </div>
-                            ))} 
+                            ))}
                         </div>
                         
                         <div className="summary3-button-container">
