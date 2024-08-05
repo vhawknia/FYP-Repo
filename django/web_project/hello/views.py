@@ -7,12 +7,13 @@ import traceback
 import json
 import os
 from hello.acc.jsonFuncs import jsonReader
-from .models import Election
 from .serializer import ElectionSerializer
 from rest_framework import generics
 from datetime import datetime
 import pytz
 
+
+from .models import Election, UserAccount, ElectionVoterStatus, Department
 from hello.mySQLfuncs import sql_validateLogin, sql_insertAcc, get_user_related_elections
 
 @csrf_exempt  # Remove for production (CSRF protection for token endpoint)
@@ -179,37 +180,6 @@ def insertAcc(request):
         except json.JSONDecodeError:
             return JsonResponse({'error': 'Invalid JSON data'}, status=400)    
     
-# @csrf_exempt
-# def handle_new_election(request):
-#     if request.method == 'POST':
-#         data = json.loads(request.body.decode('utf-8'))
-#         title = data.get('title')
-#         description = data.get('description')
-#         startDate = data.get('startDate')
-#         endDate = data.get('endDate')
-#         timezone = data.get('timezone')
-#         candidates = data.get('candidates')
-#         voters = data.get('voters')
-#         votersDept = data.get('votersDept')
-
-#         try:
-#             # Create and save the Election instance
-#             new_election = Election(
-#                 title=title,
-#                 description=description,
-#                 startDate=startDate,
-#                 endDate=endDate,
-#                 timezone=timezone,
-#                 candidates=candidates,
-#                 voters=voters,
-#                 votersDept=votersDept
-#             )
-#             new_election.save()
-
-#             return JsonResponse({'status': 'success', 'message': 'Election created successfully'})
-#         except Exception as e:
-#             return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
-        
 @csrf_exempt
 def handle_new_election(request):
     if request.method == 'POST':
@@ -220,10 +190,10 @@ def handle_new_election(request):
         end_date_str = data.get('endDate')
         timezone_str = data.get('timezone')
         electionType = data.get('electionType')
-        candidates = data.get('candidates')
-        topics = data.get('topics')
-        voters = data.get('voters')
-        voters_dept = data.get('votersDept')
+        candidates = data.get('candidates', [])
+        topics = data.get('topics', [])
+        voters = data.get('voters', [])
+        voters_dept = data.get('votersDept', [])
 
         try:
             # Validate and adjust the timezone string
@@ -260,9 +230,47 @@ def handle_new_election(request):
             )
             new_election.save()
 
+            # Add voters to ElectionVoterStatus
+            add_voters_to_status(new_election)
+
             return JsonResponse({'status': 'success', 'message': 'Election created successfully'})
         except Exception as e:
-            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)   
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
+def add_voters_to_status(election):
+    # Add individual voters based on voterEmail
+    if election.voters:
+        for voter in election.voters:
+            voter_email = voter.get("voterEmail")
+            if voter_email:
+                try:
+                    # Check if the user is of type 'Voter'
+                    user = UserAccount.objects.get(username=voter_email, usertype='Voter')
+                    ElectionVoterStatus.objects.create(election=election, user=user)
+                except UserAccount.DoesNotExist:
+                    print(f"User with email {voter_email} does not exist or is not a 'Voter'.")
+                    pass
+
+    # Add voters by department based on departmentname
+    if election.votersDept:
+        for dept in election.votersDept:
+            department_name = dept.get("departmentname")
+            if department_name:
+                try:
+                    department = Department.objects.get(departmentname=department_name)
+                    # Filter users by department and check if they are 'Voter' type
+                    users = UserAccount.objects.filter(department=department, usertype='Voter')
+                    if not users.exists():
+                        print(f"No 'Voter' users found in department {department_name}.")
+                    else:
+                        for user in users:
+                            ElectionVoterStatus.objects.create(election=election, user=user)
+                except Department.DoesNotExist:
+                    print(f"Department {department_name} does not exist.")
+                    pass
+
+
+
 
 class DisplayElections(generics.ListAPIView):
     queryset = Election.objects.all()

@@ -6,9 +6,9 @@ import './Dashboard.css';
 import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
-  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [pendingElection, setPendingElection] = useState([]);
+  const [processingElection, setProcessingElection] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -37,8 +37,17 @@ function Dashboard() {
     election.title && election.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleNavigate = (location) => {
-    navigate('/' + location);
+  const handleVote = (electionId) => {
+    // Simulate voting process by moving the election from pending to processing
+    const votedElection = pendingElection.find(election => election.id === electionId);
+
+    if (votedElection) {
+      // Move the voted election to processing elections
+      setProcessingElection(prev => [...prev, votedElection]);
+
+      // Remove the voted election from pending elections
+      setPendingElection(prev => prev.filter(election => election.id !== electionId));
+    }
   };
 
   const formatDate = (dateString, timezone) => {
@@ -87,34 +96,30 @@ function Dashboard() {
                     <div>End Date: {formatDate(election.endDate, election.timezone)}</div>
                   </div>
                   <div className="voter-election-deadline">
-                    <button onClick={() => handleNavigate('voter/election-voting')}>Vote</button>
+                    <button onClick={() => handleVote(election.id)}>Vote</button>
                   </div>
                 </div>
               ))}
             </div>
           </div>
+
+          {/* PROCESSING ELECTIONS */}
           <div className="voter-elections-section">
             <h2>Processing Elections</h2>
             <div className="voter-elections-list">
-              <div className="voter-election">
-                <div className="voter-election-info">
-                  <div>
-                    <div><span><b><u>Election 4</u></b></span></div>
-                    <div>Election Manager: yyy</div>
+              {processingElection.map(election => (
+                <div key={election.id} className="voter-election">
+                  <div className="voter-election-info">
+                    <div>
+                      <span><b><u>{election.title}</u></b></span>
+                    </div>
+                    <div>Start Date: {formatDate(election.startDate, election.timezone)}</div>
                   </div>
                   <div className="voter-election-deadline">
-                    <div>Completion Date: 15 Dec 2024</div>
+                  <div>End Date: {formatDate(election.endDate, election.timezone)}</div>
                   </div>
                 </div>
-              </div>
-              <div className="voter-election">
-                <div className="voter-election-info">
-                  <div><span><b><u>Election 5</u></b></span></div>
-                  <div className="voter-election-deadline">
-                    <div>Completion Date: 25 Dec 2024</div>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
