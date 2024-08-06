@@ -3,10 +3,11 @@ import './TopicsModal.css';
 
 function TopicsModal({ isOpen, onClose, onSave }) {
     const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSave({ name }); // Pass the new topic object to the onSave function
+        onSave({ name, description }); // Pass the new topic object to the onSave function
         onClose();
     };
 
@@ -23,6 +24,10 @@ function TopicsModal({ isOpen, onClose, onSave }) {
                     <label>
                         Topic Name:
                         <input type="text" value={name} onChange={e => setName(e.target.value)} required />
+                    </label>
+                    <label>
+                        Description:
+                        <input type="text" value={description} onChange={e => setDescription(e.target.value)} required />
                     </label>
                     <button type="submit" className="topic-submit-button">Add Topic</button>
                 </form>

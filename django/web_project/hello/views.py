@@ -14,7 +14,7 @@ import pytz
 
 
 from .models import Election, UserAccount, ElectionVoterStatus, Department
-from hello.mySQLfuncs import sql_validateLogin, sql_insertAcc, get_user_related_elections
+from hello.mySQLfuncs import sql_validateLogin, sql_insertAcc, get_user_elections_with_status
 
 @csrf_exempt  # Remove for production (CSRF protection for token endpoint)
 def CSRFTokenDispenser(request):
@@ -237,6 +237,8 @@ def handle_new_election(request):
         except Exception as e:
             return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
 
+
+
 def add_voters_to_status(election):
     # Add individual voters based on voterEmail
     if election.voters:
@@ -282,6 +284,8 @@ def delete_election(request, id):
         try:
             election = Election.objects.get(id=id)
             election.delete()
+            # delete_election_voter_status(election)
+            
             return JsonResponse({'message': 'Election deleted successfully'}, status=200)
         except Election.DoesNotExist:
             return JsonResponse({'error': 'Election not found'}, status=404)
@@ -290,14 +294,17 @@ def delete_election(request, id):
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=405)
 
+# @csrf_exempt
+# def delete_election_voter_status(election):
+#     """Helper function to delete all ElectionVoterStatus records related to an election."""
+#     ElectionVoterStatus.objects.filter(election=election).delete()
 
 @csrf_exempt
 def get_user_elections(request):
     if request.method == 'GET':
-        username = request.GET.get('username')
-        department = request.GET.get('department')
-        
-        elections = get_user_related_elections(username, department)
+        userid = request.GET.get('userid')
+                
+        elections = get_user_elections_with_status(userid)
         
         return JsonResponse({'elections': elections}, safe=False)
     else:

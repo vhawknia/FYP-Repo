@@ -5,7 +5,8 @@ import Sidebar from './Sidebar';
 import './Dashboard.css';
 import { useNavigate } from 'react-router-dom';
 
-function Dashboard() {
+function Dashboard() {  
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [pendingElection, setPendingElection] = useState([]);
   const [processingElection, setProcessingElection] = useState([]);
@@ -16,8 +17,7 @@ function Dashboard() {
       try {
         const response = await axios.get('http://localhost:8000/api/get_user_elections', {
           params: {
-            username: 'IT@work',
-            department: 'IT',
+            userid: '29',
           },
         });
         setPendingElection(response.data.elections);
@@ -38,17 +38,14 @@ function Dashboard() {
   );
 
   const handleVote = (electionId) => {
-    // Simulate voting process by moving the election from pending to processing
     const votedElection = pendingElection.find(election => election.id === electionId);
-
+  
     if (votedElection) {
-      // Move the voted election to processing elections
-      setProcessingElection(prev => [...prev, votedElection]);
-
-      // Remove the voted election from pending elections
-      setPendingElection(prev => prev.filter(election => election.id !== electionId));
+      // Navigate to the voting page and pass election data as state
+      navigate('/voter/election-voting', { state: { election: votedElection } });
     }
   };
+  
 
   const formatDate = (dateString, timezone) => {
     const date = new Date(dateString);
@@ -65,6 +62,7 @@ function Dashboard() {
 
     return new Intl.DateTimeFormat('en-US', options).format(date);
   };
+
 
   return (
     <div className="voter-app-container">
@@ -97,6 +95,7 @@ function Dashboard() {
                   </div>
                   <div className="voter-election-deadline">
                     <button onClick={() => handleVote(election.id)}>Vote</button>
+                    {/* <button onClick={() => handleVote(election.id)}>Vote</button> */}
                   </div>
                 </div>
               ))}

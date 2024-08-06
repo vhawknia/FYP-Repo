@@ -7,10 +7,11 @@ function CandidateModal({ isOpen, onClose, onSave }) {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [role, setRole] = useState('');
+    const [description, setDescription] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSave({ name, email, role }); // Pass the new candidate object to the onSave function
+        onSave({ name, email, role, description }); // Pass the new candidate object to the onSave function
         onClose();
     };
 
@@ -35,6 +36,10 @@ function CandidateModal({ isOpen, onClose, onSave }) {
                     <label>
                         Candidate Role:
                         <input type="text" value={role} onChange={e => setRole(e.target.value)} required />
+                    </label>
+                    <label>
+                        Description:
+                        <input type="text" value={description} onChange={e => setDescription(e.target.value)} required />
                     </label>
                     <button type="submit" className="candidate-submit-button">Add Candidate</button>
                 </form>

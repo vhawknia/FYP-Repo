@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background-color: #f9f9f9;
 }
 
 .voter-main-content {
@@ -19,44 +20,73 @@
 .voter-content h2 {
   font-weight: 700;
   font-size: 29px;
+  margin-bottom: 20px;
 }
 
 .voter-election-info {
   font-weight: 500;
-  margin-bottom: 20px;
-  display:flex;
-  justify-content: space-between;
+  margin-bottom: 40px;
+  color: #555;
 }
 
-.voter-candidates {
+.voter-cards, .topic-cards {
   display: flex;
-  justify-content: space-around;
-  margin-top: 80px;
+  flex-wrap: wrap;
+  gap: 15rem;
+  justify-content: center;
 }
 
-.voter-candidate {
+.candidate-voting-card, .topic-voting-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.2s;
+  min-height: 300px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  cursor: pointer;
+  justify-content: center;
 }
 
-.voter-candidate-image img {
-  width: 80px;
-  height: 80px;
+.candidate-voting-card:hover, .topic-voting-card:hover {
+  background: #f1f0f0;
+}
+
+.voter-card-image img {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
+  margin-bottom: 15px;
   background-color: #e0e0e0;
 }
 
-.voter-candidate-info {
+.voter-card-info {
+  margin-bottom: 30px;
+}
+
+.voter-card-info h3, .voter-card-info p {
   margin: 10px 0;
-  font-size: 17px;
-  margin-bottom: 40px;
+  color: #666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.voter-card-info p {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal; /* Allows lines to wrap */
 }
 
 .voter-vote-button {
+  width: 120px; /* Set a fixed width for the button */
   padding: 10px 20px;
+  margin: 0 auto; /* Center the button horizontally */
   border: 1px solid #8a4fff;
   background-color: #fff;
   color: #8a4fff;
@@ -83,7 +113,7 @@
 }
 
 .modal-content {
-  background: #dadbdd;
+  background: #fff;
   width: 50%;
   max-width: 600px;
   padding: 40px;
@@ -126,4 +156,16 @@
   height: auto;
   border-radius: 5px;
   margin-top: 20px;
+}
+
+.inoffensive-close-button{  
+  margin-top: 5px;
+  background-color: #f1f0f0;
+  border: 1px solid #adadad;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  height: 25px;
 }

@@ -81,9 +81,12 @@ class Election(models.Model):
      
     
 class ElectionVoterStatus(models.Model):
-    status_id = models.AutoField(primary_key=True)
+    election_voter_status_id = models.AutoField(primary_key=True)
     election = models.ForeignKey(Election, on_delete=models.CASCADE, db_column='election_id')
+    # if an Election is deleted, all associated ElectionVoterStatus records are also deleted
     user = models.ForeignKey(UserAccount, on_delete=models.CASCADE, db_column='userid')
+    #if a UserAccount is deleted, all associated ElectionVoterStatus records are also deleted
+    
     has_voted = models.BooleanField(default=False)
 
     class Meta:

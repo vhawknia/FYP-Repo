@@ -6,8 +6,10 @@ import { useNavigate } from "react-router-dom";
 
 function Summary3({ formData, resetFormData }) {    
     const navigate = useNavigate();
+    const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
 
     const handleSubmit = async () => {
+        setIsSubmitting(true); // Disable the button on submit
         try {
             const response = await fetch('http://localhost:8000/api/form-data/', {
                 method: 'POST',
@@ -24,9 +26,11 @@ function Summary3({ formData, resetFormData }) {
                 navigate('/election-manager/');
             } else {
                 console.error('Error submitting form data:', data.message);
+                setIsSubmitting(false); // Re-enable the button on error
             }
         } catch (error) {
             console.error('Error submitting form data:', error);
+            setIsSubmitting(false); // Re-enable the button on error
         }
     };
 
@@ -64,7 +68,13 @@ function Summary3({ formData, resetFormData }) {
                         </select>
 
                         <div className="summary3-button-container">
-                            <button className="create-election-button" onClick={()=>{ createElection();}}>Create Election</button>
+                            <button
+                                className="create-election-button"
+                                onClick={createElection}
+                                disabled={isSubmitting} // Disable when submitting
+                            >
+                                Create Election
+                            </button>
                             <button className="create-election-button" onClick={handleNavigate}>Back</button>
                         </div>
                      </main>
