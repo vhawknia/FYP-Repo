@@ -11,7 +11,9 @@ from .serializer import ElectionSerializer
 from rest_framework import generics
 from datetime import datetime
 import pytz
-
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
 
 from .models import Election, UserAccount, ElectionVoterStatus, Department
 from hello.mySQLfuncs import sql_validateLogin, sql_insertAcc, get_user_elections_with_status
@@ -299,13 +301,12 @@ def delete_election(request, id):
 #     """Helper function to delete all ElectionVoterStatus records related to an election."""
 #     ElectionVoterStatus.objects.filter(election=election).delete()
 
-@csrf_exempt
+
+@api_view(['GET'])
 def get_user_elections(request):
     if request.method == 'GET':
         userid = request.GET.get('userid')
-                
         elections = get_user_elections_with_status(userid)
-        
-        return JsonResponse({'elections': elections}, safe=False)
-    else:
-        return JsonResponse({'error': 'Invalid HTTP method'}, status=405)
+        serializer = ElectionSerializer(elections, many=True)
+        return Response({'elections': serializer.data}, status=status.HTTP_200_OK)
+    return Response({'error': 'Invalid HTTP method'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)

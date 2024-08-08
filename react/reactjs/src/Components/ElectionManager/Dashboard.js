@@ -127,6 +127,7 @@ function ElectionManagerDashboard() {
             <div>{election.timezone}</div>
             <div>{formatDate(election.startDate, election.timezone)}</div>
             <div>{formatDate(election.endDate, election.timezone)}</div>
+            {/* <div>Start Date: {election.startDate} / End Date: {election.endDate}</div> */}
           </button>
         ))}
 

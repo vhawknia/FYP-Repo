@@ -63,7 +63,7 @@ function Dashboard() {
     return new Intl.DateTimeFormat('en-US', options).format(date);
   };
 
-
+  
   return (
     <div className="voter-app-container">
       <NewHeader />
@@ -92,6 +92,8 @@ function Dashboard() {
                     </div>
                     <div>Start Date: {formatDate(election.startDate, election.timezone)}</div>
                     <div>End Date: {formatDate(election.endDate, election.timezone)}</div>
+                    <div>Timezone: {election.timezone} </div>
+                    {/* <div>Start Date: {election.startDate} / End Date: {election.endDate} </div> */}
                   </div>
                   <div className="voter-election-deadline">
                     <button onClick={() => handleVote(election.id)}>Vote</button>

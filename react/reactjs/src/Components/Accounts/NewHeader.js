@@ -1,7 +1,6 @@
 import React from 'react';
 import './NewHeader.css';
 import { useNavigate } from 'react-router-dom';
-import companyLogo from '../../Starbucks_Corporation_Logo_2011.png';
 import { Link } from 'react-router-dom';
 
 function NewHeader() {
@@ -30,7 +29,7 @@ function NewHeader() {
     <div className="header">
       <div className="home-section">
         <Link to="/system-admin">
-          <img src={companyLogo} alt="Company Logo" style={homeStylization} />
+          {/* <img src={companyLogo} alt="Company Logo" style={homeStylization} /> */}
         </Link>
       </div>
       <div className="user-section">
