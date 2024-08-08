@@ -310,3 +310,30 @@ def get_user_elections(request):
         serializer = ElectionSerializer(elections, many=True)
         return Response({'elections': serializer.data}, status=status.HTTP_200_OK)
     return Response({'error': 'Invalid HTTP method'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+
+@csrf_exempt
+def handle_Vote(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+            vote = data.get('voteData')
+            signature = data.get('signature')
+            public_key = data.get('publicKey')
+
+            # For demonstration purposes, just print the received data
+            print("Vote Data:", vote)
+            print("Signature:", signature)
+            print("Public Key:", public_key)
+
+            # TODO: Process the vote and public key
+            # For example, you might want to save this data to your database
+
+            # Return a success response
+            return JsonResponse({'status': 'success', 'message': 'Vote submitted successfully'})
+        except json.JSONDecodeError:
+            return JsonResponse({'status': 'error', 'message': 'Invalid JSON'}, status=400)
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=405)

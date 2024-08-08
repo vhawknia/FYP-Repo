@@ -13,5 +13,6 @@ urlpatterns = [
     path('api/elections/<int:id>/', delete_election, name='delete_election'),
     path('insertAcc/', views.insertAcc, name='insertAcc'),
     path('api/get_user_elections/', views.get_user_elections, name='get_user_elections'),
+    path('api/handle_Vote/', views.handle_Vote, name='handle_Vote'),
     
 ]
