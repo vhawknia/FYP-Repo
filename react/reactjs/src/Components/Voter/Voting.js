@@ -5,6 +5,7 @@ import Sidebar from './Sidebar';
 import './Voting.css';
 import avatar from '../../stock_avatar.jpg';  
 import forge from 'node-forge';
+import { publicKeyFromJSON } from 'paillier-js';
 
 function Voting() {
   // State for various modals
@@ -19,8 +20,9 @@ function Voting() {
   const location = useLocation();
   const election = location.state.election;
 
-  // State to store generated keys
+  // State to store generated RSA keys
   const [keys, setKeys] = useState({ publicKey: '', privateKey: '' });
+  const [paillierPublicKey, setPaillierPublicKey] = useState(null); // State to store Paillier public key
 
   // useRef to track if keys have been generated
   const keysGeneratedRef = useRef(false);
@@ -47,34 +49,6 @@ function Voting() {
     setShowSubjectModal(false);
   };
 
-  // Function to confirm vote
-  const handleConfirmVote = () => {
-    // Ensure the public key is available
-    if (!keys.publicKey) {
-      console.error('Public key not available');
-      return;
-    }
-
-    // Collect the vote data
-    const voteData = {
-      subject: selectedSubject,
-      //candidate : name, email, role, description
-      //topic: name, description
-    };
-
-    // Submit the vote with the vote data and the public key
-    submitVote(voteData, keys.publicKey);
-
-    // Close the vote modal and show the final confirmation modal
-    setShowVoteModal(false);
-    setShowFinalModal(true);
-
-    // Redirect to the dashboard after 3 seconds
-    setTimeout(() => {
-      navigate('/voter/', { replace: true });
-    }, 3000);
-  };
-
   // Function to close rules modal
   const handleCloseRulesModal = () => {
     setShowRulesModal(false);
@@ -85,11 +59,14 @@ function Voting() {
     setShowRulesModal(true); // Show rules modal when component mounts
     if (!keysGeneratedRef.current) {
       generateKeys(); // Generate keys only if they haven't been generated yet
+      fetchPaillierPublicKey(); // Fetch the Paillier public key
       keysGeneratedRef.current = true; // Mark keys as generated
     }
   }, []); // Empty dependency array ensures this runs only once on mount
 
-  // Function to generate RSA keys
+
+
+  /********************** RSA Key generation ***********************/
   const generateKeys = async () => {
     const { pki } = forge;
     const { rsa } = pki;
@@ -119,15 +96,63 @@ function Voting() {
     }
   };
 
-  // Function to submit the vote
-  const submitVote = async (voteData, publicKey) => {
+
+
+  /*** RSA Key signing -- the voteData with the private key ***/
+  const signDataWithPrivateKey = (data, privateKeyPem) => {
+    // Serialize data to a JSON string
+    const dataString = JSON.stringify(data);
+  
+    // Convert PEM-formatted private key to a forge private key object
+    const privateKey = forge.pki.privateKeyFromPem(privateKeyPem);
+  
+    // Create a message digest (hash) of the data
+    const md = forge.md.sha256.create();
+    md.update(dataString, 'utf8');
+  
+    // Sign the message digest with the private key
+    const signature = privateKey.sign(md);
+
+    // Encode the signature as base64
+    const signatureBase64 = forge.util.encode64(signature);
+    console.log('Signature:' + signatureBase64);
+    return signatureBase64;
+  };
+  
+
+
+
+/*******************Fetch the paillier public key from django side**************************/
+  const fetchPaillierPublicKey = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/api/get_paillier_public_key/');
+      const data = await response.json();
+      const paillierPublicKey = publicKeyFromJSON(data);
+      setPaillierPublicKey(paillierPublicKey);
+      console.log(paillierPublicKey);
+    } catch (error) {
+      console.error('Error fetching Paillier public key:', error);
+    }
+  };
+
+//   // Function to encrypt vote data using Paillier public key
+//   const encryptVoteData = (voteData, paillierPublicKey) => {
+//     const plaintext = BigInt(voteData); // Ensure voteData is a BigInt
+//     return paillierPublicKey.encrypt(plaintext);
+//   };
+
+
+
+
+/*********************Function to submit the vote *********************/
+  const submitVote = async (voteData, publicKey, digitalSignature) => {
     try {
       const response = await fetch('http://localhost:8000/api/handle_Vote/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ voteData, publicKey }),
+        body: JSON.stringify({ voteData, publicKey, digitalSignature }),
       });
       const result = await response.json();
       console.log('Vote submitted successfully:', result);
@@ -136,6 +161,35 @@ function Voting() {
     }
   };
   
+
+  
+/******************Function to confirm and submit the vote **************/
+const handleConfirmVote = () => {
+
+  if (!keys.publicKey) {
+    console.error('Public key not available');
+    return;
+  }
+
+  // Collect the vote data
+  const voteData = {
+    subject: selectedSubject,
+    //candidate : name, email, role, description
+    //topic: name, description
+  };
+
+  const digitalSignature = signDataWithPrivateKey(voteData, keys.privateKey);
+  //const encryptedVoteData = encryptVoteData(voteData, )
+
+  submitVote(voteData, keys.publicKey, digitalSignature);
+  setShowVoteModal(false);
+  setShowFinalModal(true);
+
+  setTimeout(() => {
+    navigate('/voter/', { replace: true });
+  }, 3000);
+};
+
 
   return (
     <div className="voter-app-container">

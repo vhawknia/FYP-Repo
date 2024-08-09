@@ -5,7 +5,6 @@ from .utilities import vote_handling
 from .utilities import ElectionHandling
 import traceback
 import json
-import os
 from hello.acc.jsonFuncs import jsonReader
 from .serializer import ElectionSerializer
 from rest_framework import generics
@@ -17,6 +16,38 @@ from rest_framework import status
 
 from .models import Election, UserAccount, ElectionVoterStatus, Department
 from hello.mySQLfuncs import sql_validateLogin, sql_insertAcc, get_user_elections_with_status
+
+
+import os
+import pickle
+import base64
+from dotenv import load_dotenv
+from phe import paillier
+
+# Load environment variables from the .env file
+load_dotenv()
+
+public_key_serialized = os.getenv('PAILLIER_PUBLIC_KEY')
+private_key_serialized = os.getenv('PAILLIER_PRIVATE_KEY')
+
+# Decode from base64
+pail_public_key_bytes = base64.b64decode(public_key_serialized)
+# Deserialize the public key
+pail_public_key = pickle.loads(pail_public_key_bytes)
+
+# Decode from base64
+pail_private_key_bytes = base64.b64decode(private_key_serialized)
+# Deserialize the public key
+pail_private_key = pickle.loads(pail_private_key_bytes)
+
+
+# Convert the public key to a JSON-compatible format
+pail_public_key_json = {
+    "n": str(pail_public_key.n),  # Paillier public key's modulus (big integer as string)
+}
+
+
+
 
 @csrf_exempt  # Remove for production (CSRF protection for token endpoint)
 def CSRFTokenDispenser(request):
@@ -328,6 +359,17 @@ def handle_Vote(request):
 
             # TODO: Process the vote and public key
             # For example, you might want to save this data to your database
+            
+            print('Serialized public key:', public_key_serialized)
+            print()
+            print('Serialized priv key:', private_key_serialized)
+            print()
+
+            encrypted_number = pail_public_key.encrypt(12345)
+            decrypted_number = pail_private_key.decrypt(encrypted_number)
+            
+            print('enc',encrypted_number)
+            print('dec',decrypted_number)
 
             # Return a success response
             return JsonResponse({'status': 'success', 'message': 'Vote submitted successfully'})
@@ -337,3 +379,8 @@ def handle_Vote(request):
             return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
     else:
         return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=405)
+    
+    
+@csrf_exempt    
+def get_paillier_public_key(request):
+    return JsonResponse(pail_public_key_json)   

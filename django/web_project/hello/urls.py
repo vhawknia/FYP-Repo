@@ -14,5 +14,6 @@ urlpatterns = [
     path('insertAcc/', views.insertAcc, name='insertAcc'),
     path('api/get_user_elections/', views.get_user_elections, name='get_user_elections'),
     path('api/handle_Vote/', views.handle_Vote, name='handle_Vote'),
+    path('api/get_paillier_public_key/', views.get_paillier_public_key, name='get_paillier_public_key'),
     
 ]

@@ -11,6 +11,23 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # Ensure this is called at the start
+
+public_key_serialized = os.getenv('PAILLIER_PUBLIC_KEY')
+private_key_serialized = os.getenv('PAILLIER_PRIVATE_KEY')
+if private_key_serialized:
+    print("Environment variable priv key loaded successfully.")
+else:
+    print("Failed to load the environment variable.")
+    
+if public_key_serialized:
+    print("Environment variable pub key loaded successfully.")
+else:
+    print("Failed to load the environment variable.")
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
