@@ -10,12 +10,19 @@ from .serializer import ElectionSerializer
 from rest_framework import generics
 from datetime import datetime
 import pytz
+
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
 from .models import Election, UserAccount, ElectionVoterStatus, Department
-from hello.mySQLfuncs import sql_validateLogin, sql_insertAcc, get_user_elections_with_status
+
+from hello.mySQLfuncs import *
+from hello.loginFuncs import generate_jwt
+from functools import wraps
+from flask import Flask, make_response, jsonify
+
+app = Flask(__name__)
 
 
 import os
@@ -165,53 +172,7 @@ def loginFunc(request):
     else:
         return JsonResponse({'RESULT': 'Invalid request method'}, status=400)
 """ 
-
-@csrf_exempt
-def loginFunc(request):
-    if request.method == 'POST':
-        try:
-            # Access JSON data from request body
-            data = json.loads(request.body)
-            username = data.get('username')
-            password = data.get('password')
-            
-            if not username or not password:
-                return JsonResponse({'error': 'Missing username or password', 'username':username, 'password':password}, status=400)
-            
-            check = sql_validateLogin(username, password) 
-            
-            if check == 'deny':
-                return JsonResponse({'RESULT': 'deny'})
-            else:
-                return JsonResponse({'RESULT': check})
-        except json.JSONDecodeError:
-            return JsonResponse({'error': 'Invalid JSON data'}, status=400)
-            
-            
-@csrf_exempt
-def insertAcc(request):
-    if request.method == 'POST':
-        try:
-            # Access JSON data from request body
-            data = json.loads(request.body)
-            usern = data.get('usern')
-            passw = data.get('passw')
-            usert = data.get('usert')
-            frstn = data.get('frstn')
-            lastn = data.get('lastn')
-            dpt = data.get('dpt')
-            
-            if not usern or not passw or not usert:
-                return JsonResponse({'error': 'Missing username or password or usertype', 'username':usern, 'password':passw}, status=400)
-            insert = sql_insertAcc(usern, passw, usert, frstn, lastn, dpt)
-            
-            
-            if insert == 'failed':
-                return JsonResponse({'RESULT': 'denied'})
-            else:
-                return JsonResponse({'RESULT': 'success'})
-        except json.JSONDecodeError:
-            return JsonResponse({'error': 'Invalid JSON data'}, status=400)    
+ 
     
 @csrf_exempt
 def handle_new_election(request):
@@ -384,3 +345,191 @@ def handle_Vote(request):
 @csrf_exempt    
 def get_paillier_public_key(request):
     return JsonResponse(pail_public_key_json)   
+    
+    
+    
+    
+    
+    
+"""
+---ACC FUNCTIONS---
+"""
+
+@csrf_exempt
+def loginFunc(request):
+    print("loginFUnc started")
+    if request.method == 'POST':
+        try:
+            # Access JSON data from request body
+            data = json.loads(request.body)
+            username = data.get('username')
+            password = data.get('password')
+            
+            #catch empty user and pass
+            if not username or not password:
+                return JsonResponse({'error': 'Missing username or password', 'username':username, 'password':password}, status=400)
+            
+            #save result
+            tuplist_result = sql_validateLogin(username, password)
+            
+            print(tuplist_result)
+            
+            #catch failed login
+            if tuplist_result == 'deny':
+                return JsonResponse({'RESULT': 'deny'})
+            else:
+                #procedd with login stuff
+                
+                for x in tuplist_result[0]:
+                    print(x)
+                
+                token = generate_jwt(
+                    tuplist_result[0][0], 
+                    tuplist_result[0][1], 
+                    tuplist_result[0][2], 
+                    tuplist_result[0][3], 
+                    tuplist_result[0][4],
+                    tuplist_result[0][5]
+                )
+                
+                
+                
+                print(f"TOKEN GENERATED IS",token)
+                r = JsonResponse({'message': 'Login successful', 'data': tuplist_result[0]}, status=200)
+                #r.set_cookie('token', token)
+                print(r.headers)
+                print(r.content)
+                return r
+                
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON data'}, status=400)
+        except Exception as e:
+            # Capture the error and traceback
+            error_details = traceback.format_exc()
+            print("An error occurred:", error_details)  # Log the error on the server
+            return JsonResponse({'error': str(e), 'details': error_details}, status=500)
+
+
+@csrf_exempt
+def verify_jwt(f):
+    """Verifies a JWT token.
+
+    Args:
+        token (str): The JWT token to verify.
+
+    Returns:
+        dict: The decoded token payload if valid, or None if invalid.
+    """
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        token = request.headers.get('Authorization')
+        if not token:
+            return jsonify({'message': 'Token missing'}), 401
+        try:
+            token = token.split(' ')[1]
+            decoded = jwt.decode(token, 'qwert12345!@#$%', algorithms=['HS256'])
+            # Add additional checks for expiration, issuer, audience, etc.
+            request.user = decoded
+            return f(*args, **kwargs)
+        except jwt.ExpiredSignatureError:
+            return jsonify({'message': 'Token expired'}), 401
+        except jwt.InvalidTokenError:
+            return jsonify({'message': 'Invalid token'}), 403
+        except Exception as e:
+            return jsonify({'message': 'Error decoding token'}), 500
+
+    return decorated_function
+            
+@csrf_exempt
+def insertAcc(request):
+    if request.method == 'POST':
+        try:
+            # Access JSON data from request body
+            data = json.loads(request.body)
+            usern = data.get('usern')
+            passw = data.get('passw')
+            usert = data.get('usert')
+            frstn = data.get('frstn')
+            lastn = data.get('lastn')
+            dpt = data.get('dpt')
+            
+            if not usern or not passw or not usert:
+                return JsonResponse({'error': 'Missing username or password or usertype', 'username':usern, 'password':passw}, status=400)
+            insert = sql_insertAcc(usern, passw, usert, frstn, lastn, dpt)
+            
+            
+            if insert == 'failed':
+                return JsonResponse({'RESULT': 'denied'})
+            else:
+                return JsonResponse({'RESULT': 'success'})
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON data'}, status=400)
+
+@csrf_exempt
+def getAccList(request):
+     if request.method == 'POST':
+        try:
+            # Access JSON data from request body
+            data = json.loads(request.body)
+            usern = data.get('usern')
+            cond = data.get('cond')
+            
+            result = sql_getAccList(cond)
+            
+            return JsonReponse({'data': result})
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON data'}, status=400)
+
+@csrf_exempt
+def delAcc(request):
+     if request.method == 'POST':
+        try:
+            # Access JSON data from request body
+            data = json.loads(request.body)
+            usern = data.get('usern')
+            
+            result = sql_delAcc(usern)
+            
+            if result == False:
+                return JsonResponse({'RESULT': 'db side error'})                    
+            else:
+                return JsonResponse({'RESULT': 'success'})
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON data'}, status=400)
+
+@csrf_exempt
+def updateAcc(request):
+     if request.method == 'POST':
+        try:
+            # Access JSON data from request body
+            data = json.loads(request.body)
+            usern = data.get('usern')
+            passw = data.get('passw')
+            usert = data.get('usert')
+            frstn = data.get('frstn')
+            lastn = data.get('lastn')
+            dpt = data.get('dpt')
+            
+            result = sql_updateAcc(usern, usert, firstn, lastn, dpt)
+            
+            return JsonReponse({'Result': result})
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON data'}, status=400)
+
+@csrf_exempt
+def updateAccPassw(request):
+     if request.method == 'POST':
+        try:
+            # Access JSON data from request body
+            data = json.loads(request.body)
+            usern = data.get('usern')
+            o_passw = data.get('o_passw')
+            n_passw = data.get('n_passw')
+            
+            result = sql_updateAccPassw(usern, o_passw, n_passw)
+            
+            if result == True:
+                return JsonReponse({'Result': result})
+                
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON data'}, status=400)
