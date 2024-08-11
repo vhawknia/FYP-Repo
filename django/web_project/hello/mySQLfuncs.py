@@ -23,8 +23,10 @@ def sql_sendQuery(q):
 
         query = q
         cursor.execute(query)
+        connection.commit()
         result = cursor.fetchall()
-
+        
+        #RESULT IS IN LIST OF TUPLEs, ACCESS THRU attrName[tupleINDX][dataINDX]
         return result
         
     except pymysql.Error as e:
@@ -40,12 +42,11 @@ def sql_sendQuery(q):
     
     
 def sql_validateLogin(usern, passw):
-    query = f"SELECT usertype  FROM user_accounts WHERE username= '{usern}' AND password = '{passw}'"
+    query = f"SELECT userid, username, firstname, lastname, department, usertype FROM user_accounts WHERE username= '{usern}' AND password = '{passw}'"
     result = sql_sendQuery(query)
     
     if result:
-        #print(result)
-        return result[0][0]
+        return result
     else: 
         return 'deny'
         
@@ -56,7 +57,7 @@ def sql_insertAcc(usern, passw, usert, firstn, lastn, dpt):
     insert = sql_sendQuery(q)
     print(insert)
     
-    q = f"SELECT * FROM user_accounts WHERE username = '{usern}' AND password ='{passw}' and "
+    q = f"SELECT * FROM user_accounts WHERE username = '{usern}' AND password ='{passw}' "
     result = sql_sendQuery(q)
     
     if result:
@@ -64,6 +65,58 @@ def sql_insertAcc(usern, passw, usert, firstn, lastn, dpt):
         return result
     else: 
         return result
+    
+def sql_getAccList(cond):
+    q = f"SELECT * FROM user_accounts"
+    if cond != "":
+        q = q + f"WHERE username LIKE WHERE username LIKE '%{cond}%';"
+              
+    r = sql_sendQuery(q)
+    
+    if r:
+        return r
+    else: 
+        return "SEL STATEMENT FAILED"
+
+def sql_delAcc(usern):
+    q = f"DELETE FROM user_accounts WHERE username = {usern};"
+    r = sql_sendQuery(q)
+    q = f"SELECT username FROM user_accounts WHERE username = {usern};"
+    result = sql_sendQuery(q)
+        
+    if not result:
+        return True
+    else: 
+        return False
+        
+def sql_updateAcc(usern, usert, firstn, lastn, dpt):
+    q = f"UPDATE user_accounts SET usertype = '{usert}', firstname = '{firstn}', lastname = '{lastn}', department = '{dpt}' WHERE username = '{usern}';"
+    r = sql_sendQuery(q)
+    
+    q = f"SELECT username FROM user_accounts WHERE usertype = '{usert}' AND firstname = '{firstn}' AND lastname = '{lastn}' AND department = '{dpt}' AND username = '{usern}';"
+    result = sql_sendQuery(q)
+    
+    if result:
+        print(result)
+        return result
+    else: 
+        return "UPD STATEMENT FAILED"
+
+def sql_updateAccPassw(usern, o_passw, n_passw):
+    if sql_validateLogin(usern, o_passw) != 'deny':
+        q = f"UPDATE user_accounts SET password = '{n_passw}' WHERE username = '{usern}';"
+        r = sql_sendQuery(q)
+        
+        q = f"SELECT username FROM user_accounts WHERE usertype = '{usert}', firstname = '{firstn}', lastname = '{lastn}', department = '{dpt}' WHERE username = '{usern}';"
+        result = sql_sendQuery(q)
+    
+    
+        if result:
+            print(result)
+            return True
+        else: 
+            return "UPD STATEMENT FAILED"
+    
     
 
 
