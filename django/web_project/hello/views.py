@@ -860,12 +860,15 @@ def delAcc(request):
             
             #print(f"ACC DEL REQUEST RECIEVED. ATTEMPTING DELETION. USERNAME IS {usern}")
             
+            #print(uid)
             result = sql_delAcc(uid)
             
+            print(result)
+            
             if result == False:
-                return JsonResponse({'RESULT': 'db side error'})                    
+                return JsonResponse({'result': 'db side error'})                    
             else:
-                return JsonResponse({'RESULT': 'success'})
+                return JsonResponse({'result': 'success'})
         except json.JSONDecodeError:
             return JsonResponse({'error': 'Invalid JSON data'}, status=400)
 
@@ -960,6 +963,9 @@ def insertAccBulk(request):
                     elif insert == 'dup':
                         unsucList.append(usern + "already in database")
             #print(f"TOTAL LOOPS IS {i}")
+            
+            print(unsucList)
+            
             if not unsucList:
                 return JsonResponse({'Result': unsucList})
             else:

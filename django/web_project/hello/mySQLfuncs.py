@@ -85,13 +85,13 @@ def sql_getAccList(cond):
         return []
 
 def sql_delAcc(uid):
-    q= f"DELETE FROM election_voter_status WHERE userid = '{uid}';"
+    q = f"DELETE FROM election_voter_status WHERE userid = {uid};"
     r = sql_sendQuery(q)
     
-    q = f"DELETE FROM user_accounts WHERE userid = '{uid}'"
+    q = f"DELETE FROM user_accounts WHERE userid = {uid}"
     r = sql_sendQuery(q)
     
-    q = f"SELECT username FROM user_accounts WHERE userid = '{uid}';"
+    q = f"SELECT username FROM user_accounts WHERE userid = {uid};"
     result = sql_sendQuery(q)
     
     if not result:

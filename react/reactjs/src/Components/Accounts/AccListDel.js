@@ -35,7 +35,8 @@ const DeleteAccount = async (userid) => {
     });
 
     const result = await response.json();
-    return result.RESULT; // Assuming the backend returns a 'success' field to indicate success/failure
+    return result.result; // Assuming the backend returns a 'success' field to indicate success/failure
+    
   } catch (error) {
     console.error('Error deleting account:', error);
     return false;
@@ -69,25 +70,35 @@ function AccListDel() {
         <td>{item[3]}</td>
         <td>{item[4]}</td>
         <td>{item[5]}</td>
-        <td><button className="delBtn" onClick={() => handleDelete(item[1])}>DELETE</button></td>
+        <td><button className="delBtn" onClick={() => handleDelete(item[0])}>DELETE</button></td>
       </>
     ) : (
       <td colSpan="6">No Data Found</td>
     )}
   </tr>
   );
+  
   const handleDelete = async (userid) => {
+  
     const confirmed = window.confirm('Are you sure you want to delete this account?');
     if (confirmed) {
-      const success = await DeleteAccount(userid);
-      if (success) {
-        alert('Account successfully deleted.');
-        setData(data.filter((item) => item[0] !== userid)); // Remove the deleted item from the state
-        setCond("")
-      } else {
-        alert('Failed to delete account.');
-      }
-    }
+        DeleteAccount(userid)
+          .then((success) => {
+            console.log(success)
+            if (success === 'success') {
+              alert('Account successfully deleted.');
+              setData(data.filter((item) => item[0] !== userid)); // Remove the deleted item from the state
+              //setCond(""); // Reset condition to trigger data refetch if needed
+            } else {
+              print(success)
+              alert('Failed to delete account.');
+            }
+          })
+          .catch((error) => {
+            console.error('Error deleting account:', error);
+            alert('Failed to delete account.');
+      });
+  }
   };
   
   return (
