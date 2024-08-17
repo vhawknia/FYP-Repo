@@ -166,9 +166,7 @@ function CompletedElections() {
 
                             <br /><br /><br />
                         </div>
-                        <div className='archive'>
-                            <button className='archive-button' onClick={handleArchive}>Archive</button>
-                        </div>
+                        
                     </main>
                 </div>
             </div>
